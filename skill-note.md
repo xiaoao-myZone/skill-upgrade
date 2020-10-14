@@ -16,6 +16,12 @@
 `# file_obj.write()可以读入数据但是只能用getvalue()方法来取值`
 `# file_obj.read()貌似只能读取初始化时候输入的byte类型数据`
 `# 真相大白，file_obj.write()后指针在最后面，需要file_obj.seek(0)才能获取用read()获取所有信息`
+&#160;
+`with open("/home/usr/test/sample.json", "w+") as file_obj`
+`# 不可以在没有文件test的情况下创建文件`
+&#160;
+`json.loads与load会将str转化为unicode`
+`yaml.safe_load可以避免这个问题`
 
 2. os
 `# os.path.isfile()需要输入绝对路径`
