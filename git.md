@@ -14,9 +14,14 @@
 4. 删除暂存区某个文件
 `git reset HEAD filename`
 &#160;
-4. 删除暂存区所有文件
+5. 删除暂存区所有文件
 `git reset HEAD`
+
+6. 删除分支
+`git branch -D branchname`
+`git push origin --delete branchname`
 
 ## 添加
 1. 将所有修改的py文件加入暂存区
 `git status | grep -o "\S\+\.py$" | xargs git add`
+`git add "*.py"`
