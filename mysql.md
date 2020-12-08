@@ -18,3 +18,8 @@
 2. insert
 `insert into table_name (col_1, col_2, ..) values(var_1, var_2, var_3...);`
 &#160;
+
+
+## know a table
+1. 查看表的格式，注意describe的拼写
+`describe tablename;` 
