@@ -1,5 +1,11 @@
 # git
 
+
+## clone
+1. `git clone xxxx.git -b branch_name` clone貌似没办法只下载一个分支
+2. `git config --global http.postBuffer 524288000` 
+    当仓库比较大的时候,可能会出现'fatal: The remote end hung up unexpectedly'
+    执行这一行再clone
 ## 删除
 1. 取消工作区所有修改
 `git reset --hard HEAD`
@@ -19,7 +25,7 @@
 
 6. 删除分支
 `git branch -D branchname`
-`git push origin --delete branchname`
+`git push origin --delete branchname` push后面像是在发送一段指令
 
 ## 添加
 1. 将所有修改的py文件加入暂存区
