@@ -56,7 +56,7 @@ eventlet 会讲Queue改写成轻量版,没有mutex方法
 
 ## queer
 
-1. 使用dict_a[str(an_id)], an_id在什么情况下会自动由int转化为str
+1. 使用`dict_a[str(an_id)]`, an_id在什么情况下会自动由int转化为str
 
 ## something worth concentration
 1. api name can't change for some rediculous reason (such as, let the mistake go)
@@ -64,4 +64,8 @@ eventlet 会讲Queue改写成轻量版,没有mutex方法
 3. if a status logging file is import, it's better to save it every time changing it
 4. go straight to resolve a problem and then to consider making it look more beautiful or less stupid
 5. You can't code dazedly, or you will use much more time to debug
+
+## wrapper
+1. 调用装饰器没有加`@`
+2. 定义装饰器没有加`return __wrapper`
 
