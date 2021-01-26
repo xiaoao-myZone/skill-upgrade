@@ -43,8 +43,12 @@
 
 > &emsp;使用Queue.get线程出现异常,Queue在调用get方法所加的锁会自动释放,但是threading.Lock的acquire不行
 
+> &emsp;使用带lock的装饰器后，不能实现递归
+
 4. wrapper
 > &emsp;用线程启用一个带装饰器的函数(装饰器带try except), 如果装饰器中中处理except部分没有打印错误信息,该函数中的报错不会被自动打印到终端
+
+> &emsp;装饰器莫忘记返回wrapper
 
 ## import
 1. 当导入一个包中的一个模块的时候，如果这个模块也导入了这个包中的另一个模块，并且导入时没有加包名，会报错
