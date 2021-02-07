@@ -31,3 +31,19 @@
 1. 将所有修改的py文件加入暂存区
 `git status | grep -o "\S\+\.py$" | xargs git add`
 `git add "*.py"`
+
+
+## 暂存
+1. 将工作区改动暂存，并将工作区恢复最近版本 
+`git stash`
+2. 弹出最近的一次暂存
+`git stash pop`
+3. 恢复最近的一次暂存，但是不删除这个暂存
+`git stash apply`
+4. 查看所有暂存
+`git stash list`
+5. 恢复某一次次暂存，但是不删除这个暂存
+`git stash apply stash@{0}`
+
+## 查看状态
+1. `git status`
