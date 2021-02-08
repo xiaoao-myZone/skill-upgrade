@@ -23,6 +23,7 @@ class Form(QDialog):
         try:
             text = str(self.lineedit.text())
             self.broswer.append("%s = <b>%s</b>" % (text, eval(text))) # when fresh the list in broswer
+            # maybe append triggle updating ui
         except Exception:
             traceback.print_exc()
             self.broswer.append("<font color=red>%s is invalid</font>" % text)
