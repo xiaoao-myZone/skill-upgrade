@@ -1,6 +1,7 @@
 from queue import LifoQueue
 from random import shuffle
-AROUND = [(0,1), (-1, 0), (0,-1), (1,0)]
+#AROUND = [(1,0), (-1, 0), (0,-1), (0, 1)]
+AROUND = [(0, -1), (-1, 0), (0, 1), (1, 0)]
 shuffle(AROUND)
 print(AROUND)
 MAZE = (
@@ -71,6 +72,27 @@ class MazePoint(object):
 
 start_point = MazePoint(1, 1, MAZE, (0, 1))
 end_point = MazePoint(8, 8, MAZE, (1, 0))
+
+def is_run_circle(path):
+    tmp = LifoQueue(100)
+    ret = False
+    point = path.get_nowait()
+    tmp.put_nowait(point)
+    while not path.empty():
+        pop_point = path.get_nowait()
+        tmp.put_nowait(pop_point)
+        if pop_point == point:
+            print("run circle")
+            ret = True
+            break
+    while not tmp.empty():
+        pop_point = tmp.get_nowait()
+        path.put_nowait(pop_point)
+    
+    
+    return ret
+
+
 def search_path(start_point, end_point):
     tmp = start_point
     path = LifoQueue(81)
@@ -78,11 +100,19 @@ def search_path(start_point, end_point):
         path.put_nowait(tmp)
         print("in: (%d %d)" % (tmp._x, tmp._y))
         yield (1, tmp._x, tmp._y)
-        if not tmp.is_dead():
+        error_1 = tmp.is_dead()
+        error_2 = is_run_circle(path)
+        if not error_1 and not error_2:
             tmp = tmp.next_point()
         else:
             tmp = path.get_nowait()
+            print("out: (%d %d)" % (tmp._x, tmp._y))
+            if error_1:
+                yield (0, tmp._x, tmp._y)
+            else:
+                yield (1, tmp._x, tmp._y)
             if path.empty():
+                print("can't find termainal")
                 break
                 #return []
             else:
