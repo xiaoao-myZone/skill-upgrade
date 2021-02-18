@@ -48,7 +48,6 @@ class Form(QDialog):
         date = "Exchange Rates Date: " + "2021-02-08"
         return date
 
-
 app = QApplication(sys.argv)
 form = Form()
 form.show()
