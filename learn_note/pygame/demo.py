@@ -45,19 +45,21 @@ while True:
             print("q")
     
     if not finish:
-        # pygame.draw.rect(screen, GREEN, rect_array[1][1])
-        # pygame.draw.rect(screen, RED, rect_array[2][1])
-        # finish = True
+        # ans = input()
+        # if ans:
+        #     sys.exit()
+        time.sleep(0.5)
         try:
-            if not (x<0 or y<0):
-                pygame.draw.rect(screen, RED, rect_array[y][x])
-            _, x, y = next(iter_point)
-            # if step_in:
-            pygame.draw.rect(screen, GREEN, rect_array[y][x])
-                
-            # else:
+            # if not (x<0 or y<0):
             #     pygame.draw.rect(screen, RED, rect_array[y][x])
-            time.sleep(1)
+            input_point, x, y = next(iter_point)
+            if input_point:
+                pygame.draw.rect(screen, GREEN, rect_array[y][x])
+                
+            else:
+                print("draw red")
+                pygame.draw.rect(screen, RED, rect_array[y][x])
+            
         except:
             finish = True
     time.sleep(0.02)
