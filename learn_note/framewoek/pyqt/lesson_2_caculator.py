@@ -16,6 +16,8 @@ class Form(QDialog):
         layout.addWidget(self.lineedit)
         self.setLayout(layout)
         self.lineedit.setFocus()
+        setting = self.broswer.document()
+        setting.setMaximumBlockCount(5)
         self.lineedit.returnPressed.connect(self.updateUi)
         self.setWindowTitle("Calculate")
 
