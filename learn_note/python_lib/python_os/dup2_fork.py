@@ -5,7 +5,9 @@ referrece: https://blog.csdn.net/thirstyblue/article/details/7763403
 import os, sys
 import time
 r, w = os.pipe()
-pid = os.fork() # 子线程与主线程共用管道,包括sys
+# 复制了所有的文件描述符， 它们在一个主进程中指代相同的文件指针
+# 进程为非守护进程
+pid = os.fork() 
 if not pid:
     print("child process")
     print("r --> %d, w --> %d" % (r, w))
@@ -21,8 +23,9 @@ if not pid:
     # with open("/home/xyz/xiaoao/skill-upgrade/text.txt", "w") as f:
     #     f.write(s)
 else:
+    time.sleep(5)
     print("main thread")
     print("r --> %d, w --> %d" % (r, w))
-    os.waitpid(pid, 0)
+    #os.waitpid(pid, 0)
 
     

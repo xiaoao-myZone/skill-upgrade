@@ -1,8 +1,10 @@
-#-8_ coding: utf-8 -*-
+#-*- coding: utf-8 -*-
 """referrence: https://blog.csdn.net/zhupenghui176/article/details/109097737"""
 import os
 import time
 import signal
+print("main main pid")
+print(os.getppid())
 print("main pid:%d" % os.getpid())
 def fork(cmd, times=3):
     r, w = os.pipe()
@@ -20,8 +22,8 @@ def fork(cmd, times=3):
         print("the parent pid of child: %d" % os.getppid())
         for _ in range(times):
             time.sleep(0.1)
-        #os._exit(3) # 如果不退出子进程，子进程会继续执行pid, r = fork("ping 127.0.0.1")，从而报错
-        raise Exception("afsaf")
+        os._exit(3) # 如果不退出子进程，子进程会继续执行pid, r = fork("ping 127.0.0.1")，从而报错
+        #raise Exception("afsaf")
         #os.execlp(cmd[0], cmd[0], *cmd[1:])
 
 res = []
