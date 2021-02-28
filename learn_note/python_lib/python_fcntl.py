@@ -2,8 +2,10 @@
 import fcntl
 """
 一般用来给文件加锁
-referrence: https://zhangnq.com/3284.html
-    https://blog.csdn.net/farsight2009/article/details/55517833
+referrence: 
+1. https://zhangnq.com/3284.html
+2. https://blog.csdn.net/farsight2009/article/details/55517833
+3. https://www.pynote.net/archives/1810 ##valuable##
 
 1. 复制一个现有的描述符(cmd=F_DUPFD).
 
@@ -20,3 +22,8 @@ print(fcntl.F_GETFL)
 import sys
 flags = fcntl.fcntl(sys.stderr.fileno(), fcntl.F_GETFL, 0)
 print(flags)
+
+# important usage
+# set file object non-block
+import os
+fcntl.fcntl(0, fcntl.F_SETFL, os.O_NONBLOCK) #fisrt arg is fd or file_obj
