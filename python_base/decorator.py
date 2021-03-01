@@ -26,3 +26,8 @@ def test(a, b):
 
 
 test(1,2)
+
+"""
+Conclusion:
+    as seen in dynamically_change_attr.py, after compiling, the decorator has merged into the function
+"""

@@ -1,5 +1,8 @@
 #-*- coding: utf-8 -*-
-"""referrence: https://blog.csdn.net/zhupenghui176/article/details/109097737"""
+"""referrence: 
+1. https://blog.csdn.net/zhupenghui176/article/details/109097737
+2. https://www.jb51.net/LINUXjishu/457748.html  ##如何解决僵尸进程及其原理
+"""
 import os
 import time
 import signal

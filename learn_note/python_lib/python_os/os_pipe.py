@@ -1,28 +1,5 @@
 import os
 import select
-for i in dir(select):
-    if i.startswith("EPOLL"):
-        num = getattr(select, i)
-        print("%s ---> %d ----> %s" % (i, num, bin(num)[2:]))
-
-# TODO find doc to understand them
-"""
-EPOLLERR ---> 8 ----> 1000
-EPOLLET ---> 2147483648 ----> 10000000000000000000000000000000
-EPOLLHUP ---> 16 ----> 10000
-EPOLLIN ---> 1 ----> 1
-EPOLLMSG ---> 1024 ----> 10000000000
-EPOLLONESHOT ---> 1073741824 ----> 1000000000000000000000000000000
-EPOLLOUT ---> 4 ----> 100
-EPOLLPRI ---> 2 ----> 10
-EPOLLRDBAND ---> 128 ----> 10000000
-EPOLLRDNORM ---> 64 ----> 1000000
-EPOLLWRBAND ---> 512 ----> 1000000000
-EPOLLWRNORM ---> 256 ----> 100000000
-EPOLL_CLOEXEC ---> 524288 ----> 10000000000000000000
-"""
-
-print("-------------------------------")
 
 r, w = os.pipe()
 # try:
