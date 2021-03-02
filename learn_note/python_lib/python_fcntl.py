@@ -26,4 +26,19 @@ print(flags)
 # important usage
 # set file object non-block
 import os
-fcntl.fcntl(0, fcntl.F_SETFL, os.O_NONBLOCK) #fisrt arg is fd or file_obj
+#fcntl.fcntl(0, fcntl.F_SETFL, os.O_NONBLOCK) #fisrt arg is fd or file_obj
+
+import socket
+s = socket.socket()
+s.connect(("127.0.0.1", 7005))
+fd = s.fileno()
+print("fd:", fd)
+print("F_GETFL:", fcntl.fcntl(fd, fcntl.F_GETFL))
+input("send message from server")
+print("F_GETFL:", fcntl.fcntl(fd, fcntl.F_GETFL))
+print(s.recv(1024))
+print("F_GETFL:", fcntl.fcntl(fd, fcntl.F_GETFL))
+input("close connection")
+print("F_GETFL:", fcntl.fcntl(fd, fcntl.F_GETFL))
+s.close()
+print("F_GETFL:",fcntl.fcntl(fd, fcntl.F_GETFL))
