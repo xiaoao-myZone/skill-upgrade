@@ -18,7 +18,10 @@
 &#160;
 2. insert
 `insert into table_name (col_1, col_2, ..) values(var_1, var_2, var_3...);`
+
+Question: select到底如何理解?
 &#160;
+
 
 
 ## know a table
@@ -36,6 +39,9 @@ describe 可以简写为 desc
 `select price * saleNum from sale;`
 2. 如果嫌表达式太长,可以起一个别名
 `select price * saleNum as sum from sale;`
+3. distinct跟在select后面作为修饰,只在相同的值中获取一行
+>> TODO 这会有一个小问题,它到底会选哪一行? 貌似选不了,指示做一个set的操作
+>> TODO 如果后面跟多个col会怎么样? 会将多个col的组合起来作为原来的col
 
 ## where
 1. = > <
@@ -44,8 +50,21 @@ describe 可以简写为 desc
 4. like `col like %son` result is Json, handson
 5. in `col in (1,2,3)`
 6. is `col is NULL` 不能用=NULL
-## function
-1. field
+
+## group by
+1. select distinct 是它的特例
+## functions
+1. field #如何将输出的结果按照某一个col的值的某种出现顺序排列
 `select status from batch order by field(status, 'init', 'doing', 'done')`
 接受一个变量,与其可能出现的枚举值,用来返回对应值的索引?
-2. 
+2. database #返回当前选中的数据库名
+`select database()`
+3. count #数行数
+`select count(distinct state) from customers where country='USA'`
+
+
+## some trick
+1. 一登录就切换数据库
+`mysql -u root -D dbname -p`
+2. 载入sql
+'source /home/xiaoming/test.sql'
