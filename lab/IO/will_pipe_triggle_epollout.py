@@ -50,6 +50,6 @@ Conclusion:
     5. 关闭r, w会出现EPOLLERR事件
 
 Notes:
-    1. 管道不能设置为unbuffered,也就是os.fdopen最后
+    1. 管道不能设置为unbuffered,也就是os.fdopen最后参数需要大于0
     2. w不能包装成file object进行读操作,估计任何O操作都不行(output)
 """
