@@ -5,7 +5,7 @@ setattr
 def switch(func):
     def _wrapper(self, *args, **kwargs):
         ret = func(self, *args, **kwargs)
-        print(getattr(self, func.__name__))
+        print("from wrapper", getattr(self, func.__name__))
         return ret
 
     return _wrapper
@@ -20,6 +20,9 @@ class Demo(object):
 
 d = Demo("xiaoming")
 print(getattr(d, 'name'))
-print(getattr(d, 'func'))
+setattr(d, "name", "xiaofang")
+print(getattr(d, 'name'))
+print("-------------------------")
+print(getattr(d, 'func')) # TODO 找出为什么这一句为什么莫名其妙打印出<bound method switch.<locals>._wrapper of <__main__.Demo object at 0x7f9dcb56bb00>>
 d.func()
 
