@@ -1,6 +1,9 @@
 ## docker
 
+### docker核心概念
+1. 
 
+### docker命令
 1. 查看镜像
 `$ docker images` 或者 `sudo docker image ls`
 2. 给镜像取别名
@@ -15,6 +18,10 @@
 `$ docker build -t xiaoao/test:mysql .` #将生成镜像命名为xiaoao/test:mysql
 5. 推送到远端
 `$ docker push https://github.com/docker/rootfs.git#container:docker`
+6. 删除镜像
+`$ docker rmi IMAGE ID`
+7. 启动镜像
+`$ docker run tag_name cmd`
 
 
 

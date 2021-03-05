@@ -7,26 +7,61 @@ from http.server import BaseHTTPRequestHandler, HTTPServer
 import urllib
 import json
 
-class MyHandler(BaseHTTPRequestHandler):
+import json
+import socket
+import select
+from http.server import HTTPServer, BaseHTTPRequestHandler
+
+socekt_map = {}
+process_map = {}
+
+class SimpleHTTPHandler(BaseHTTPRequestHandler):
+    """ attr                    type            annotation
+    self.command                str              GET or POST
+    self.path                   str                 
+    self.headers       http.client.HTTPMessage      first line
+    self.raw_requestline        bytes
+    self.rfile        <class '_io.BufferedReader'>  read body
+    self.wfile        <class '_io.BufferedReader'>  write response
+    """
     def do_GET(self):
-        path = self.path
-        print(path)
-        #拆分url(也可根据拆分的url获取Get提交才数据),可以将不同的path和参数加载不同的html页面，或调用不同的方法返回不同的数据，来实现简单的网站或接口
-        # query = urllib.parse.splitquery(path)
-        # print(query)
+        attr = ["command", "path", "headers", "raw_requestline", "rfile"]
+        for i in attr:
+            obj = getattr(self, i)
+            print("%s|%s|%s" % (i, type(obj), str(obj)))
+
         self.send_response(200)
         #self.send_header("Content-type","text/html")
-        self.send_header("Content-type","application/json".encode())
-        self.send_header("test","This is test!".encode())
+        self.send_header("Content-type","application/json")
+        self.send_header("test","This is test!")
         self.end_headers()
         buf = json.dumps({"code": 0}).encode()
+        buf+=b'\n'
         self.wfile.write(buf)
 
-server = HTTPServer(("", 7005), MyHandler)
-from ipdb import set_trace; set_trace()
-server.serve_forever()
+    def do_POST(self):
+        print(self.headers)
+        data_len = int(self.headers.get("content-length"))
+        if data_len:
+            data = self.rfile.read(data_len)
+            print("receive data|%s|%s" % (type(data), data)) # TODO what if content-length is too small
+        self.send_response(200)
+        #self.send_header("Content-type","text/html")
+        self.send_header("Content-type","application/json")
+        self.send_header("test","This is test!")
+        self.end_headers()
+        buf = json.dumps({"code": 0}).encode()
+        buf+=b'\n'
+        self.wfile.write(buf)
+
+if __name__ == "__main__":
+    http_server = HTTPServer(("", 7005), SimpleHTTPHandler)
+
+    http_server.serve_forever()
 
 """
+self.fileno()
+
 self._handle_request_noblock()
 
     Handle one request, without blocking.
@@ -34,6 +69,19 @@ self._handle_request_noblock()
     I assume that selector.select() has returned that the socket is
     readable before this function was called, so there should be no risk of
     blocking in get_request().
+
+        try:
+            request, client_address = self.get_request()
+        except OSError:
+            return
+        if self.verify_request(request, client_address):
+            try:
+                self.process_request(request, client_address)
+            except:
+                self.handle_error(request, client_address)
+                self.shutdown_request(request)
+        else:
+            self.shutdown_request(request)
 
 self.service_actions()
 
