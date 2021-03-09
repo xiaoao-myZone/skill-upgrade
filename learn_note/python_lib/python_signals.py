@@ -17,7 +17,7 @@ SIGSTP  表示键盘按下Ctrl+z键
 SIGKILL 表示结束某个进程，不能被忽略处理。
 SIGALRM 表示时钟信号，常用作定时器。
 SIGSTOP 表示暂停某个进程，且不能被忽略处理。
-SIGCHLD 表示子进程发送给父进程信号 #那么父进程如何收到呢
+SIGCHLD 表示子进程发送给父进程信号 # TODO 那么父进程如何收到呢? 什么情况下?如何发?
 
 """
 def func(*args):

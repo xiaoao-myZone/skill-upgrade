@@ -10,8 +10,8 @@
 
             // the socket.io documentation recommends sending an explicit package upon connection
             // this is specially important when using the global namespace
-            var socket = io.connect('http://' + "127.0.0.1" + ':' + "7005" + namespace);
-            
+            //var socket = io.connect('http://' + document.domain + ':' + location.port + namespace);
+            var socket = io.connect('http://' + "127.0.0.1" + ':' + "7006" + namespace)
             socket.on('connect', function(msg) {
                 socket.emit('my event', {data: 'I\'m connected!'});
             });

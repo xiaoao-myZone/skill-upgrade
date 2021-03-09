@@ -38,7 +38,7 @@
 3. threading
 > &emsp;主进程结束，子线程也结束
 
-> &emsp;当调用函数只有一个参数时
+> &emsp;当调用函数只有一个参数时,原因是当()不加","时,python编译器会认为这是一个优先运算标志,而不是一个元组
 
 `thread = threading.Tread(target=func, args=(a, ))`
 
@@ -50,6 +50,8 @@
 > &emsp;用线程启用一个带装饰器的函数(装饰器带try except), 如果装饰器中中处理except部分没有打印错误信息,该函数中的报错不会被自动打印到终端
 
 > &emsp;装饰器莫忘记返回wrapper
+
+> &emsp;不能用ipdb.set_trace
 
 ## import
 1. 当导入一个包中的一个模块的时候，如果这个模块也导入了这个包中的另一个模块，并且导入时没有加包名，会报错
@@ -66,7 +68,7 @@
 1. 使用`dict_a[str(an_id)]`, an_id在什么情况下会自动由int转化为str
 
 ## something worth concentration
-1. api name can't change for some rediculous reason (such as, let the mistake go)
+1. api name can't change for some ridiculous reason (such as, let the mistake go)
 2. even raise Exception, better to logger it before raising it
 3. if a status logging file is import, it's better to save it every time changing it
 4. go straight to resolve a problem and then to consider making it look more beautiful or less stupid
@@ -75,4 +77,11 @@
 ## wrapper
 1. 调用装饰器没有加`@`
 2. 定义装饰器没有加`return __wrapper`
+
+## annotation
+1. On Python ≥ 3.6, :class:`WebSocketCommonProtocol` instances support
+
+
+## str
+1. `{:.4f}.format(1.2)`可以限定输出的小数位数
 

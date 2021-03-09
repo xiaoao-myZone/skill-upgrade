@@ -22,3 +22,20 @@ Conclusion:
             mro = inst.__class__.mro()
             return mro[mro.index(cls) + 1]
 """
+
+class TestA(object):
+    def __init__(self):
+        print("keyword")
+
+    def handle(self):
+        print("handle something")
+
+class TestB(TestA):
+    def tick(self):
+        print("tick")
+
+class TestC(TestB):
+    def knock(self):
+        print("knock")
+
+c = TestC()

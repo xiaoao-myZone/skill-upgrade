@@ -9,8 +9,15 @@ for i in dir(select):
         num = getattr(select, i)
         print("%s ---> %d ----> %s" % (i, num, bin(num)[2:]))
 
-# TODO find doc to understand them
+
 """
+POLLIN 	读取来自文件描写叙述符的数据
+POLLPRI 	读取来自文件描写叙述符的紧急数据
+POLLOUT 	文件描写叙述符的数据已准备好。可无堵塞写入
+POLLERR 	与文件描写叙述符有关的错误情况
+POLLHUP 	挂起，连接丢失
+POLLNVAL 	无效请求，连接没有打开
+
 EPOLLERR ---> 8 ----> 1000
 EPOLLET ---> 2147483648 ----> 10000000000000000000000000000000
 EPOLLHUP ---> 16 ----> 10000
@@ -104,5 +111,10 @@ Conclusion for select.select:
     5. 如果rl中的另一端被关闭了,读到的信息为''
     
 """
-# TODO可否通过fcntl来得知fd的另一端是否被关闭
+# TODO 可否通过fcntl来得知fd的另一端是否被关闭
 #应该不行
+
+"""
+Notes:
+    select poll epoll的性能依次增强,但是兼容性select最好
+"""
