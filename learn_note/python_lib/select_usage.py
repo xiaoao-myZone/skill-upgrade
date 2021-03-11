@@ -60,10 +60,11 @@ Conclusion:
     1. os.pipe返回的应该是两个指向同一个文件的描述符,通过某种设置,将前后两个文件描述符分别限定了只能用读的模式打开与只能用写的模式打开
     2. os.fdopen如果以不恰当的模式打开fd,会关闭此fd
     3. os应该有办法提前得知这种读写模式限定
-    4. 当文件写入的一端关闭后,读的一端应该被永久写入了EOF,并且每次都触发epoll的EPOLLHUB事件
+    4. 当文件写入的一端关闭后,读的一端应该被永久写入了EOF,并且每次都触发epoll的EPOLLHUB事件(猜对了)
 """
 
-# TODO 什么情况下会触发select.EPOLLOUT? 我猜是当另一端调用recv或者read的时候
+# 什么情况下会触发select.EPOLLOUT? 我猜是当另一端调用recv或者read的时候
+# 参考 https://www.zhihu.com/question/28594409 多路复用
 
 print("-----------select.select------------------")
 import socket
