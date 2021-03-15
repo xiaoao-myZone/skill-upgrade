@@ -32,6 +32,13 @@ describe 可以简写为 desc
 `show columns from tablename;`
 3. 查看各列更详细的信息
 `show full columns from tablename;`
+4. 查看某一字段的值的所有种类
+`select distinct column_name from tablename;`
+5. 查看表的记录条数
+`select count(*) from tablename;`
+6. 查看字段的组合种类
+`select distinct column_name_1, column_name_2 from tablename;`
+7. 二次查询(比如找到一种字段组合出现过两次的所有记录)
 
 
 ## select
@@ -40,8 +47,10 @@ describe 可以简写为 desc
 2. 如果嫌表达式太长,可以起一个别名
 `select price * saleNum as sum from sale;`
 3. distinct跟在select后面作为修饰,只在相同的值中获取一行
->> TODO 这会有一个小问题,它到底会选哪一行? 貌似选不了,指示做一个set的操作
->> TODO 如果后面跟多个col会怎么样? 会将多个col的组合起来作为原来的col
+>> 这会有一个小问题,它到底会选哪一行? 
+* 貌似选不了,指示做一个set的操作
+>> 如果后面跟多个col会怎么样? 
+* 会将多个col的组合起来作为原来的col
 
 ## where
 1. = > <

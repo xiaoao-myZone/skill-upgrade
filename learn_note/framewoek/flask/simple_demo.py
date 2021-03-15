@@ -4,6 +4,7 @@ from flask_socketio import SocketIO
 app = Flask("Demo")
 api = Api(app)
 ws = SocketIO(app)
+print(dir(api))
 
 @ws.on("connect")
 def on():
@@ -21,7 +22,6 @@ class Test(Resource):
         return {"code": 0}
 
 api.add_resource(Test, "/cmd")
-
 #app.run(host="0.0.0.0", port=7005)
 ws.run(app, host="0.0.0.0", port=7005)
 
