@@ -47,3 +47,16 @@
 
 ## 查看状态
 1. `git status`
+
+
+## 设置
+1. 查看git的所有设置
+`git config --global --list` --system --local
+2. 查看某个值的设置
+`git config --global --get user.email`
+3. 删除某个值的设置
+`git config --global --unset user.mail`
+4. 换源
+`git remote remove origin && git remote add origin https://github....`
+5. 设置global变量
+`git config --global --add user.email name@example.com`

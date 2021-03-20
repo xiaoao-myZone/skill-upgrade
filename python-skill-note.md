@@ -85,3 +85,14 @@
 ## str
 1. `{:.4f}.format(1.2)`可以限定输出的小数位数
 
+
+
+## pip
+1. 获取配置
+`pip config list`
+2. 获取某一个配置
+`pip config get global.index-url`
+3. 修改某个配置
+`pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple`
+4. 取消某个配置(回复默认设置)
+`pip config unset global.index-url`

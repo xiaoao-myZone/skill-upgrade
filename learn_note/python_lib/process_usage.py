@@ -43,11 +43,11 @@ def consume_P(q):
 r_p, w_p = Pipe()
 p1 = Process(target=product_P, args=(r_p,))
 p1.start()
+print("pid: %d" % p1.pid)
 p2 = Process(target=consume_P, args=(w_p,))
 print("default daemon is %s" % p2.daemon)
 p2.start()
-print(p2.pid)
-print(type(p2.pid))
+print("pid: %d" % p2.pid)
 
 
 
