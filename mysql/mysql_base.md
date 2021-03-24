@@ -54,7 +54,7 @@ describe 可以简写为 desc
 
 ## where
 1. = > <
-2. AND OR
+2. AND `boolean_expression_1 AND boolean_expression_2` OR
 3. varname between a and b
 4. like `col like %son` result is Json, handson
 5. in `col in (1,2,3)`

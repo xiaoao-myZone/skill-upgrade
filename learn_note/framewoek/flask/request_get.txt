@@ -1,0 +1,418 @@
+--------------------
+attr: accept_charsets
+type: <class 'werkzeug.datastructures.CharsetAccept'>
+content: 
+--------------------
+--------------------
+attr: accept_encodings
+type: <class 'werkzeug.datastructures.Accept'>
+content: gzip,deflate,br
+--------------------
+--------------------
+attr: accept_languages
+type: <class 'werkzeug.datastructures.LanguageAccept'>
+content: 
+--------------------
+--------------------
+attr: accept_mimetypes
+type: <class 'werkzeug.datastructures.MIMEAccept'>
+content: */*
+--------------------
+--------------------
+attr: access_control_request_headers
+type: <type 'NoneType'>
+content: None
+--------------------
+--------------------
+attr: access_control_request_method
+type: <type 'NoneType'>
+content: None
+--------------------
+--------------------
+attr: access_route
+type: <class 'werkzeug.datastructures.ImmutableList'>
+content: ImmutableList(['127.0.0.1'])
+--------------------
+--------------------
+attr: application
+type: <type 'instancemethod'>
+content: <bound method type.application of <class 'flask.wrappers.Request'>>
+--------------------
+--------------------
+attr: args
+type: <class 'werkzeug.datastructures.ImmutableMultiDict'>
+content: ImmutableMultiDict([])
+--------------------
+--------------------
+attr: authorization
+type: <type 'NoneType'>
+content: None
+--------------------
+--------------------
+attr: base_url
+type: <type 'unicode'>
+content: http://127.0.0.1:7005/cmd
+--------------------
+--------------------
+attr: blueprint
+type: <type 'NoneType'>
+content: None
+--------------------
+--------------------
+attr: cache_control
+type: <class 'werkzeug.datastructures.RequestCacheControl'>
+content: 
+--------------------
+--------------------
+attr: charset
+type: <type 'str'>
+content: utf-8
+--------------------
+--------------------
+attr: close
+type: <type 'instancemethod'>
+content: <bound method Request.close of <Request 'http://127.0.0.1:7005/cmd' [GET]>>
+--------------------
+--------------------
+attr: content_encoding
+type: <type 'NoneType'>
+content: None
+--------------------
+--------------------
+attr: content_length
+type: <type 'NoneType'>
+content: None
+--------------------
+--------------------
+attr: content_md5
+type: <type 'NoneType'>
+content: None
+--------------------
+--------------------
+attr: content_type
+type: <type 'str'>
+content: text/plain
+--------------------
+--------------------
+attr: cookies
+type: <class 'werkzeug.datastructures.ImmutableMultiDict'>
+content: ImmutableMultiDict([])
+--------------------
+--------------------
+attr: data
+type: <type 'str'>
+content: 
+--------------------
+--------------------
+attr: date
+type: <type 'NoneType'>
+content: None
+--------------------
+--------------------
+attr: dict_storage_class
+type: <type 'type'>
+content: <class 'werkzeug.datastructures.ImmutableMultiDict'>
+--------------------
+--------------------
+attr: disable_data_descriptor
+type: <type 'bool'>
+content: False
+--------------------
+--------------------
+attr: encoding_errors
+type: <type 'str'>
+content: replace
+--------------------
+--------------------
+attr: endpoint
+type: <type 'str'>
+content: test
+--------------------
+--------------------
+attr: environ
+type: <type 'dict'>
+content: {'headers_raw': (('User-Agent', 'PostmanRuntime/7.26.3'), ('Accept', '*/*'), ('Postman-Token', '915b3095-7a6d-4ce1-bf90-a7348c69c86a'), ('Host', '127.0.0.1:7005'), ('Accept-Encoding', 'gzip, deflate, br'), ('Connection', 'keep-alive')), 'eventlet.input': <eventlet.wsgi.Input object at 0x7fbdb46ea510>, 'CONTENT_TYPE': 'text/plain', 'HTTP_POSTMAN_TOKEN': '915b3095-7a6d-4ce1-bf90-a7348c69c86a', 'flask.app': <Flask 'Demo'>, 'wsgi.multithread': True, 'SCRIPT_NAME': '', 'wsgi.input': <eventlet.wsgi.Input object at 0x7fbdb46ea510>, 'REQUEST_METHOD': 'GET', 'HTTP_HOST': '127.0.0.1:7005', 'PATH_INFO': '/cmd', 'SERVER_PROTOCOL': 'HTTP/1.0', 'wsgi.version': (1, 0), 'HTTP_ACCEPT': '*/*', 'werkzeug.request': <Request 'http://127.0.0.1:7005/cmd' [GET]>, 'HTTP_USER_AGENT': 'PostmanRuntime/7.26.3', 'HTTP_CONNECTION': 'keep-alive', 'eventlet.posthooks': [], 'SERVER_NAME': '127.0.0.1', 'REMOTE_PORT': '47312', 'wsgi.run_once': False, 'wsgi.errors': <open file '<stderr>', mode 'w' at 0x7fbdb85781e0>, 'REMOTE_ADDR': '127.0.0.1', 'wsgi.url_scheme': 'http', 'SERVER_PORT': '7005', 'GATEWAY_INTERFACE': 'CGI/1.1', 'wsgi.multiprocess': False, 'HTTP_ACCEPT_ENCODING': 'gzip, deflate, br', 'RAW_PATH_INFO': '/cmd'}
+--------------------
+--------------------
+attr: files
+type: <class 'werkzeug.datastructures.ImmutableMultiDict'>
+content: ImmutableMultiDict([])
+--------------------
+--------------------
+attr: form
+type: <class 'werkzeug.datastructures.ImmutableMultiDict'>
+content: ImmutableMultiDict([])
+--------------------
+--------------------
+attr: form_data_parser_class
+type: <type 'type'>
+content: <class 'werkzeug.formparser.FormDataParser'>
+--------------------
+--------------------
+attr: from_values
+type: <type 'instancemethod'>
+content: <bound method type.from_values of <class 'flask.wrappers.Request'>>
+--------------------
+--------------------
+attr: full_path
+type: <type 'unicode'>
+content: /cmd?
+--------------------
+--------------------
+attr: get_data
+type: <type 'instancemethod'>
+content: <bound method Request.get_data of <Request 'http://127.0.0.1:7005/cmd' [GET]>>
+--------------------
+--------------------
+attr: get_json
+type: <type 'instancemethod'>
+content: <bound method Request.get_json of <Request 'http://127.0.0.1:7005/cmd' [GET]>>
+--------------------
+--------------------
+attr: headers
+type: <class 'werkzeug.datastructures.EnvironHeaders'>
+content: Content-Type: text/plain
+Postman-Token: 915b3095-7a6d-4ce1-bf90-a7348c69c86a
+Host: 127.0.0.1:7005
+Accept: */*
+User-Agent: PostmanRuntime/7.26.3
+Connection: keep-alive
+Accept-Encoding: gzip, deflate, br
+
+
+--------------------
+--------------------
+attr: host
+type: <type 'str'>
+content: 127.0.0.1:7005
+--------------------
+--------------------
+attr: host_url
+type: <type 'unicode'>
+content: http://127.0.0.1:7005/
+--------------------
+--------------------
+attr: if_match
+type: <class 'werkzeug.datastructures.ETags'>
+content: 
+--------------------
+--------------------
+attr: if_modified_since
+type: <type 'NoneType'>
+content: None
+--------------------
+--------------------
+attr: if_none_match
+type: <class 'werkzeug.datastructures.ETags'>
+content: 
+--------------------
+--------------------
+attr: if_range
+type: <class 'werkzeug.datastructures.IfRange'>
+content: 
+--------------------
+--------------------
+attr: if_unmodified_since
+type: <type 'NoneType'>
+content: None
+--------------------
+--------------------
+attr: input_stream
+type: <class 'eventlet.wsgi.Input'>
+content: <eventlet.wsgi.Input object at 0x7fbdb46ea510>
+--------------------
+--------------------
+attr: is_json
+type: <type 'bool'>
+content: False
+--------------------
+--------------------
+attr: is_multiprocess
+type: <type 'bool'>
+content: False
+--------------------
+--------------------
+attr: is_multithread
+type: <type 'bool'>
+content: True
+--------------------
+--------------------
+attr: is_run_once
+type: <type 'bool'>
+content: False
+--------------------
+--------------------
+attr: is_secure
+type: <type 'bool'>
+content: False
+--------------------
+--------------------
+attr: json
+type: <type 'NoneType'>
+content: None
+--------------------
+--------------------
+attr: json_module
+type: <type 'module'>
+content: <module 'flask.json' from '/home/xiaoao/.local/lib/python2.7/site-packages/flask/json/__init__.pyc'>
+--------------------
+--------------------
+attr: list_storage_class
+type: <type 'type'>
+content: <class 'werkzeug.datastructures.ImmutableList'>
+--------------------
+--------------------
+attr: make_form_data_parser
+type: <type 'instancemethod'>
+content: <bound method Request.make_form_data_parser of <Request 'http://127.0.0.1:7005/cmd' [GET]>>
+--------------------
+--------------------
+attr: max_content_length
+type: <type 'NoneType'>
+content: None
+--------------------
+--------------------
+attr: max_form_memory_size
+type: <type 'NoneType'>
+content: None
+--------------------
+--------------------
+attr: max_forwards
+type: <type 'NoneType'>
+content: None
+--------------------
+--------------------
+attr: method
+type: <type 'str'>
+content: GET
+--------------------
+--------------------
+attr: mimetype
+type: <type 'str'>
+content: text/plain
+--------------------
+--------------------
+attr: mimetype_params
+type: <type 'dict'>
+content: {}
+--------------------
+--------------------
+attr: on_json_loading_failed
+type: <type 'instancemethod'>
+content: <bound method Request.on_json_loading_failed of <Request 'http://127.0.0.1:7005/cmd' [GET]>>
+--------------------
+--------------------
+attr: origin
+type: <type 'NoneType'>
+content: None
+--------------------
+--------------------
+attr: parameter_storage_class
+type: <type 'type'>
+content: <class 'werkzeug.datastructures.ImmutableMultiDict'>
+--------------------
+--------------------
+attr: path
+type: <type 'unicode'>
+content: /cmd
+--------------------
+--------------------
+attr: pragma
+type: <class 'werkzeug.datastructures.HeaderSet'>
+content: 
+--------------------
+--------------------
+attr: query_string
+type: <type 'str'>
+content: 
+--------------------
+--------------------
+attr: range
+type: <type 'NoneType'>
+content: None
+--------------------
+--------------------
+attr: referrer
+type: <type 'NoneType'>
+content: None
+--------------------
+--------------------
+attr: remote_addr
+type: <type 'str'>
+content: 127.0.0.1
+--------------------
+--------------------
+attr: remote_user
+type: <type 'NoneType'>
+content: None
+--------------------
+--------------------
+attr: routing_exception
+type: <type 'NoneType'>
+content: None
+--------------------
+--------------------
+attr: scheme
+type: <type 'str'>
+content: http
+--------------------
+--------------------
+attr: script_root
+type: <type 'unicode'>
+content: 
+--------------------
+--------------------
+attr: shallow
+type: <type 'bool'>
+content: False
+--------------------
+--------------------
+attr: stream
+type: <type 'cStringIO.StringO'>
+content: <cStringIO.StringO object at 0x7fbdb46dcce0>
+--------------------
+--------------------
+attr: trusted_hosts
+type: <type 'NoneType'>
+content: None
+--------------------
+--------------------
+attr: url
+type: <type 'unicode'>
+content: http://127.0.0.1:7005/cmd
+--------------------
+--------------------
+attr: url_charset
+type: <type 'str'>
+content: utf-8
+--------------------
+--------------------
+attr: url_root
+type: <type 'unicode'>
+content: http://127.0.0.1:7005/
+--------------------
+--------------------
+attr: url_rule
+type: <class 'werkzeug.routing.Rule'>
+content: /cmd
+--------------------
+--------------------
+attr: user_agent
+type: <class 'werkzeug.useragents.UserAgent'>
+content: PostmanRuntime/7.26.3
+--------------------
+--------------------
+attr: values
+type: <class 'werkzeug.datastructures.CombinedMultiDict'>
+content: CombinedMultiDict([ImmutableMultiDict([]), ImmutableMultiDict([])])
+--------------------
+--------------------
+attr: view_args
+type: <type 'dict'>
+content: {}
+--------------------
+--------------------
+attr: want_form_data_parsed
+type: <type 'bool'>
+content: True
+--------------------
