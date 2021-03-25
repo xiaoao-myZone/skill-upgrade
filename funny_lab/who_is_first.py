@@ -13,5 +13,6 @@ tp = TaskPlanner("Judy")
 tp = TaskPlanner("Lucid")
 
 """
-先创建新的对象,再删除旧的对象
+Please guess the output
+
 """

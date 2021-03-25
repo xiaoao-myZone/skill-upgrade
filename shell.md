@@ -17,3 +17,6 @@
 
 ### ps
 [很详细](https://juejin.cn/post/6844903938144075783#heading-25)
+
+### ls -l
+[输出说明](https://blog.csdn.net/weixin_44903147/article/details/102480711)
