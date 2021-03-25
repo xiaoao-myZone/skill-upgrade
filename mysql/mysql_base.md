@@ -38,8 +38,10 @@ describe 可以简写为 desc
 `select count(*) from tablename;`
 6. 查看字段的组合种类
 `select distinct column_name_1, column_name_2 from tablename;`
-7. 二次查询(比如找到一种字段组合出现过两次的所有记录)
-
+7. 查看字段出现的频次
+`select col_name, count(*) from tablename group by col_name;`
+8. 二次查询(比如找到一种字段组合出现过两次的所有记录) TODO
+`select col_name_1, col_name_2, count(*) from tablename group by col_name_1, col_name_2;`
 
 ## select
 1. columns可以通过表达式运算后显示出来
@@ -57,11 +59,14 @@ describe 可以简写为 desc
 2. AND `boolean_expression_1 AND boolean_expression_2` OR
 3. varname between a and b
 4. like `col like %son` result is Json, handson
-5. in `col in (1,2,3)`
+5. in `col in (1,2,3)` #与python中的in相同
 6. is `col is NULL` 不能用=NULL
+7. limit `limit 1, 2` #从第二行开始取两行, `limit 3`是`limit 0, 3`的简略用法
 
 ## group by
 1. select distinct 是它的特例
+2. 在查询语句中处于from, where后面, 并且处于having,order by, limit前面 
+3. group by value DESC # tips: 但是在标准sql中不允许加DESC到group by
 ## functions
 1. field #如何将输出的结果按照某一个col的值的某种出现顺序排列
 `select status from batch order by field(status, 'init', 'doing', 'done')`
@@ -70,10 +75,28 @@ describe 可以简写为 desc
 `select database()`
 3. count #数行数
 `select count(distinct state) from customers where country='USA'`
+4. sum
+5. min/max
+6. avg
+7. year 后面接一个date对象
+
+## having
+
+1. 一般与group by 联用, 当没有group by 的时候相当于where
+2. TODO 为什么having中的condition不能放在where中呢,我猜是为了提升查找速度
+3. having与where的不同, having使用的变量是select中存在的,而不是表中存在的
+
+## alias
+1. funcion(col) as nickname
+2. mysql支持group by 使用alias, 但是标准的sql语句不允许
+
+
 
 
 ## some trick
 1. 一登录就切换数据库
 `mysql -u root -D dbname -p`
 2. 载入sql
-'source /home/xiaoming/test.sql'
+`source /home/xiaoming/test.sql`
+3. 不进入mysql客户端就输入指令
+`mysql -u root -p -e "select 'hello'"`
