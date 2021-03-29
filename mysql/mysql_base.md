@@ -43,6 +43,12 @@ describe 可以简写为 desc
 8. 二次查询(比如找到一种字段组合出现过两次的所有记录) TODO
 `select col_name_1, col_name_2, count(*) from tablename group by col_name_1, col_name_2;`
 
+## create a table
+1. CREATE TABLE test (
+    colName int(11) NOT NULL,
+    ...
+) ENGINE=InnoDB DEFAULT CHARSET=utf-8;
+
 ## select
 1. columns可以通过表达式运算后显示出来
 `select price * saleNum from sale;`
@@ -61,24 +67,47 @@ describe 可以简写为 desc
 4. like `col like %son` result is Json, handson
 5. in `col in (1,2,3)` #与python中的in相同
 6. is `col is NULL` 不能用=NULL
-7. limit `limit 1, 2` #从第二行开始取两行, `limit 3`是`limit 0, 3`的简略用法
+## limit
+limit `limit 1, 2` #从第二行开始取两行, `limit 3`是`limit 0, 3`的简略用法
 
 ## group by
 1. select distinct 是它的特例
 2. 在查询语句中处于from, where后面, 并且处于having,order by, limit前面 
 3. group by value DESC # tips: 但是在标准sql中不允许加DESC到group by
+
+## join
+### inner join
+1. 只有当分别来自两个表的两行中指定的的字段"匹配", 才会将这两行合并为一行
+2. 当两个表中被期望匹配的两个字段的匹配形式是`=`,并且他们的字段名也是一样的时候, 可以用using
+3. 否则用更一般的匹配形式 `inner join on join_condition_expression`
+
+### left join
+1. 无论如何左边的表的内容都会选中,但是如果没有在右表中找到匹配项,就会用NULL代替右表中的值
+### right join
+1. 应该和左联接差不多, 但是如果一样,就没必要专门做一个右连接了
+### cross join
+1. 完全地排列组合
+
+### self join
+1. 在一个表中自联, 必须将where中的表名与JOIN中的同一表名用别名(alias)区分开
+
+## union
 ## functions
+### aggregate function
+1. sum
+2. min/max
+3. avg
+4. count #数行数
+`select count(distinct state) from customers where country='USA'`
+### others
 1. field #如何将输出的结果按照某一个col的值的某种出现顺序排列
 `select status from batch order by field(status, 'init', 'doing', 'done')`
 接受一个变量,与其可能出现的枚举值,用来返回对应值的索引?
 2. database #返回当前选中的数据库名
 `select database()`
-3. count #数行数
-`select count(distinct state) from customers where country='USA'`
-4. sum
-5. min/max
-6. avg
-7. year 后面接一个date对象
+3. year 后面接一个date对象 #照理说也有month和day
+4. concat_ws # 以第一个字符参数为间隙,连接后面的各个col的值
+5. concat #拼接所有字段参数的值
 
 ## having
 
@@ -89,14 +118,33 @@ describe 可以简写为 desc
 ## alias
 1. funcion(col) as nickname
 2. mysql支持group by 使用alias, 但是标准的sql语句不允许
+3. 如果nickname中有空格,需要在两边用单引号括起来
+4. ```select concat_ws(',', firstName,lastName) as `Full Name` from employees order by `Full Name`;``` #使用``时可以不用 as
+5. <font color=#A52A2A>不可在where中引用alias, 因为mysql执行where的时候select还没有执行(信息量甚多)</font>
+6. 给表创建别名 `select e.firstName, e.lastName from employees e order by e.firstName;`
 
+## 执行顺序
+join > on/using > where > select > order by
+1. group by 和 where的谁先执行?我猜是where
 
 
 
 ## some trick
 1. 一登录就切换数据库
-`mysql -u root -D dbname -p`
+`mysql -u root -D dbname -p` #貌似不好使
 2. 载入sql
 `source /home/xiaoming/test.sql`
 3. 不进入mysql客户端就输入指令
 `mysql -u root -p -e "select 'hello'"`
+
+
+## json
+
+
+
+
+## 子查询(subquery)
+1. 外部查询可以是SELECT INSERT, UPDATE, DELETE, DO和SET
+2. FROM 也可以
+3. 外部查询不能查询或修改内部查询所查的表, 不过FROM可以
+4. 更细一点,子查询可以在这些语句的表达式中
