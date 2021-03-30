@@ -86,6 +86,18 @@
 1. `{:.4f}.format(1.2)`可以限定输出的小数位数
 
 
+## list
+1. `a = [1,2,3,4,5]; a[::2] = [8,8,8]`a的结果为`[8,2,8,4,8]` 
+
+### class
+类中的一级缩进的内容会在编译的时候执行, 并可以通过self调用
+```
+class Test:
+    name = 'Lucus'
+    def self_intro(self):
+        print("My name is %d" % self.name)
+```
+
 
 ## pip
 1. 获取配置
