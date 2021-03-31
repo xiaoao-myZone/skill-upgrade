@@ -63,3 +63,11 @@
 6. ultimate set
 `git config --global -e`
 如果不喜欢默认的编辑器，可以通过`git config --global core.editor vim`修改
+
+## 源
+1. 换源
+`git remote set-url origin git@github.com:xiaoming/my-repo.git`
+2. 查看源
+`git remote get-url origin`
+3. ultimate set
+`vim .git/config`
