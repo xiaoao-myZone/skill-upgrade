@@ -60,3 +60,6 @@
 `git remote remove origin && git remote add origin https://github....`
 5. 设置global变量
 `git config --global --add user.email name@example.com`
+6. ultimate set
+`git config --global -e`
+如果不喜欢默认的编辑器，可以通过`git config --global core.editor vim`修改
