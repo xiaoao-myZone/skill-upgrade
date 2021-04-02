@@ -22,8 +22,9 @@ def main():
 
     #2.86 2.89 2.92 2.92 2.90 2.89 2.91 2.89 2.92 2.93
     #结果并没有出现明显优化的迹象
-    #神坑, 没有配置memcahce
+    #神坑, 没有配置memcache
     # 让我想到fluent python里面的一个装饰器
+    from functools import lru_cache #这个是来记录函数的输入与输出值的
 
 if __name__ == '__main__':
     main()
@@ -42,5 +43,5 @@ AttributeError: module 'memcached' has no attribute 'Client'
 
 sudo apt-get install memcached
 sudo memcached -d -m 128 -p 11211 -u root -c 1024 -l 127.0.0.1 -P /tmp/memcache.pid -s /tmp/memcached.sock
-ps -ef | grep memcache
+ps -ef | grep memcache #确认是否启动
 """
