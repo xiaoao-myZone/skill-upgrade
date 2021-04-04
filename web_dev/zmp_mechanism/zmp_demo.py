@@ -35,7 +35,7 @@ def judge(zcontext, in_url, pythagoras_url, out_url):
     isock.connect(in_url)
     for prefix in b'01', b'11', b'10':
         isock.setsockopt(zmq.SUBSCRIBE, prefix)
-    psock = zcontext.socket(zmq.REQ) # TODO what's REQ
+    psock = zcontext.socket(zmq.REQ) 
     psock.connect(pythagoras_url)
     osock = zcontext.socket(zmq.PUSH)
     osock.connect(out_url)
@@ -95,9 +95,22 @@ if __name__ == "__main__":
 
 总结:
 1. 在本例中zmq创建了三种信道
-2. PUSH-PULL    生产消费模型        单向一对一
+2. PUSH-PULL    生产消费模型        单向多对多
 3. PUB-SUB      发布订阅模型        单向一对多
 4. REQ-REP      类似http的C-S结构   双向多对一
+
+TODO
+1. 如果信息的接收端出现延迟会如何
+2. 断线是否可以重连(Y)
+3. 接收信息想必处于阻塞状态
+4. 本例只介绍了在一个进程中的样例, 那么这些消息机制是否只能在一个zmq上下文的前提下才能实现呢?
+5. 如何持久化保存?包括在1所描述的情形下
+6. 如何进行流量控制, 当接受者(代理)接受速度跟不上发布速度时
+
+
+READ:
+1. bind和connect的顺序随意,因为有隐式的延时和轮询
+2. PUSH-PULL模式可以多对多, 但是PUSH的消息只会被其中一个PULL拿走
 
 
 """
