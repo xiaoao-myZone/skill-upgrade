@@ -6,6 +6,7 @@ referrence:
 1. https://zhangnq.com/3284.html
 2. https://blog.csdn.net/farsight2009/article/details/55517833
 3. https://www.pynote.net/archives/1810 ##valuable##
+4. https://www.cnblogs.com/ExMan/p/9769337.html ##pid文件与fcntl的关系
 
 1. 复制一个现有的描述符(cmd=F_DUPFD).
 
