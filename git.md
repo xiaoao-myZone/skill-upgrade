@@ -8,7 +8,7 @@
     执行这一行再clone
 ## 删除
 1. 取消工作区所有修改
-`git reset --hard HEAD`
+`git reset --hard HEAD` # 后面可以跟文件
 `git checkout -- .`
 &#160;
 2. 删除工作区中的未跟踪文件
