@@ -1,3 +1,4 @@
+import os
 import socket
 import select
 try:
@@ -113,7 +114,8 @@ class SocketInterface(object):
 class SystemManager:
     @asyncio.coroutine
     def start(self):
-        with open("ip.txt", "r") as f:
+        main_path = os.path.abspath(__file__).split(os.sep)[:-2]
+        with open(os.path.join(main_path, "my_heap/ip.txt"), "r") as f:
             data = f.read()
         return data
 si = SocketInterface(SystemManager())
