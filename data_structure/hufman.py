@@ -88,33 +88,51 @@ def HuffmanCoding(HT):
         
     return HC
 
-def HuffmanDecoding(string, coding):
-    pass
+def HuffmanDecoding(string, HT):
+    ret = ''
+    length = len(HT)
+    p = length- 1
+    for i in string:
+        if i == '0': #0是取左还是右取决于编码的时候的选择
+            p = HT[p][2]
+        else:
+            p = HT[p][3]
+        
+        if HT[p][2]==-1:  
+            ret += HT[p][0]
+            p = length- 1
+            
+    return ret
+
 
 """
 Conclusion:
 1. 只要是构建了二叉树, 就不会出现一个字符的编码是另一个字符的前缀的情况
 2. 构建二叉树的时候有意将权重大的放到上层, 所以编码的时候权重越大, 位数越小
+3. 这个构建二叉树的方式决定了它的不存度为1的节点, 即只有子叶节点和度为二的父节点
 """
 
             
-
-
-
-    
-
-
-
-    # code
-    
-
-
     
 if __name__ == "__main__":
     from pprint import pprint
-    words = {'a':5, 'b': 29, 'c': 7, 'd': 8, 'e': 14, 'f': 23, 'g': 3, 'h': 11}
-    weights = words.values()
+    from collections import OrderedDict
+    words_dict = {'a':5, 'b': 29, 'c': 7, 'd': 8, 'e': 14, 'f': 23, 'g': 3, 'h': 11}
+    words = list(words_dict.keys())
+    weights = words_dict.values()
+    print(words)
+    print(weights)
     HT = build_tree(weights)
-    pprint(HuffmanCoding(HT))
+    pprint(HT)
+    code_list = HuffmanCoding(HT)
+    pprint(code_list) 
+    # a:0001   b:10   c:1110   d:1111    e:110    f:01    g:0000    h:001 
+    encode_word = '011101101111' # 'feed'
+
+    for i in range(len(words)):
+        HT[i][0] = words[i]
+
+    ret = HuffmanDecoding(encode_word, HT)
+    print(ret)
 
     
