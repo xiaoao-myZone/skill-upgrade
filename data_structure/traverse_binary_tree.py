@@ -34,6 +34,7 @@ class BinNode(object):
         if self.rChild:
             self.rChild.midTraverse(ret)
 
+    #如果不用迭代可用栈的方法计算
     def rearTraverse(self, ret):
         if self.lChild:
             self.lChild.rearTraverse(ret)
@@ -41,6 +42,12 @@ class BinNode(object):
                 self.rChild.rearTraverse(ret)
         ret.append(self.value)
 
+    def macroTraverse(self, func): #中序
+        func(self)
+        if self.lChild:
+            self.lChild.macroTraverse(func)
+            if self.rChild:
+                self.rChild.macroTraverse(func)
 
 
 class TriNode(BinNode):
@@ -75,6 +82,29 @@ print(ret)
 ret = []
 root.rearTraverse(ret)
 print(ret)
+del root
+
+root = BinNode(0)
+def create_tree(root):
+    ch = input()
+    if ch:
+        if root.lChild is None:
+            root.lChild = BinNode(ch)
+            create_tree(root.lChild)
+    ch = input()
+    if ch:
+        if root.rChild is None:
+            root.rChild = BinNode(ch)
+            create_tree(root.lChild)
+ret = []
+
+
+
+
+create_tree(root)
+root.headTraverse(ret)
+print(ret)
+
 
 """
                     0

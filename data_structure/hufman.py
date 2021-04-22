@@ -1,0 +1,120 @@
+# -*- coding: utf-8 -*-
+
+
+from pprint import pprint
+
+def select(nums):
+    """Select two list object which have the smallest weight."""
+    index_map = [(i, val) for i, val in enumerate(nums)]
+    index_map.sort(key=lambda x: x[-1][0])
+    ret = []
+    count = 0
+    for i in index_map:
+        if count == 2:
+            break
+        if i[1][1] == -1:
+            ret.append(i[0])
+            count+=1
+    return ret
+
+def build_tree(weight):
+    n = len(weight)
+    HT = [] #huffman tree
+    # init
+    for i in weight:
+        HT.append([i, -1, -1, -1]) # weight, parent, lchild, rchild
+    
+    m = 2*n-1
+    print(m)
+    # the total length is m
+    for i in range(n, m):
+        HT.append([0 ,-1, -1, -1])
+
+    # build
+    for i in range(n, m):
+        s1, s2 = select(HT[:i]) # s1<=s2, the sequenece of s1, s2 matter?
+        HT[i][0] = HT[s1][0] + HT[s2][0]
+        HT[s1][1] = i; HT[s2][1] = i
+        HT[i][2] = s1; HT[i][3] = s2
+
+    return HT 
+
+def HuffmanCoding(HT):
+    m = len(HT)
+    n = (m+1)//2
+    HC = [] #huffman code
+    for i in range(m-1, -1, -1):
+        HT[i][0] = 0
+
+    count = 0
+    
+    code = []
+    for i in range(n):
+        HC.append('')
+    i = m-1
+    # 根据二叉树遍历的特点, 一个非子叶节点最多会被访问3次
+    # from ipdb import set_trace; set_trace()
+    while count<n:
+            if HT[i][0] == 0: #第一次遍历
+                HT[i][0] = 1 # 标记为访问过一次
+                    
+                if HT[i][2] != -1: # 有左孩
+                    code.append(0)
+                    #print("%d --> %d" % (i, HT[i][2]))
+                    i = HT[i][2] # 第一次遍历, 找左孩
+                    
+                    
+                else:# 找到一个编码
+                    HC[i]= "".join(map(str, code))#应该是按顺序添加的
+                    count+=1
+                    #print("%d ends" % i)
+                    #code = ''
+            
+            elif HT[i][0] == 1: #第二次遍历
+                HT[i][0] = 2 #标记已第二次访问
+
+                if HT[i][2] == -1: #没有左孩
+                    pass #没有左孩一定没右孩
+                else: 
+                    code.append(1) #有右孩一定有左孩
+                    #print("%d --> %d" % (i, HT[i][3]))
+                    i = HT[i][3]
+            else: # 第三次遍历
+                HT[i][0] = 0 # 是否有必要? 没有必要
+                #print("%d --> %d" % (i, HT[i][1]))
+                i = HT[i][1]
+                code.pop()
+
+        
+    return HC
+
+def HuffmanDecoding(string, coding):
+    pass
+
+"""
+Conclusion:
+1. 只要是构建了二叉树, 就不会出现一个字符的编码是另一个字符的前缀的情况
+2. 构建二叉树的时候有意将权重大的放到上层, 所以编码的时候权重越大, 位数越小
+"""
+
+            
+
+
+
+    
+
+
+
+    # code
+    
+
+
+    
+if __name__ == "__main__":
+    from pprint import pprint
+    words = {'a':5, 'b': 29, 'c': 7, 'd': 8, 'e': 14, 'f': 23, 'g': 3, 'h': 11}
+    weights = words.values()
+    HT = build_tree(weights)
+    pprint(HuffmanCoding(HT))
+
+    
