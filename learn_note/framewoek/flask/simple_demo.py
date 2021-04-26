@@ -1,4 +1,6 @@
 from flask import Flask, render_template, request
+from eventlet import monkey_patch; monkey_patch()
+
 from flask_restful import Resource, Api
 from flask_socketio import SocketIO
 from types import FunctionType
@@ -93,7 +95,7 @@ class Test(Resource):
         #         print("type: %s" % type(obj))
         #         print("content: %s" % str(obj))
         #         print("-"*20)
-
+        time.sleep(4)
         return {"code": 0}
     
     @req_log(ignoreReq=True, ignoreRes=False)
@@ -106,8 +108,9 @@ class Test(Resource):
         #         print("type: %s" % type(obj))
         #         print("content: %s" % str(obj))
         #         print("-"*20)
-        1/0
+        
         return {"code": 0}
+    
 
 api.add_resource(Test, "/cmd")
 #app.run(host="0.0.0.0", port=7005)
