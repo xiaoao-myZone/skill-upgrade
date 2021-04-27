@@ -1,7 +1,7 @@
 
 # import eventlet
 # eventlet.monkey_patch()
-from gevent import monkey;monkey.patch_all()
+# from gevent import monkey;monkey.patch_all()
 
 from threading import Thread
 from random import randint
@@ -25,7 +25,6 @@ def eat_apple(q,name):
     # if name == 4:
     #     raise Exception("some wrong")
     logger.info("I eat a/an %s" % res)
-    q.task_done()
     # q.task_done()
     logger.info("thread-%s end" % name)
 
@@ -42,9 +41,7 @@ for i in range(20):
 time.sleep(0.4)
 Thread._Thread__stop(s_thread)
 
-# Thread._thread__stop(s_thread)
 q.join()
-# time.sleep(5)
 
 
 
