@@ -21,11 +21,14 @@ def recv(q):
 
 def eat_apple(q,name):
     logger.info("thread-%s is finding fruit..." % name)
+    time.sleep(randint(2,10)*0.1)
+    logger.info("thread-%s ready to eat apple..." % name)
+    #q.join()
     res = q.get()
     # if name == 4:
     #     raise Exception("some wrong")
     logger.info("I eat a/an %s" % res)
-    # q.task_done()
+    #q.task_done() # to release q.join()
     logger.info("thread-%s end" % name)
 
 recv_thread = Thread(target=recv, args=(q,))

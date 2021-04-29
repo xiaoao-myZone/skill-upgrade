@@ -39,18 +39,6 @@ def dison():
 def index():
     return render_template("ws.html")
 
-
-# def log(func):
-#     def _wrapper(*args, **kwargs):
-#         msg = "{} - {} - {} - {}".format(str(int(time.time()*1000)), request.remote_addr, request.path, request.method)
-#         if request.data:
-#             msg = " - {} - {} - {}".format(msg, request.content_type, request.data)
-#         print("request  - {}".format(msg))
-#         ret = func(*args, **kwargs)
-#         print("response - {} - {}".format(msg, str(ret)))
-#         return ret
-#     return _wrapper
-
 def req_log(ignoreReq=False, ignoreRes=False):
     """Log all key messages of the request and resposne.
 
@@ -113,7 +101,26 @@ class Test(Resource):
     
 
 api.add_resource(Test, "/cmd")
+# for i in dir(api):
+#     if not i.startswith("_"):
+#         try:
+#             print("-"*20)
+#             print("attr: %s" % i)
+#             obj = getattr(api, i)
+#             print("type: %s" % type(obj))
+#             print("content: %s" % str(obj))
+#             print("-"*20)
+#         except:
+#             pass
 #app.run(host="0.0.0.0", port=7005)
-ws.run(app, host="0.0.0.0", port=7005, debug=True)
+class Replace(Resource):
+    def get(self):
+        return {"code": -1}
+    
+    def post(self):
+        data = request.json
+        return {"code": -1, "data": data}
+
+ws.run(app, host="0.0.0.0", port=7005, debug=False)
 
 

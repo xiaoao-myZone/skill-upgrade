@@ -17,7 +17,7 @@
 3. 取消工作区某个文件改动
 `git checkout -- filename`
 &#160;
-4. 删除暂存区某个文件
+4. 删除暂存区某个文件 # 不会改动工作区， 但是会在暂存区删掉， commit后就会真的删掉
 `git reset HEAD filename`
 &#160;
 5. 删除暂存区所有文件
@@ -45,6 +45,23 @@
 5. 恢复某一次次暂存，但是不删除这个暂存
 `git stash apply stash@{0}`
 
+## 标签
+1. 创建当前分支的最新commit id 的tag
+`git tag tagName`
+2. 为某一commit id 创建一个tag
+`git tag -a tagName commitId`
+3. 查看某一个tag
+`git show tagName`
+4. 推送
+`git push origin tagName`
+5. 推送所有
+`git push origin --tags`
+6. 删除tag
+`git tag -d tagName`
+7. 删除远程tag
+`git push origin: tagName`
+8. the more [链接](https://blog.csdn.net/jdsjlzx/article/details/98654951)
+
 ## 查看状态
 1. `git status`
 
@@ -68,6 +85,6 @@
 1. 换源
 `git remote set-url origin git@github.com:xiaoming/my-repo.git`
 2. 查看源
-`git remote get-url origin`
+`git remote get-url origin` # tab 既然无法显示
 3. ultimate set
 `vim .git/config`
