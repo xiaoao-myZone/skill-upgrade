@@ -1,6 +1,9 @@
 #-*- coding: utf-8 -*-
 import fcntl
 """
+获取并修改文件描述符所指代的文件的模式
+"""
+"""
 一般用来给文件加锁
 referrence: 
 1. https://zhangnq.com/3284.html
