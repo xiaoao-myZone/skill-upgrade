@@ -6,9 +6,8 @@
 import os
 import time
 import signal
-print("main main pid")
-print(os.getppid())
-print("main pid:%d" % os.getpid())
+print("ppid of main process: %d" % os.getppid())
+print("pid of main process:%d" % os.getpid())
 def fork(cmd, times=3):
     r, w = os.pipe()
     pid = os.fork()
@@ -24,8 +23,9 @@ def fork(cmd, times=3):
         print("child pid: %d" % os.getpid())
         print("the parent pid of child: %d" % os.getppid())
         for _ in range(times):
-            time.sleep(0.1)
-        os._exit(0) # 如果不退出子进程，子进程会继续执行pid, r = fork("ping 127.0.0.1")，从而报错
+            time.sleep(0.2)
+        os._exit(0) # 如果不退出子进程，子进程会继续执行后面的代码, 比如
+        #res.append(fork("ping 127.0.0.1", 5))，从而报错
         #raise Exception("afsaf")
         #os.execlp(cmd[0], cmd[0], *cmd[1:])
 
@@ -42,16 +42,32 @@ res.append(fork("ping 127.0.0.1"))
 # wait_res = os.waitpid(-1, os.WNOHANG)
 # print(wait_res)
 
-# time.sleep(1) #wait for all subprocess stop
+time.sleep(1.5) #wait for all subprocess stop
 for _ in res:
     ret = os.waitpid(-1, os.WNOHANG)
     print("detect subprocess over%s" % str(ret))
-try:
-    ret = os.waitpid(-1, 0)
-    print(ret)
-except:
-    print("无正在运行的子程序")
+
+# for _ in res:
+#     try:
+#         ret = os.waitpid(-1, 0)
+#         print(ret)
+#     except:
+#         print("无正在运行的子程序")
 for i in res:
-    print(os.read(i[1], 1024))
+    print(os.read(i[1], 1024).decode())
 # if not res[0]:
 #     os.kill(pid, signal.SIGINT)
+
+
+from multiprocessing import Process
+
+def func():
+    for i in range(5):
+        time.sleep(1)
+        print("count %d ..." % i)
+
+p = Process(target=func)
+p.start()
+print(p.pid)
+ret = os.waitpid(p.pid, 0)
+print(ret)

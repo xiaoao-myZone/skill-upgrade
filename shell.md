@@ -20,3 +20,14 @@
 
 ### ls -l
 [输出说明](https://blog.csdn.net/weixin_44903147/article/details/102480711)
+
+### cat grep tr sort wc sed awk echo?
+这个集合里的命令均将输入(stdin)的字符以一定方式转换再输出(stdout)出来
+
+1. `cat` 输入文件路径 输出文件内容
+2. `echo` 出入字符串, 原封不动输出字符串
+3. `tr`  配置后, 输入字符串, 对字符串进行"增删改"后输出
+4. `sort`
+5. `wc` 对输入的字符数进行统计某种规则的字符统计, 输出结果
+6. `sed`
+7. `awk`
