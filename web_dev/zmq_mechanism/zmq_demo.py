@@ -116,7 +116,10 @@ pus-sub test
 1. RCVBUFF,RCVHWM, SNDBUFF, SNDHWM需要一起使用才有效果
 2. 接收方如果不及时, 会出现消息断层, 在以上四个参数都是1的情况下,初始收到消息147条左右, 之后每连续接受80条左右出现断层, 每条消息长度为28
 3. 在2的条件下把上面四个值都设置为2, 结果全设置为1差不多
-4. 对所有消息一视同仁
+4. 对SUB的fileno用epoll处理, EPOLLOUT与EPOLLIN的含义与socket相反, 开始会收到5(EPOLLOUT + EPOLLIN)
+5. 试验证明, 消息的分发是在server端进行的, client端只会接收到自己想要的值(至少表面上是这样)
+6. 即便server没有打开, epoll的行为会与server打开了一样, 并且这个fileno是13, 这样说明潜存存在很多通讯机制
+7. 有6的存在5是待怀疑的
 
 
 """
