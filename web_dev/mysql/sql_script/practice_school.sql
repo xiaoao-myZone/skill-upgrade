@@ -1,3 +1,4 @@
+-- https://www.zhihu.com/search?type=content&q=mysql%E7%BB%83%E4%B9%A0%E9%A2%98
 CREATE DATABASE IF NOT EXISTS `school` DEFAULT CHARACTER SET utf8mb4;
 USE `school`;
 DROP TABLE IF EXISTS `Student`;

@@ -1,7 +1,5 @@
-/* 
-1.1
-查询01课程比02课程成绩高的学生信息及课程分数 01 02都存在
-*/
+-- 1.1 查询01课程比02课程成绩高的学生信息及课程分数 01 02都存在
+
 
 /*
 1. 需要组合一张表, 有学生的基本信息, 以及01, 02 两个课程的成绩
@@ -16,9 +14,9 @@ SELECT
     MAX(CASE WHEN SC.CId='01' THEN SC.score END) as C1,
     MAX(CASE WHEN SC.CId='02' THEN SC.score END) as C2
 FROM
-    SC
-LEFT JOIN
     Student
+LEFT JOIN
+    SC
 ON
     SC.SId = Student.SId
 GROUP BY
@@ -30,3 +28,40 @@ HAVING
     AND
     C1>C2
 ;
+
+-- 子查询
+
+SELECT
+    *
+FROM 
+    Student 
+RIGHT JOIN
+    (
+        SELECT 
+            t1.sid, C1,C2 
+        FROM
+            (
+                SELECT 
+                    sid,score as C1 
+                FROM 
+                    SC
+                WHERE 
+                    SC.cid='01'
+            ) as t1,
+            (
+                SELECT 
+                    sid,score as C2 
+                FROM 
+                    SC 
+                WHERE 
+                    SC.cid='02'
+            ) as t2
+        WHERE 
+            t1.sid=t2.sid 
+            AND 
+            t1.c1>t2.c2
+    ) AS r
+ON 
+    Student.sid=r.sid;
+
+-- from 后面可以跟多个表

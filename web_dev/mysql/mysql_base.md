@@ -111,6 +111,7 @@ limit `limit 1, 2` #从第二行开始取两行, `limit 3`是`limit 0, 3`的简�
 6. group_concat 将group by得到的col进行组合
 
 ### 自定义函数
+[参考](https://blog.csdn.net/helloxiaozhe/article/details/78124138)
 CASE input_expression
 WHEN when_expression THEN
     result_expression [...n ] [
@@ -118,6 +119,7 @@ ELSE
     else_result_expression
 END
 
+若没有指定 ELSE 子句，则返回 NULL 值
 
 ## having
 
