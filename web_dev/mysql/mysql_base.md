@@ -108,6 +108,16 @@ limit `limit 1, 2` #从第二行开始取两行, `limit 3`是`limit 0, 3`的简�
 3. year 后面接一个date对象 #照理说也有month和day
 4. concat_ws # 以第一个字符参数为间隙,连接后面的各个col的值
 5. concat #拼接所有字段参数的值
+6. group_concat 将group by得到的col进行组合
+
+### 自定义函数
+CASE input_expression
+WHEN when_expression THEN
+    result_expression [...n ] [
+ELSE
+    else_result_expression
+END
+
 
 ## having
 
@@ -123,9 +133,34 @@ limit `limit 1, 2` #从第二行开始取两行, `limit 3`是`limit 0, 3`的简�
 5. <font color=#A52A2A>不可在where中引用alias, 因为mysql执行where的时候select还没有执行(信息量甚多)</font>
 6. 给表创建别名 `select e.firstName, e.lastName from employees e order by e.firstName;`
 
-## 执行顺序
-join > on/using > where > select > order by
-1. group by 和 where的谁先执行?我猜是where
+### 书写顺序
+1：select
+2：from
+3：left … join
+4：on
+5：where
+6：group by
+7：having
+8：order by
+9：limit
+
+### 执行顺序
+[参考](https://pig66.blog.csdn.net/article/details/51004754?utm_medium=distribute.pc_relevant_t0.none-task-blog-2%7Edefault%7EBlogCommendFromMachineLearnPai2%7Edefault-1.control&depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-2%7Edefault%7EBlogCommendFromMachineLearnPai2%7Edefault-1.control)
+
+1. from 
+2. join 
+3. on 
+4. where 
+5. group by(开始使用select中的别名，后面的语句中都可以使用)
+6. avg,sum.... 
+7. having 
+8. select 
+9. distinct 
+10. order by
+11. limit 
+
+
+* group by 和 where的谁先执行?我猜是where
 
 
 
