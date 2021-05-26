@@ -74,6 +74,7 @@ limit `limit 1, 2` #从第二行开始取两行, `limit 3`是`limit 0, 3`的简�
 1. select distinct 是它的特例
 2. 在查询语句中处于from, where后面, 并且处于having,order by, limit前面 
 3. group by value DESC # tips: 但是在标准sql中不允许加DESC到group by
+4. 受count作用的启发, group by实际上是将table分成很多小table
 
 ## join
 ### inner join
@@ -84,7 +85,7 @@ limit `limit 1, 2` #从第二行开始取两行, `limit 3`是`limit 0, 3`的简�
 ### left join
 1. 无论如何左边的表的内容都会选中,但是如果没有在右表中找到匹配项,就会用NULL代替右表中的值
 ### right join
-1. 应该和左联接差不多, 但是如果一样,就没必要专门做一个右连接了
+1. 应该和左联接差不多, 但是如果一样,就没必要专门做一个右连接了(有时候为了格式方便)
 ### cross join
 1. 完全地排列组合
 

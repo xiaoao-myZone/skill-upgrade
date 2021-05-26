@@ -1,5 +1,9 @@
 -- 2.1 查询平均成绩大于等于60的同学的学生编号和学生姓名和平均成绩
 
+/*
+1. 在select中套一个子查询, 会不会降低效率 TODO
+*/
+
 SELECT
     Student.sid, MAX(sname) as name, AVG(score) as avg
 FROM

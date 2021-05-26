@@ -7,6 +7,14 @@
 3. 比较这两个新字段
 */
 
+/*
+1. 选中一个表的所有字段, Student.*
+2. column不区分大小写, 但是表名和数据库名需要区分大小写
+3. CASE WHEN THEN END, 自定义函数
+4. 子查询需要被包入一个()
+5. sql语句的编译顺序, from --> join --> on --> where --> group by --> select --> having --> order by --> limit
+*/
+
 USE `school`
 
 SELECT
