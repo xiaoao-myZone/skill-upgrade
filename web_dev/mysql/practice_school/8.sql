@@ -37,3 +37,10 @@ WHERE
     OR
     C.C1>M.C2
 ;
+
+-- 参考
+select student.*,count(sc.SId) as num_course
+from student left join sc
+on student.SId=sc.SId
+group by student.SId
+having num_course<(select count(CId) from course);

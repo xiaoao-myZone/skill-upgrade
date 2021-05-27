@@ -99,6 +99,7 @@ limit `limit 1, 2` #从第二行开始取两行, `limit 3`是`limit 0, 3`的简�
 2. min/max
 3. avg
 4. count #数行数
+5. concat
 `select count(distinct state) from customers where country='USA'`
 ### others
 1. field #如何将输出的结果按照某一个col的值的某种出现顺序排列
