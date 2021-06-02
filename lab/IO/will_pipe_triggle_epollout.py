@@ -52,4 +52,6 @@ Conclusion:
 Notes:
     1. 管道不能设置为unbuffered,也就是os.fdopen最后参数需要大于0
     2. w不能包装成file object进行读操作,估计任何O操作都不行(output)
+    3. epoll对EPOLLIN的监听， 本质上是查询缓存区是否有数据， 所以如果一次没有接受完缓存， 调用poll的时候依然有该描述符的EPOLLIN信号
+    4. unregister一个文件对象后， 即便这个socket没有关闭， poll的结果中也不会有它（3， 4可以从epoll_regitset.py中得到印证）
 """
