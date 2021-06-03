@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-
+# pip install binarytree
 class BinNode(object):
     def __init__(self, value, left_child=None, right_child=None):
         self.lChild = left_child
@@ -20,34 +20,35 @@ class BinNode(object):
         else:
             raise Exception("Couldn't add the third child")
     
-    def headTraverse(self, ret):
+    def headTraverse(self, ret): # 前序
         ret.append(self.value)
         if self.lChild:
             self.lChild.headTraverse(ret)
             if self.rChild:
                 self.rChild.headTraverse(ret)
     
-    def midTraverse(self, ret):
+    def midTraverse(self, ret): # 中序
         if self.lChild:
             self.lChild.midTraverse(ret)
         ret.append(self.value)
         if self.rChild:
             self.rChild.midTraverse(ret)
 
-    #如果不用迭代可用栈的方法计算
-    def rearTraverse(self, ret):
+    #如果不用迭代可用栈的方法计算, 迭代不就是一种栈么
+    def rearTraverse(self, ret): # 后序
         if self.lChild:
             self.lChild.rearTraverse(ret)
             if self.rChild:
                 self.rChild.rearTraverse(ret)
         ret.append(self.value)
 
-    def macroTraverse(self, func): #中序
+    def macroTraverse(self, func): # ?
         func(self)
         if self.lChild:
             self.lChild.macroTraverse(func)
             if self.rChild:
                 self.rChild.macroTraverse(func)
+
 
 
 class TriNode(BinNode):
@@ -70,6 +71,9 @@ def buildTree(nums):
         layer.append(new)
         nums-=1
     return root
+
+
+
 
 nums = 10
 root = buildTree(nums)
