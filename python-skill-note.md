@@ -116,3 +116,5 @@ class Test:
 `pip config unset global.index-url`
 5. ultimate set
 `vim ~/.pip/pip.conf`
+6. install
+`pip install -r requirements.txt`
