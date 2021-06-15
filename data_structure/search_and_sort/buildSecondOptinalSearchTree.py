@@ -7,6 +7,8 @@
 from binarytree import Node
 
 def SecondOptinal():
+    """次优查找树忽略了路径长度, 或者说假定路径长度一样
+    """
     pass
 
 def buildSearchTree(nums, ret, node=None):
