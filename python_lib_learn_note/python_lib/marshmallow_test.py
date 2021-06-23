@@ -31,7 +31,7 @@ class TaskUnitSchema(Schema):
 
 class TaskSchema(Schema):
     batch_id = fields.Str()
-    data = fields.Nested(TaskUnitSchema, many=True)
+    data = fields.Nested(TaskUnitSchema, many=True) # 如果是嵌套一层object, 则many=False
 
 json_data = {
     "batch_id": 12345,
@@ -55,3 +55,13 @@ res, err = taskschema.dump(json_data)
 print(type(res))
 pprint(res)
 pprint(err)
+
+# When the value name if json is keyword in python
+# https://stackoverflow.com/questions/51727441/marshmallow-how-can-i-map-the-schema-attribute-to-another-key-when-serializing
+
+class TemporalExtentSchema(Schema):
+    # Marshmallow 2
+    t_from = fields.String(required=True, dump_to='from', load_from='from')
+    # Marshmallow 3
+    t_from = fields.String(required=True, data_key='from')
+    to = fields.String(required=True)

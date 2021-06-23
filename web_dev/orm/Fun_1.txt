@@ -1,0 +1,32 @@
+__class__ --> <class 'app.Fun'>
+__delattr__ --> <method-wrapper '__delattr__' of Fun object at 0x7f692de23c10>
+__dict__ --> {'id_': 1L, '_sa_instance_state': <sqlalchemy.orm.state.InstanceState object at 0x7f692de235d0>, 'name': u'xiaoao'}
+__doc__ --> None
+__format__ --> <built-in method __format__ of Fun object at 0x7f692de23a50>
+__getattribute__ --> <method-wrapper '__getattribute__' of Fun object at 0x7f692de23390>
+__hash__ --> <method-wrapper '__hash__' of Fun object at 0x7f692de23e90>
+__init__ --> <bound method Fun.__init__ of <Fun 1>>
+__mapper__ --> mapped class Fun->fun
+__module__ --> app
+__new__ --> <built-in method __new__ of type object at 0x8f8740>
+__reduce__ --> <built-in method __reduce__ of Fun object at 0x7f692de23390>
+__reduce_ex__ --> <built-in method __reduce_ex__ of Fun object at 0x7f692de23e90>
+__repr__ --> <bound method Fun.__repr__ of <Fun 1>>
+__setattr__ --> <method-wrapper '__setattr__' of Fun object at 0x7f692de23c50>
+__sizeof__ --> <built-in method __sizeof__ of Fun object at 0x7f692de235d0>
+__str__ --> <method-wrapper '__str__' of Fun object at 0x7f692de23a50>
+__subclasshook__ --> <built-in method __subclasshook__ of DefaultMeta object at 0x1f1a0d0>
+__table__ --> fun
+__table_args__ --> {'mysql_charset': 'utf8'}
+__tablename__ --> fun
+__weakref__ --> <weakref at 0x7f692ddc81b0; dead>
+_decl_class_registry --> <WeakValueDictionary at 140089742652840>
+_sa_class_manager --> <ClassManager of <class 'app.Fun'> at 7f692f559ab8>
+_sa_instance_state --> <sqlalchemy.orm.state.InstanceState object at 0x7f692de23c50>
+id_ --> 1
+metadata --> MetaData(bind=None)
+name --> xiaoao
+query --> SELECT fun.id AS fun_id, fun.name AS fun_name 
+FROM fun
+query_class --> <class 'flask_sqlalchemy.BaseQuery'>
+to_dict --> <bound method Fun.to_dict of <Fun 1>>

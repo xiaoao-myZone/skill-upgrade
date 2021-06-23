@@ -187,3 +187,8 @@ END
 2. FROM 也可以
 3. 外部查询不能查询或修改内部查询所查的表, 不过FROM可以
 4. 更细一点,子查询可以在这些语句的表达式中
+
+
+## run sql script
+1. 进入mysql交互界面, `source /home/userName/test.sql`
+2. `$ mysql -u root -p -e "source /home/userName/test.sql"`
