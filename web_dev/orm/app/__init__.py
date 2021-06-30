@@ -2,6 +2,7 @@
 from flask import Flask, request, jsonify
 from flask_socketio import SocketIO
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import or_
 
 db = SQLAlchemy()
 
@@ -28,7 +29,9 @@ def to_dict(self):
 
     return res
 
-# print(dir(db.Column(db.String(30), name="class")))
+# def to_dict(self):
+#     return {c.name: getattr(self, c.name, None) for c in self.__table__.columns}
+
 
 db.Model.to_dict = to_dict
 db.Model.__table_args__ = {
@@ -77,10 +80,13 @@ def add_name():
 @app.route("/query", methods=["POST"])
 def query():
     ret = []
-    res = Fun.query.filter(Fun.id_.between(0, 2))
+    # res = Fun.query.filter(Fun.id_.between(0, 2)).filter(Fun.id_==2)#.all()
+    res = Fun.query.filter(or_(Fun.name.like("%x%"), Fun.name.like("%c%")), Fun.id_<3)
+    for i in dir(Fun.query):
+        print(i)
     # print(res) # 打印出sql
-    for i in dir(res[0]):
-        print("%s --> %s" % (i, getattr(res[0], i)))
+    # for i in dir(res[0]):
+    #     print("%s --> %s" % (i, getattr(res[0], i)))
     for i in res:
         
         data = i.to_dict()
@@ -89,3 +95,7 @@ def query():
         # print(data["id"]+1)
     return jsonify({"code":0, "data": ret})
 
+
+# Distinct
+
+# Fun.query.with_entities(Fun.name).distinct(Fun.name)

@@ -27,6 +27,8 @@
 `git branch -D branchname`
 `git push origin --delete branchname` push后面像是在发送一段指令
 
+7. 删除已经commit的文件，但是在工作区保留
+`git rm --cache fileName`
 ## 添加
 1. 将所有修改的py文件加入暂存区
 `git status | grep -o "\S\+\.py$" | xargs git add`
@@ -62,8 +64,9 @@
 `git push origin: tagName`
 8. the more [链接](https://blog.csdn.net/jdsjlzx/article/details/98654951)
 
-## 查看状态
+## 查看基本信息
 1. `git status`
+2. `git rev-parse HEAD` # 查看当前的commit id
 
 
 ## 设置
