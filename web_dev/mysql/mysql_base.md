@@ -192,3 +192,9 @@ END
 ## run sql script
 1. 进入mysql交互界面, `source /home/userName/test.sql`
 2. `$ mysql -u root -p -e "source /home/userName/test.sql"`
+
+
+
+## 配置
+mysql_config_editor set --login-path=xiaoao --host=localhost --user=root --password --port=3306
+mysql --login-path=xiaoao
