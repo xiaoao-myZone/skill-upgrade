@@ -8,13 +8,16 @@ from random import randint
 import time
 import logging
 from Queue import Queue
-logging.basicConfig(level=logging.INFO,format="%(levelname)s:%(name)s:%(message)s")
+logging.basicConfig(level=logging.INFO, format="%(levelname)s:%(name)s:%(message)s")
 logger = logging.getLogger("Queue")
 q = Queue(20)
 # q.mutex
+
+
 def recv(q):
     for _ in range(20):
-        time.sleep(randint(2,9)*0.1)
+        time.sleep(randint(2, 9)*0.1)
+        q.join()
         q.put("apple")
         logger.info("get an apple")
 
@@ -28,8 +31,9 @@ def eat_apple(q,name):
     # if name == 4:
     #     raise Exception("some wrong")
     logger.info("I eat a/an %s" % res)
-    #q.task_done() # to release q.join()
+    q.task_done()  # to release q.join()
     logger.info("thread-%s end" % name)
+
 
 recv_thread = Thread(target=recv, args=(q,))
 recv_thread.start()
