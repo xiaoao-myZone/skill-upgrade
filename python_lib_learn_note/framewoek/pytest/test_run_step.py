@@ -1,4 +1,6 @@
+# -*- coding: utf-8 -*-
 import pytest
+
 
 def setup_module():
     print("\nsetup_module, 只执行一次，但有多个测试类的时候使用")

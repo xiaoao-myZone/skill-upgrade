@@ -10,6 +10,7 @@ log.basicConfig(level=log.INFO)
 log.info("hi")
 app = Flask("Demo")
 api = Api(app)
+# ws = SocketIO(app, cors_allowed_origins="*", async_mode="threading")
 ws = SocketIO(app)
 #print(dir(api))
 
@@ -121,6 +122,6 @@ class Replace(Resource):
         data = request.json
         return {"code": -1, "data": data}
 
-ws.run(app, host="0.0.0.0", port=7005, debug=False)
+ws.run(app, host="0.0.0.0", port=7002, debug=False)
 
 
