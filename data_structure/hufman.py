@@ -123,6 +123,7 @@ if __name__ == "__main__":
     from pprint import pprint
     from collections import OrderedDict
     words_dict = {'a':5, 'b': 29, 'c': 7, 'd': 8, 'e': 14, 'f': 23, 'g': 3, 'h': 11}
+    # keys与values的输出值是一一对应的
     words = list(words_dict.keys())
     weights = words_dict.values()
     print(words)
