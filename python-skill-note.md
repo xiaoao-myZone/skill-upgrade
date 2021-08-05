@@ -55,10 +55,12 @@
 
 ## import
 1. 当导入一个包中的一个模块的时候，如果这个模块也导入了这个包中的另一个模块，并且导入时没有加包名，会报错
-2. 当一个包中的模块想导入与这个包并列的包的时候， 它必须要是一个包，也就是需要有__init__.py
+2. 当一个包中的模块想导入与这个包并列的包的时候， 它必须要是一个包，也就是需要有__init__.py(这不是本质)
 3. 包的导入比较鸡肋，比如你运行一个文件夹内的一个py文件，它只会在这个目录下一级文件中搜索你自己建立的包
 4. 包中的模块导入只能是当前模块目录(from .test import Test)或者运行目录(python test.py所在的目录)或者系统目录
 5. `from decorator import decorator`， 极有可能是os.get_cwd()目录下存在一个decorator.py文件
+
+6. import的搜索顺序: 1. 所运行的py文件所在的目录 2. 环境变量中的目录
 
 ## thread
 1. eventlet 会讲Queue改写成轻量版,没有mutex方法
@@ -66,7 +68,7 @@
 
 ## queer
 
-1. 使用`dict_a[str(an_id)]`, an_id在什么情况下会自动由int转化为str
+1. 使用`dict_a[str(an_id)]`, an_id在什么情况下会自动由int转化为str, 使用json.dump(s)的时候，json不接受int作为map的键
 
 ## something worth concentration
 1. api name can't change for some ridiculous reason (such as, let the mistake go)
