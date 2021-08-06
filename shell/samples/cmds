@@ -4,4 +4,7 @@ sudo fdisk -l
 
 # Candy
 
-sudo apt-get update
+# cd llll
+echo "continue"
+
+python2.7 -m pip install pymysql

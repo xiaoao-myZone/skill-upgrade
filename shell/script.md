@@ -2,6 +2,7 @@
 ## 一般性规则：
 1. 要么回车断句， 要么用分号
 2. =号前后不能有空格
+3. shell是从左向右解析， 因此后面的执行部分不能影响前面  [参考](https://www.cnblogs.com/manqing/p/6675467.html)
 
 ## 变量
 1. 名字规则基本与C一致
@@ -65,10 +66,22 @@ else
     commandN
 fi
 1. condition有什么要求， 或者是shell中的bool值是怎样的
+    -eq     //equal  等于
+
+    -ne     //no equal 不等于
+
+    -gt      //great than 大于
+
+    -lt       // low than  小于
+
+    ge      // great and equal 大于等于，注意没有"-"
+
+    le      //low and equal 小于等于，注意没有“-”
+
 
 
 [菜鸟shell教程](https://www.runoob.com/linux/linux-shell-passing-arguments.html)
-
+[字符串的比较](https://www.jb51.net/article/56559.htm)
 [逐行读取指令并执行](https://www.cnblogs.com/lemon-le/p/14037619.html)
 `while read -r line ; do echo -e "\033[41m$line\033[0m" && eval $line && echo -e "\n\033[42msuccess\033[0m"; done < shell`
 
