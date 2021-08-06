@@ -1,9 +1,1 @@
 #!/bin/bash
-set -e
-
-cd ~/xyz-os-env
-git pull <<EOF
-
-uWbqFQ2HmsvumpD4PQ9C
-
-EOF

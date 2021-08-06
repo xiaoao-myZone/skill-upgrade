@@ -1,0 +1,7 @@
+# Andy
+echo "hi~"
+sudo fdisk -l
+
+# Candy
+
+sudo apt-get update
