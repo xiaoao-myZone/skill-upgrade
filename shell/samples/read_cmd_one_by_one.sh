@@ -1,13 +1,30 @@
+## sudo /bin/bash shell/samples/read_cmd_one_by_one.sh shell/samples/cmds 2>&1 | tee -a ~/shell_log.txt
+
 LINE_COUNT=0
-SUCCESS=0
+# 2>&1 没有用, 需要这样 >> ~/shell_log.txt 2>&1
+if [ $# -ne 1 ];then
+   echo -e "\033[41mUsage $0 filename\033[0m"
+   exit 1
+fi
 
-# 2>&1
-# 
-eval "sudo fdisk -l"  >> /dev/null
+echo ${USER},${UID}
 
-while read -r line
+if [ ! x"${USER}" = x"root" ];then
+    echo -e "\033[41mPlease rerun `basename $0` as root\033[0m"  
+    exit 1
+else
+    echo "Run as root"
+fi
+
+## clear blank spaces in blank lines and front of other lines to avoid error in the next loop
+# sed -i 's/^[[:space:]]*//g' $1
+
+while  read -r line || [ -n "$line" ]
 do
-    ((LINE_COUNT=LINE_COUNT+1))
+    # line count
+    let LINE_COUNT++
+    # ((LINE_COUNT=LINE_COUNT+1))
+    # print lines with words
     if (( ${#line} != 0 ))
     then
         echo -e "\033[42mline${LINE_COUNT}: ${line}\033[0m"
@@ -24,14 +41,10 @@ do
     eval "${line}"
     if (($?!=0))
     then
-        SUCCESS=1
-        echo -e "Error from command: \033[41m${line}\033[0m"
-        break
+        echo -e "Error from command: \033[41m${LINE_COUNT}: ${line}\033[0m"
+        exit 1
     fi
 done < $1
 
-if (( SUCCESS==0 ))
-then
-    echo -e "\033[43m-----finish-----\033[0m"
-fi
+echo -e "\033[43m-----finish-----\033[0m"
 

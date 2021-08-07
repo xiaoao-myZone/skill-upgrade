@@ -116,7 +116,8 @@ class Test:
 `pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple`
 4. 取消某个配置(回复默认设置)
 `pip config unset global.index-url`
-5. ultimate set
+5. 其他pip config 操作 debug, edit, get, list, set, unset
+6. ultimate set
 `vim ~/.pip/pip.conf`
-6. install
+7. install
 `pip install -r requirements.txt`

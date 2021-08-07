@@ -84,5 +84,8 @@ fi
 [字符串的比较](https://www.jb51.net/article/56559.htm)
 [逐行读取指令并执行](https://www.cnblogs.com/lemon-le/p/14037619.html)
 `while read -r line ; do echo -e "\033[41m$line\033[0m" && eval $line && echo -e "\n\033[42msuccess\033[0m"; done < shell`
+[shell read -r](https://www.runoob.com/linux/linux-comm-read.html)
+[逐行读取文件](https://blog.csdn.net/wdz306ling/article/details/80029829)
+[检查当前shell脚本被运行的权限](https://blog.csdn.net/rikeyone/article/details/88723418)
 
 

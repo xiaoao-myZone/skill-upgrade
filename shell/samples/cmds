@@ -5,6 +5,6 @@ sudo fdisk -l
 # Candy
 
 # cd llll
-echo "continue"
 
+echo "continue"
 python2.7 -m pip install pymysql
