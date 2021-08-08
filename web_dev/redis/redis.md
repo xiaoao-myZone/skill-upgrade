@@ -31,10 +31,13 @@
 `sudo apt-get install redis-server` 一般安装后会自己启动
 `sudo systemctl status redis` 查看状态
 
+>> 修改配置后需要重启
+
 ## 配置
 ### 获取配置
 `redis-cli> CONFIG GET port`
 ### 配置
+#### 基础设置
 1. port
 2. bind     可接入的ip 
 3. backlog  最大连接数 
@@ -42,34 +45,83 @@
 5. loglevel 日至等级
 6. logfile  日志路径 (有最大size限制吗)
 7. syslog-enable    是否记录到log文件
-
+#### 中级设置
+1. databases
+2. save  "900 1 300 10 60 10000"  # 第一个值是同步到rdb的频率
+3. rdbcompression 
+4. dbfilename
+5. dir
+6. requirepass
+#### 高级
+1. maxclient 最大客户连接数 (达到最大连接数会怎么样？)
+2. maxmemory 最大内存占用
+3. appendonly AOF 持久化方案 会取代rdb
+4. appendfsync AOF同步频率 no|everysec|always  
 ## 使用
 ### 通用
-1. 操作成功返回0， 失败1
+1. 操作成功返回1， 失败0
 2. 在redis-cli中，给一个命令开头， 不断按tab, 会出现各种可能值
 
 ### shell命令行使用
 >> 进入redis-cli
 1. select 0 # 第一个逻辑数据库
-2. set/get 
+2. string set/get (其实它即可以代表string也可以代表int)
 `set test hello` 
 `get test` 
 `del test`
-3. HMSET/HGET/HDEL
-`HMSET dict-like a "nice" b "not bad"`
+`getrange test 0 1` # 截取, 两边都是闭区间
+`strlen test`
+`append test ",world"`
+`setex foo 20 baga` # 设置同时设计过期时间(s)
+`psetex foo ` # 过期时间为ms
+>> 数字操作
+`INCR/DECR` 操作的数据类型必须是整形数字, ++/--
+`INCRBY/DESRBY` 加减一个具体的数值 +=/-=
+3. hash表
+`HMSET dict-like a "nice" b "not bad" c 10`
 `HGET dict-like a`
-`HDEL dict-like`
->> HDEL的效果貌似与DEL相同
+`HDEL dict-like a`
+`HGETALL dict-like` 返回所有键值
+`HEXISTS dict-like a` 
+`HVALS dict-like`
+`HKEYS dict-like`
+`HINCRBY dict-like c 2`  HINCRBYFLOAT
+``
+>> HDEL的效果貌似与DEL相同 (HDEL 除了变量名 还需要hash的键)
 >> 如何添加？如何删除其中的k-v对
 >> HMGET和HGET有何区别
-4. lpush/lrange/lpop
-`lpush list-like "python"`
-`lpush list-like "golang"`
+4. 数列
+`lpush list-like "python"` 从队首加入队列
+`rpush` 从队尾加入
+`lpop` 从队首弹出
+`rpop` 从队尾弹出
 `lrange list-like 0 10` 闭区间， 不是左闭右开，可以超范围
-`lpop list-like` 只会将队首的数值弹出， 是一个天然的队列，而不能做成栈
->> 可以加入不同类型的数据吗？比如string和int?
-5. sadd/smembers 集合
+`lrange list-like 0 -1` -1表示遍历到底
+`linsert list-like after l ll`  在队列中搜索出l，然后在它的后面加上ll
+`rpoplpush` 将一个队列的队尾弹出并加到另一个队列的队首
+`llen`
+`lindex`
+`lrem`
+`lset`
+`ltrim`
+`lpushx`
+`rpushx`
+
+>> lrange貌似没办法逆序输出
+>> 相同的前缀push与pop结合， 形成栈， 不相同的形成队列
+5. 集合
+`sadd set-like a b c`
+`spop set-like` 按具体的当前的顺序（这个顺序随机生成），随机弹出, 宏观来看就是随机
+`smembers set-like` 查询所有元素
+`sdiff set-a set-b`
+`sismember set-like a`
+`scard set-like` 集合的长度
+`sdel set-like`
+`srandomember set-like 3` 随机顺序， 如果超出长度，不会报错， 不会删掉
+``
 >> 只能是string类型
+>> redis不能区分空set与list
+>> 蛮好奇， 既然smembers是按hash值的顺序输出的， 那么为什么pop与randomember还是乱序的呢？
 
 6. zadd 有序集合
 zadd set-like 4 miss
@@ -85,9 +137,15 @@ zadd set-like 4 miss
 
 ## 各数据类用法总结
 1. String(字符串) 	二进制安全 	    可以包含任何数据,比如jpg图片或者序列化的对象,一个键最大能存储512M 	---
-2. Hash(字典) 	    键值对集合,即编程语言中的Map类型 	适合存储对象,并且可以像数据库中update一个属性一样只修改某一项属性值(Memcached中需要取出整个字符串反序列化成对象修改完再序列化存回去) 	存储、读取、修改用户属性
-3. List(列表) 	        链表(双向链表) 	增删快,提供了操作某一段元素的API 	1,最新消息排行等功能(比如朋友圈的时间线) 2,消息队列
-4. Set(集合) 	哈希表实现,元素不重复 	1、添加、删除,查找的复杂度都是O(1) 2、为集合提供了求交集、并集、差集等操作 	1、共同好友 2、利用唯一性,统计访问网站的所有独立ip 3、好友推荐时,根据tag求交集,大于某个阈值就可以推荐
-5. Sorted Set(有序集合) 	将Set中的元素增加一个权重参数score,元素按score有序排列 	数据插入集合时,已经进行天然排序 	1、排行榜 2、带权重的消息队列
+2. Hash(字典) (h)	    键值对集合,即编程语言中的Map类型 	适合存储对象,并且可以像数据库中update一个属性一样只修改某一项属性值(Memcached中需要取出整个字符串反序列化成对象修改完再序列化存回去) 	存储、读取、修改用户属性
+3. List(列表) (l) 	        链表(双向链表) 	增删快,提供了操作某一段元素的API 	1,最新消息排行等功能(比如朋友圈的时间线) 2,消息队列
+4. Set(集合) (s)	哈希表实现,元素不重复 	1、添加、删除,查找的复杂度都是O(1) 2、为集合提供了求交集、并集、差集等操作 	1、共同好友 2、利用唯一性,统计访问网站的所有独立ip 3、好友推荐时,根据tag求交集,大于某个阈值就可以推荐
+5. Sorted Set(有序集合) (z)	将Set中的元素增加一个权重参数score,元素按score有序排列 	数据插入集合时,已经进行天然排序 	1、排行榜 2、带权重的消息队列
+6. stream（x）
+7. (r)
 
+
+
+Conclusion:
+    1. redis既具有存储功能也具有一定的数据处理功能
 [redis教程](https://www.runoob.com/redis/redis-conf.html)
