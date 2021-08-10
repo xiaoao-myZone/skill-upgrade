@@ -100,25 +100,35 @@
 `linsert list-like after l ll`  在队列中搜索出l，然后在它的后面加上ll
 `rpoplpush` 将一个队列的队尾弹出并加到另一个队列的队首
 `llen`
-`lindex`
+`lindex list-like index` 根据索引取值
 `lrem`
-`lset`
+`lset list-like index value` 根据索引赋值
 `ltrim`
 `lpushx`
 `rpushx`
 
 >> lrange貌似没办法逆序输出
 >> 相同的前缀push与pop结合， 形成栈， 不相同的形成队列
+>> 为什么没有通过索引插入的操作??
 5. 集合
 `sadd set-like a b c`
 `spop set-like` 按具体的当前的顺序（这个顺序随机生成），随机弹出, 宏观来看就是随机
 `smembers set-like` 查询所有元素
-`sdiff set-a set-b`
 `sismember set-like a`
 `scard set-like` 集合的长度
-`sdel set-like`
-`srandomember set-like 3` 随机顺序， 如果超出长度，不会报错， 不会删掉
-``
+`srandomember set-like 3` 随机顺序， 如果超出长度，不会报错， 不会删掉, 没有数量默认为1
+`sscan set-a 0 match * count 1`  key名后面是游标， match 匹配对象 count是搜索次数，而不是最后的结果数
+`srem set-a a b c` 移除一个或多个元素
+
+[scan中游标的意义](https://www.cnblogs.com/Mike_Chang/p/9499625.html)
+集合间的运算
+`sdiff set-a set-b` 前者对后者的差异
+`sinter set-a set-b` 两个集合的交集
+`sinterstore d set-a set-b` 交集存在d中
+`smove set-a element set-b` 从a将element移动到b
+`sunion set-a set-b` 求并集
+`sunionstore d set-a set-b` 求并集并存储
+
 >> 只能是string类型
 >> redis不能区分空set与list
 >> 蛮好奇， 既然smembers是按hash值的顺序输出的， 那么为什么pop与randomember还是乱序的呢？

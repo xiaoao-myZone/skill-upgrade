@@ -195,6 +195,6 @@ END
 
 
 
-## 配置
+## 配置（无密码登录）
 mysql_config_editor set --login-path=xiaoao --host=localhost --user=root --password --port=3306
 mysql --login-path=xiaoao
