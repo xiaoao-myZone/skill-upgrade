@@ -189,6 +189,10 @@ END
 4. 更细一点,子查询可以在这些语句的表达式中
 
 
+## 将行中的内容作为列
+比如将某一课程的成绩作为作为放到新的字段中显示
+1. group by && max(CASE WHEN cid='01' THEN score END)
+
 ## run sql script
 1. 进入mysql交互界面, `source /home/userName/test.sql`
 2. `$ mysql -u root -p -e "source /home/userName/test.sql"`
