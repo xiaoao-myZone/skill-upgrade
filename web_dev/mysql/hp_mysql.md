@@ -13,3 +13,4 @@
 ### 性能优化
 1. [大表与小表](https://www.cnblogs.com/developer_chan/p/9247185.html)
 2. [in 与 exist](https://blog.csdn.net/ldl22847/article/details/7800572)
+3. [MySQL高级知识（一）——基础](https://www.cnblogs.com/developer_chan/p/9205401.html)

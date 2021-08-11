@@ -105,7 +105,11 @@ class Test:
     def self_intro(self):
         print("My name is %d" % self.name)
 ```
-
+### GIL
+[python中的GIL详解](https://www.cnblogs.com/SuKiWX/p/8804974.html)
+问题1: 既然线程之间的切换是根据每个线程运行的微指令， 那么在众多线程在进行IO等待时， 直觉上没有微指令执行， 
+    那岂不是获取GIL的线程在IO等待没有结束前是不可能让渡GIL, 但是现实情况不是这样， 要么IO等待存在微指令， 
+    要么这个帖子中的描述不准确 TODO
 
 ## pip
 1. 获取配置
