@@ -215,6 +215,13 @@ DELIMITER： 重定义结束符
 比如将某一课程的成绩作为作为放到新的字段中显示
 1. group by && max(CASE WHEN cid='01' THEN score END)
 
+
+## 乐观锁与悲观锁
+1. 悲观锁应用到了真实的锁
+2. 如果用CAS实现乐观锁， 那么乐观锁本质上不是锁， 是一种尝试， 往往会竞争失败
+
+[什么是乐观锁，什么是悲观锁](https://www.jianshu.com/p/d2ac26ca6525)
+
 ## run sql script
 1. 进入mysql交互界面, `source /home/userName/test.sql`
 2. `$ mysql -u root -p -e "source /home/userName/test.sql"`
