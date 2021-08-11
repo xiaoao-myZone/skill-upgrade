@@ -75,6 +75,7 @@ limit `limit 1, 2` #从第二行开始取两行, `limit 3`是`limit 0, 3`的简�
 2. 在查询语句中处于from, where后面, 并且处于having,order by, limit前面 
 3. group by value DESC # tips: 但是在标准sql中不允许加DESC到group by
 4. 受count作用的启发, group by实际上是将table分成很多小table
+5. 我猜想， group by后接的每一个字段， 抽出来去重做成了一个表， 并且有还有一个行号, 这样以来， group by存在两个值的时候，就像join一样， on的条件是就是行号
 
 ## join
 ### inner join
@@ -187,6 +188,27 @@ END
 2. FROM 也可以
 3. 外部查询不能查询或修改内部查询所查的表, 不过FROM可以
 4. 更细一点,子查询可以在这些语句的表达式中
+5. 但是在select中， 貌似只能有一条单记录或者没有记录, 这且条记录中只能有一个字段
+
+## 自定义函数
+1. 函数貌似既不能输入也不能输出多条结果
+DELIMITER $$
+Create Function test(name varchar(20)) Returns varchar(50)
+BEGIN
+  DECLARE str VARCHAR(50) DEFAULT '';
+  SET @tableName=name;
+  SET str=CONCAT('create table ', @tableName,'(id int, name varchar(20));');
+  return str;
+END $$
+DELIMITER ;
+
+DELIMITER： 重定义结束符
+变量需要申明: DECLARE
+赋值需要用 SET
+
+[MySQL之自定义函数](https://www.cnblogs.com/zhangminghui/p/4113160.html)
+
+    
 
 
 ## run sql script
