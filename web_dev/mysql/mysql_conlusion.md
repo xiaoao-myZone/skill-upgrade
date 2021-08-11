@@ -46,4 +46,16 @@
 5. having
 
 
+### group by
+1. 最大的好处是去重
+2. 对某一字段的所有结果进行统计分析
+3. 
+
+### 与NULL较真
+1. 当结果是empty的时候，可以用`select (...) as result;`来获得NULL
+2. inner join可以避免出现两表出现没有匹配而产生的NULL
+3. IFNULL, 当返回值是null或者emtpy的时候返回后者
+4. 当函数返回结果是int时， empty和NULL都能正常接收
+
+
 
