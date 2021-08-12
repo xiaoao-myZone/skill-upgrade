@@ -111,6 +111,9 @@ class Test:
     那岂不是获取GIL的线程在IO等待没有结束前是不可能让渡GIL, 但是现实情况不是这样， 要么IO等待存在微指令， 
     要么这个帖子中的描述不准确 TODO
 
+
+### metaclass
+
 ## pip
 1. 获取配置
 `pip config list`
