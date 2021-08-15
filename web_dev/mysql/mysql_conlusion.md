@@ -24,6 +24,8 @@
 2. SELECT后面如何加入非用来分类的col会报错, 直观上说原因很简单, 其值不唯一
 3. 但是假设有两条Id = 2的记录, 那么使用group by后这两条记录是以何种形式存在的呢?或者如何继续对其进行操作?
 
+[MySql中取出每个分组中的前N条记录](https://blog.csdn.net/hudie1234567/article/details/6258420?utm_source=blogxgwz21&utm_medium=distribute.pc_relevant.none-task-blog-2~default~baidujs_title~default-0.control&spm=1001.2101.3001.4242)
+
 
 
 
@@ -44,6 +46,8 @@
 3. where
 4. group by
 5. having
+
+当子查询只返回一行一列时，可以当做一个变量来处理， 可以代替select， on, where等中的col_name
 
 
 ### group by

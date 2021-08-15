@@ -216,6 +216,39 @@ DELIMITER： 重定义结束符
 1. group by && max(CASE WHEN cid='01' THEN score END)
 
 
+## 事务
+### 事务的概念
+* 对数据库的优先操作序列构成，要么全部执行，要么全部不执行，是一个不可分割的工作单位
+* mysql中只有innodb数据库引擎才支持事务
+* 保证数据库的完整性
+* insert update delete
+* 开启事务： begin;/start transaction;
+* 最后要么提交要么回滚
+### 事务的特点
+* 原子性: 要么完成要么不完成，没有中间态
+* 一致性: 与完成前比较， 改动符合预期，包括精度
+* 隔离性: 某一时刻只能处理一个事务
+* 持久性: 一旦提交后， 不会被改动， 比如断电后重启
+
+### 事务遇到的问题
+* 脏读
+* 不可重复读
+* 幻读 (专指新插入的行)
+
+[什么是幻读？以及如何解决幻读问题？](https://blog.csdn.net/new_buff_007/article/details/104249866?utm_medium=distribute.pc_relevant_t0.none-task-blog-2%7Edefault%7EBlogCommendFromMachineLearnPai2%7Edefault-1.control&depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-2%7Edefault%7EBlogCommendFromMachineLearnPai2%7Edefault-1.control)
+### 隔离级别
+[面试问烂的 MySQL 四种隔离级别，看完吊打面试官！ - 良月柒的文章 - 知乎](https://zhuanlan.zhihu.com/p/76743929)
+* 读未提交(read uncommitted)： 在一个事务中， 别的事务的未提交修改会影响到它的查询结果
+* 读已提交(read committed): 别的事务的提交会影响它的查询
+* 可重复读(repeatable read): 只有自己事务中的提交会影响到自己, 但同时也意味着， 别的事务插入的新行也不会被查询到
+* 串行化(serializable): 若一个事务来查询同一份数据就必须等待，直到前一个事务完成并解除锁定为止。是完整的隔离级别，会锁定对应的数据表格，因而会有效率的问题（表锁）
+
+## 索引
+(MySQL索引是个什么东西)[https://zhuanlan.zhihu.com/p/101281323]
+* 索引由一列或多列组合而成 ?
+1. 逻辑上分： 唯一索引， 主键索引， 普通索引
+
+
 ## 乐观锁与悲观锁
 1. 悲观锁应用到了真实的锁
 2. 如果用CAS实现乐观锁， 那么乐观锁本质上不是锁， 是一种尝试， 往往会竞争失败
