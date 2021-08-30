@@ -1,5 +1,7 @@
 ## docker
 
+### 安装
+see https://docs.docker.com/engine/install/ubuntu/
 ### docker核心概念
 1. Image与Container的关系
 

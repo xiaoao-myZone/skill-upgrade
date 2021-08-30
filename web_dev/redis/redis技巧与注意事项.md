@@ -1,3 +1,7 @@
+## 安装
+
+sudo apt-get install redis-server
+(会自动安装redis-cli)
 ## redis技巧与注意事项
 
 1. 避免所有时间复杂度超过O(1)的操作, 比如del, lrange, linsert
