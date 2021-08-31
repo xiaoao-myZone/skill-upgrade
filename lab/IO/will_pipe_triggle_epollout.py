@@ -9,6 +9,7 @@ from threading import Thread
 4: EPOLLOUT
 8: EPOLLERR
 16: EPOLLHUP
+参见 https://blog.csdn.net/q576709166/article/details/8649911
 """
 epoll = select.epoll()
 r, w = os.pipe()
