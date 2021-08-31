@@ -82,11 +82,12 @@
 `git config --global --add user.email name@example.com`
 6. ultimate set
 `git config --global -e`
-如果不喜欢默认的编辑器，可以通过`git config --global core.editor vim`修改
-7. 缓存密码
+7. 更换默认编辑器
+`git config --global core.editor vim`
+8. 缓存密码
 `git config --global credential.helper store`
 输入一次密码后就会缓存
-8. 清除缓存
+9. 清除缓存
 `git credential-manager uninstall`
 
 ## 源
