@@ -7,8 +7,8 @@ WS = Enum("status", "start shelf batch working")
 class Task_Planner():
     def __init__(self):
         self.status = WS.start
-
     # main workflow
+
     def run(self):
         print("[Task_Planner] run ...")
         while True:
@@ -18,12 +18,14 @@ class Task_Planner():
             self.status = WS.shelf
             response = yield "start success"
 
-            print("[Task_Planner] reort shelf, receiving shelf info: %s" % response)
+            print("[Task_Planner] reort shelf, \
+                receiving shelf info: %s" % response)
             # you can report shelf info to WCS
             self.status = WS.batch
             response = yield "shelf bind success"
 
-            print("[Task_Planner] reort tote, receiving tote info: %s" % response)
+            print("[Task_Planner] reort tote, \
+                receiving tote info: %s" % response)
             # you can report tote info to WCS
             self.status = WS.working
             # start rebinning
@@ -92,3 +94,5 @@ if __name__ == "__main__":
 #    这个yield上。
 # 3. 这也意味着， 第一次的send注定会被丢失， 抛出异常， 我猜是因为这个机制确实比较费解， 怕开发者没有理解这个细节，
 #    而在实际应用中犯错， 所以给了带值的第一个send一个异常， 作为警告。
+# 4. 迭代器与生成器有何区别? 生成器就是有一个或者多个yield的函数返回的对象， 迭代器就是有__iter__方法的对象
+#    ，生成器一定有__iter__方法， 所以生成器一定是迭代器， 反之不一定。

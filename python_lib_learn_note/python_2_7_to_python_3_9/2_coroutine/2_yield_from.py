@@ -31,10 +31,11 @@ def report(results):
             result.count, group, result.average, unit))
 
 
-data = {'girls;kg': [40.9, 38.5, 44.3, 42.2, 45.2, 41.7, 44.5, 38.0, 40.6, 44.5],
-        'girls;m': [1.6, 1.51, 1.4, 1.3, 1.41, 1.39, 1.33, 1.46, 1.45, 1.43],
-        'boys;kg': [39.0, 40.8, 43.2, 40.8, 43.1, 38.6, 41.4, 40.6, 36.3],
-        'boys;m': [1.38, 1.5, 1.32, 1.25, 1.37, 1.48, 1.25, 1.49, 1.46], }
+data = {
+    'girls;kg': [40.9, 38.5, 44.3, 42.2, 45.2, 41.7, 44.5, 38.0, 40.6, 44.5],
+    'girls;m': [1.6, 1.51, 1.4, 1.3, 1.41, 1.39, 1.33, 1.46, 1.45, 1.43],
+    'boys;kg': [39.0, 40.8, 43.2, 40.8, 43.1, 38.6, 41.4, 40.6, 36.3],
+    'boys;m': [1.38, 1.5, 1.32, 1.25, 1.37, 1.48, 1.25, 1.49, 1.46], }
 
 
 def main(data):
@@ -57,6 +58,8 @@ main(data)
 10 girls averaging 1.43m
 """
 
-#  带有yield from iterator的函数，  拥有向iterator发送数据的功能send（还有throw和close）
-#  并且可以通过next调用这个函数， 获得从iterator yield 的值
-#  问题： 这跟直接使用iterator的区别在哪里？
+#  带有yield from generator的函数，  拥有向generator发送数据的功能send（还有throw和close）
+#  并且可以通过next调用这个函数， 获得从generator yield 的值
+#  问题： 这跟直接使用generator的区别在哪里？ 当为了实现多个generator的连续迭代时， 可以少一个for循环
+#  (参考Fluent Python 14.10)
+#  并且，想必send与throw也可以找到对应的generator

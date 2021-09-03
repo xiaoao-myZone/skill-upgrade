@@ -1,4 +1,6 @@
 #!/usr/bin/python3
+import time
+import asyncio
 """
 1. async await 用法  https://www.cnblogs.com/xinghun85/p/9937741.html
 2. async的库         https://www.cnblogs.com/shenh/p/9090586.html   
@@ -9,17 +11,17 @@
     异步编程就是无法预知执行时间的计算机程序
 """
 
-import time
-import asyncio
 
 async def lucky_num(i):
-    await asyncio.sleep(1) # 关键是并没有sleep
+    await asyncio.sleep(1)  # 关键是并没有sleep
     print("my lucky num is : %s:%d" % (str(int(time.time()*1000))[-2:], i))
     # print(time.time())
+
 
 def run():
     for i in range(10):
         loop.run_until_complete(lucky_num(i))
+
 
 loop = asyncio.get_event_loop()
 
