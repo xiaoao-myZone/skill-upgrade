@@ -20,7 +20,7 @@ class AsyncConnectionBase:
     async def send(self, commad):
         line = commad + '\n'
         data = line.encode()
-        self.writer.writer(data)
+        self.writer.write(data)
         await self.writer.drain()
 
     async def receive(self):
@@ -43,9 +43,9 @@ class UnknownCommandError(Exception):
 class AsyncSession(AsyncConnectionBase):
     def __init__(self, *args):
         super().__init__(*args)
-        self._clear_state(None, None)
+        self._clear_value(None, None)
 
-    def _clear_state(self, lower, upper):
+    def _clear_value(self, lower, upper):
         self.lower = lower
         self.upper = upper
         self.secret = None
@@ -53,6 +53,7 @@ class AsyncSession(AsyncConnectionBase):
 
     async def loop(self):
         while command := await self.receive():
+            print(command)
             parts = command.split(' ')
             if parts[0] == 'PARAMS':
                 self.set_params(parts)
@@ -67,7 +68,7 @@ class AsyncSession(AsyncConnectionBase):
         assert len(parts) == 3
         lower = int(parts[1])
         upper = int(parts[2])
-        self._clear_state(lower, upper)
+        self._clear_value(lower, upper)
 
     def next_guess(self):
         if self.secret is not None:
@@ -93,6 +94,11 @@ class AsyncSession(AsyncConnectionBase):
 
         print(f'Server: {last} is {decision}')
 
+    def close_session(self):
+        print(dir(self.reader))
+        # self.reader.close()
+        self.writer.close()
+
 
 class AsyncClient(AsyncConnectionBase):
     def __init__(self, *args):
@@ -113,6 +119,9 @@ class AsyncClient(AsyncConnectionBase):
         await self.send(f'PARAMS {lower} {upper}')
         try:
             yield
+        except Exception:
+            import traceback
+            traceback.print_exc()
         finally:
             self._clear_state()
             await self.send('PARAMS 0 -1')
@@ -148,9 +157,10 @@ async def handle_async_connection(reader, writer):
     try:
         await session.loop()
     except EOFError:
-        # TODO 什么时候会发生EOF异常呢？
-        print("errrrrrrrrrrrrrror")
-        pass
+        # TODO 什么时候会发生EOF异常呢？ 当客户端关闭
+        print("client close")
+    finally:
+        session.close_session()
 
 
 async def run_async_server(address):
@@ -161,6 +171,7 @@ async def run_async_server(address):
     # 生成的server对象与被@contextlib.asynccontextmanager修饰过的函数一样
     async with server:
         await server.serve_forever()
+    # 这样可以在服务器异常关闭后， 自动关闭socket
 
 
 async def run_async_client(address):
@@ -185,10 +196,14 @@ async def run_async_client(address):
 async def main_async():
     address = ('127.0.0.1', 12345)
     server = run_async_server(address)
-    asyncio.create_task(server)
+    server_task = asyncio.create_task(server)
+    # 由于server不一定在client前创建， 所以需要停顿等待server的建立
+    await asyncio.sleep(0.1)
+    print("yes")
     results = await run_async_client(address)
     for number, outcome in results:
         print(f'Client: {number} is {outcome}')
+    await server_task
 
 
 asyncio.run(main_async(), debug=True)
@@ -198,6 +213,8 @@ Conclusion:
 1. 在存在IO阻塞的方法前， 加上async， 在方法内具体阻塞的函数前加上await
 2. contextlib.contextmanager需要用到对应的asynccontextmanager
 3. async修饰的函数中， 可以用yield
-4. 存在async与await的函数与方法被调用时需要用到await
-4. TODO 猜想： async与await相当与python在编译时中需要做一些事情， 但是具体如何做？
+4. 存在async与await的函数的方法被调用时需要用到await
+5. TODO 猜想： async与await相当与python在编译时中需要做一些事情， 但是具体如何做？
+6. 虽然await后函数由协程调度， 把await看做一个协程正式注册， 那么await asyncio.sleep(0.1)会阻塞之后的协程注册
+7. TODO asyncio.run与loop.run_until_complete的区别？
 """
