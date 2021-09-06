@@ -15,7 +15,7 @@ def spin(msg):
             yield from asyncio.sleep(.1)  # 也就是在协程中能暂停的只有asyncio.sleep
         except asyncio.CancelledError:
             break
-    write(' '*len(status) + '\x08' * len(status)) # 清空
+    write(' '*len(status) + '\x08' * len(status))  # 清空
 
 
 @asyncio.coroutine

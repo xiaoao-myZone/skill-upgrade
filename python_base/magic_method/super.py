@@ -64,4 +64,3 @@ c.handle()
 c.report()
 # report 用到了在基类的__init__过程中定义的self.value， 但是新类C重写了__init__，
 # 导致c.report()报错AttributeError
-
