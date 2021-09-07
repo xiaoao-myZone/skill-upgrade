@@ -156,6 +156,18 @@ zadd set-like 4 miss
 
 
 
-Conclusion:
-    1. redis既具有存储功能也具有一定的数据处理功能
-[redis教程](https://www.runoob.com/redis/redis-conf.html)
+### 参考：
+1. redis既具有存储功能也具有一定的数据处理功能 [redis教程](https://www.runoob.com/redis/redis-conf.html)
+2. [RDB和AOF的区别](https://www.cnblogs.com/zxs117/p/11242026.html)
+
+### 阅读总结
+[把Redis当作队列来用，真的合适吗？ ](https://mp.weixin.qq.com/s/-rHlfVsmrKrouvJh2YnxbA)
+1. redis可以非常容易地实现生产者-消费者模型， LPUSH与RPOP就是入栈与出栈操作， 如果消费者需要阻塞， 使用BRPOP， 或者BLPOP， B就是Block的意思, 并且还可以带超时参数，与epoll.poll一样
+>> 不过要注意， 太长时间不活跃的链接会被redis主动关闭，客户端需要有重连机制
+2. 这种消息队列的缺点是不可以支持重复消费， 并且当客户端拉取消息后，如果宕机， 就永久地丢失这个数据了（讲道理这个问题真的有点强人所难）
+3. Publish/Subscribe模型可以解决重复消费的问题, 同时可以明确的是， 这里的重复消费是指， 不同的客户端对同一个消息的消费， 但是我猜， 其本质是将收集订阅的客户端， 然后消息收到后主动推送一波（PUBLISH queue/SUBSCRIBE queue/PSUBSCRIBE queue.*）
+4. 这种模式会存在因 redis宕机， 客户端下线， 消息堆积（客户端数据处理不足）造成的消息丢失问题
+5. 数据持久化比如(RDB和AOF)
+6. TODO redis的stream在收到XACK后， 是如何删除数据的？ 1. 如果为每个客户端创建一个队列内存会根据客户端连接数线性扩大，收到XACK后理论上可以立即删除 2.如果多个客户端共用一个队列， 那么需要这些客户端都发送了XACK才能删掉。
+7. 网络异常（1. 无法连接  2. 已发送但是没有响应， 重发若干次然后记为异常）
+8. 消息队列的几个问题（1. 生产者是否会消息丢失 2. 消费者是否会消息丢失 3. 中间件是否会消息丢失 4. 如果消息挤压要怎么办）
