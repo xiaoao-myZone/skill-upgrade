@@ -1,9 +1,24 @@
 ## socket
 
 1. 如果一对socket对象中， 一方的send已经调用结束， 而另一方的recv还在等待， 则接受方会报错socket.error: [Errno 11] Resource temporarily unavailable
-2. 照理说不应该出现这种情况
+2. 照理说不应该出现这种情况， 这是因为将blocking设置为false 
 3. 当socket调用bind和listen(n)后， 客户端即可connect
 4. 但是当未被accept的连接达到n+1时， 接下来的connect会被阻塞
 5. settimeout可以以抛出异常（socket.timeout）的方式结束connect, accept和recv的阻塞
 6. 将settimeout设置为None, 相当于setblocking(1)
 7. 将settimeout设置为0, 相当于setblocking(0)
+
+### key point
+1. 系统有独立的进程来处理缓存区的数据
+2. 数据会被分成小的数据包， 并且加上源网卡地址与目的网卡地址，以及消息序列
+3. 如果在指定时间内（这个时间大概是多少）没有收到ack， 会重传
+
+### question
+1. 什么是滑动窗口?(当对方读的速度赶不上写的速度时)
+2. 当收到对方ack后， 写入缓存才会删掉， 而缓存如果打包成很多个小包， 是收到所有小包才会删除，还是收到一个？我觉得是前者， 这样数据传输才会可靠
+3. 一个数据包的大小是多少？(UDP中一个包的大小最大能多大？TCP呢？)[https://blog.csdn.net/qq_39382769/article/details/95701854](数据部1480字节， 包括IP首部1500字节)
+
+
+## referrence
+[1 我们在读写Socket时，究竟在读写什么（动态图解）](https://zhuanlan.zhihu.com/p/250788944)
+[2 errno 11](https://blog.csdn.net/u012203437/article/details/47297727)

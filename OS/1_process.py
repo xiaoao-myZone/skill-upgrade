@@ -17,7 +17,7 @@ os.execve()在子进程中删掉当前的文本段, 数据段, 栈段以及堆�
 
 """
 import os
-print(os.getppid()) # TODO 如果是开机自启, parent id为多少?
+print(os.getppid())  # TODO 如果是开机自启, parent id为多少?
 # os.fork()
 # if os.getpid()==-1:
 #     os._exit(0)

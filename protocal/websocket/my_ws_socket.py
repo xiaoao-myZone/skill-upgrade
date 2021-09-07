@@ -14,6 +14,7 @@ HANDSHAKE_STRING = "HTTP/1.1 101 Switching Protocols\r\n" \
             "WebSocket-Location: ws://{2}/chat\r\n" \
             "WebSocket-Protocol:chat\r\n\r\n"
 
+
 class SimpleHTTPHandler(BaseHTTPRequestHandler):
     """ attr                    type            annotation
     self.command                str              GET or POST

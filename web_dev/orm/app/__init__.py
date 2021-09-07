@@ -1,9 +1,12 @@
 # -*- coding: utf-8 -*-
-from flask import Flask, request, jsonify
+import pymysql
+from sqlalchemy import or_
 from flask_socketio import SocketIO
 from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy import or_
+from flask import Flask, request, jsonify
 
+
+pymysql.install_as_MySQLdb()
 db = SQLAlchemy()
 
 app = Flask(__name__)
@@ -11,12 +14,14 @@ app.config.from_object('app.secure')
 # app.config.from_object('app.setting')
 socketio = SocketIO(app, cors_allowed_origins="*")
 
+
 def strip_underline(s):
 
     if s.endswith('_'):
         return s[:-1]
     else:
         return s
+
 
 def to_dict(self):
     res = {}
@@ -30,7 +35,8 @@ def to_dict(self):
     return res
 
 # def to_dict(self):
-#     return {c.name: getattr(self, c.name, None) for c in self.__table__.columns}
+#     return {c.name: getattr(self, c.name, None) for c in \
+#               self.__table__.columns}
 
 
 db.Model.to_dict = to_dict
@@ -75,25 +81,27 @@ def add_name():
     fun = Fun(name=name)
     db.session.add(fun)
     db.session.commit()
-    return jsonify({"code":0})
+    return jsonify({"code": 0})
+
 
 @app.route("/query", methods=["POST"])
 def query():
     ret = []
     # res = Fun.query.filter(Fun.id_.between(0, 2)).filter(Fun.id_==2)#.all()
-    res = Fun.query.filter(or_(Fun.name.like("%x%"), Fun.name.like("%c%")), Fun.id_<3)
+    res = Fun.query.filter(
+        or_(Fun.name.like("%x%"), Fun.name.like("%c%")), Fun.id_ < 3)
     for i in dir(Fun.query):
         print(i)
     # print(res) # 打印出sql
     # for i in dir(res[0]):
     #     print("%s --> %s" % (i, getattr(res[0], i)))
     for i in res:
-        
+
         data = i.to_dict()
         ret.append(data)
         # print(data) # db.Integer是长整形, print出来是1L
         # print(data["id"]+1)
-    return jsonify({"code":0, "data": ret})
+    return jsonify({"code": 0, "data": ret})
 
 
 # Distinct
