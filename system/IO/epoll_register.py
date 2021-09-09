@@ -25,6 +25,7 @@ def server(port=7005):
     print("third poll: %s" % str(events))
     s.close()
 
+
 def client(port=7005):
     c = socket.socket()
     c.connect(("", 7005))
@@ -33,8 +34,9 @@ def client(port=7005):
     print("send: %s" % data)
     c.recv(1024)
 
+
 if __name__ == "__main__":
-    choice, *others= sys.argv[1:]
+    choice, *others = sys.argv[1:]
     if not others:
         port = others[0]
     else:

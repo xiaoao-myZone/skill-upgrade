@@ -1,7 +1,7 @@
 """
 进程: 进程是正在执行的程序的实例
 
-内核会为进程记录: 
+内核会为进程记录:
 1. 进程ID  os.getpid()
 2. 用户ID  os.getuid() # import pwd; pwd.getpwuid(os.getuid) #可获取用户的详细信息
 3. 组ID    os.getgid()

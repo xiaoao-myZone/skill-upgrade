@@ -1,9 +1,9 @@
 - [ ] 掌握linux的IO操作
 - [ ] 搭建一个网站， 用到redis与orm
-- [x] 解决socket的大部分疑问
+- [x] 了解了socket的滑动窗口与拥塞窗口
 - [ ] shell基础入门
 - [ ] 建立一个AI处理系统（自动更新参数， 同时根据输入输出结果）
 - [ ] python数据与进制之间的转换
-- [ ] 学习完数据库教程
-- [ ] 看完这个帖子[把Redis当作队列来用，真的合适吗？ ](https://mp.weixin.qq.com/s/-rHlfVsmrKrouvJh2YnxbA)
+- [ ] 学习完数据库教程p10
+- [x] 看完这个帖子[把Redis当作队列来用，真的合适吗？ ](https://mp.weixin.qq.com/s/-rHlfVsmrKrouvJh2YnxbA)
 - [ ] 了解如何快速在一个亿级数据库中搜索到一个号码
