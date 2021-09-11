@@ -1,14 +1,13 @@
 import os
 import socket
 import select
-try:
-    from queue import Queue, Empty
-except ImportError:
-    from Queue import Queue, Empty
+from queue import Queue, Empty
+
 
 import traceback
 import asyncio
 SOCK_ADDR = ("127.0.0.1", 7002)
+
 
 class SocketInterface(object):
     def __init__(self, system_manager, timeout=60):
@@ -20,23 +19,24 @@ class SocketInterface(object):
         self.timeout = timeout
 
         self.server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        self.server_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+        self.server_socket.setsockopt(
+            socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 
         server_addr = SOCK_ADDR
         self.server_socket.bind(server_addr)
 
         self.server_socket.listen(2)
-        print("[Socket App] Server start, listen to {}:{}".format(*server_addr))
+        print(
+            "[Socket App] Server start, listen to {}:{}".format(*server_addr))
         self.server_socket.setblocking(False)
 
-    
         self.epoll = select.epoll()
         self.epoll.register(self.server_socket.fileno(), select.EPOLLIN)
 
         self.msg_queues = {}
 
         self.fd_to_socket = {self.server_socket.fileno(): self.server_socket}
-    
+
     @asyncio.coroutine
     def recv(self, sock_obj):
         return sock_obj.recv(1024)
@@ -64,11 +64,14 @@ class SocketInterface(object):
                     self.fd_to_socket[fd].close()
                     del self.fd_to_socket[fd]
                 elif event & select.EPOLLIN:
-                    #data = socket.recv(1024).decode()
+                    # data = socket.recv(1024).decode()
                     data = yield from self.recv(socket)
                     data = data.decode()
                     if data:
-                        print("[Socket App] accept {} from {}:{}".format(str(data), *socket.getpeername()))
+                        print(
+                            "[Socket App] accept {} from {}:{}".format(
+                                str(data), *socket.getpeername())
+                            )
                         self.msg_queues[socket].put(int(data))
                         self.epoll.modify(fd, select.EPOLLOUT)
                     else:
@@ -79,36 +82,24 @@ class SocketInterface(object):
                     try:
                         msg = self.msg_queues[socket].get_nowait()
                     except Empty:
-                        print("[Socket App] {}:{} queue empty".format(*socket.getpeername()))
+                        print("[Socket App] {}:{} queue empty".format(
+                            *socket.getpeername()))
                         self.epoll.modify(fd, select.EPOLLIN)
                     else:
                         try:
-                            if msg == 1:#sock_cmd.START.value:
+                            if msg == 1:  # sock_cmd.START.value:
                                 ret = yield from self.system_manager.start()
                             if msg == 2:
                                 ret = "lalal"
-                            #     print("[Socket App] call system manager %sING" % sock_cmd.START.name)
-                            #     ret = self.system_manager.start()
-                            # elif msg == sock_cmd.CONTINUE.value:
-                            #     print("[Socket App] call system manager %sING" % sock_cmd.CONTINUE.name)
-                            #     ret = self.system_manager.restart()
-                            # elif msg == sock_cmd.PAUSE.value:
-                            #     print("[Socket App] call system manager %sING" % sock_cmd.PAUSE.name)
-                            #     ret = self.system_manager.cycle_stop()
-                            # elif msg == sock_cmd.READ.value:
-                            #     print("[Socket App] call system manager %sING" % sock_cmd.READ.name)
-                            #     ret = self.system_manager.read()
-                            # elif msg == sock_cmd.STOP.value:
-                            #     print("[Socket App] call system manager %sING" % sock_cmd.STOP.name)
-                            #     ret = self.system_manager.shutdown()
-                        except:
-                            #log.error("[Socket App] Error", exc_info=True)
+                        except Exception:
+                            # log.error("[Socket App] Error", exc_info=True)
 
                             traceback.print_exc()
-                            #ret = sock_return.FAIL.value
+                            # et = sock_return.FAIL.value
                             ret = 1
                         socket.send((str(ret)).encode())
-                        print("[Socket App] send return: {} to {}:{}".format(ret, *socket.getpeername()))
+                        print("[Socket App] send return: {} to {}:{}".format(
+                            ret, *socket.getpeername()))
 
 
 class SystemManager:
@@ -118,6 +109,8 @@ class SystemManager:
         with open(os.path.join(main_path, "my_heap/ip.txt"), "r") as f:
             data = f.read()
         return data
+
+
 si = SocketInterface(SystemManager())
 task = asyncio.async(si.run())
 loop = asyncio.get_event_loop()

@@ -20,6 +20,16 @@
 
 ### ls -l
 [输出说明](https://blog.csdn.net/weixin_44903147/article/details/102480711)
+`-rwxrwxr-x 1 xiaoao xiaoao 1177  8月 28 20:26 122.c*`
+1. 第一位是文件类型
+* `-`： 普通文件
+* `d`: 目录
+* `l`: 连接符号
+* `b`: 块设备, 比如/dev中的loop*
+* `c`: 字符设备, 比如/dev中的各种tty，还有数字黑洞/dev/null, /dev/random
+* `s`: socket文件
+* `p`: 管理
+2. 后面九位分别是拥有者， 所有者所在的组， 和其他用户的权限
 
 ### cat grep tr sort wc sed awk echo?
 这个集合里的命令均将输入(stdin)的字符以一定方式转换再输出(stdout)出来

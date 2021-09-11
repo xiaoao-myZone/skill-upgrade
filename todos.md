@@ -5,5 +5,7 @@
 - [ ] 建立一个AI处理系统（自动更新参数， 同时根据输入输出结果）
 - [ ] python数据与进制之间的转换
 - [ ] 学习完数据库教程p10
-- [x] 看完这个帖子[把Redis当作队列来用，真的合适吗？ ](https://mp.weixin.qq.com/s/-rHlfVsmrKrouvJh2YnxbA)
+- [x] 看完这个帖子[把Redis当作队列来用，真的合适吗？ ](https://mp.weixin.qq.com/s/-rHlfVsmrKrouvJh2YnxbA)， 并写下总结
 - [ ] 了解如何快速在一个亿级数据库中搜索到一个号码
+- [ ] 了解linux系统的用户态与内核态差别
+- [ ] 将原来电脑中的xpath资料同步过来
