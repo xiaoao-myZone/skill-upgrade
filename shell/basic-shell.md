@@ -27,7 +27,7 @@
 * `l`: 连接符号
 * `b`: 块设备, 比如/dev中的loop*
 * `c`: 字符设备, 比如/dev中的各种tty，还有数字黑洞/dev/null, /dev/random
-* `s`: socket文件
+* `s`: socket文件, 比如/run/mysqld/mysqld.sock， UNIX Domain Socket简称UDS
 * `p`: 管理
 2. 后面九位分别是拥有者， 所有者所在的组， 和其他用户的权限
 
