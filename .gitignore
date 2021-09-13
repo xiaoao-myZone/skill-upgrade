@@ -57,3 +57,5 @@ __pycache__
 # redis
 *.rdb
 
+# binary file after compiling
+test
