@@ -1,4 +1,4 @@
-- [ ] 掌握linux的IO操作
+- [x] 掌握linux的IO操作
 - [ ] 搭建一个网站， 用到redis与orm
 - [x] 了解了socket的滑动窗口与拥塞窗口
 - [ ] shell基础入门
