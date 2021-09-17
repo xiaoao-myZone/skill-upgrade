@@ -1,20 +1,22 @@
 """
 1. https://blog.csdn.net/jerrism/article/details/107357541
 """
-#from ipdb import set_trace; set_trace()
+# from ipdb import set_trace; set_trace()
 from types import MethodType
-from functools import partial
+# from functools import partial
 
 
 class Demo(object):
     def __init__(self, name):
         self.name = name
-    
+
     def make_introduction(self):
         print("Hi~, I'm %s" % self.name)
 
+
 def new_make_intro(self):
     print("Welcome to my world, I'm %s" % self.name)
+
 
 d = Demo("Judy")
 d.make_introduction()
@@ -36,6 +38,7 @@ def switch(func):
 
     return _wrapper
 
+
 class Test(object):
     def __init__(self, name):
         self.name = name
@@ -43,13 +46,14 @@ class Test(object):
 
     @switch
     def make_introduction(self):
-        self.times-=1
+        self.times -= 1
         print("Hi~, I'm %s" % self.name)
 
     def init(self):
-        #self  = self.__class__(self.name) # don't work
+        # self  = self.__class__(self.name) # don't work
         self.__init__(self.name)
-        self.make_introduction = MethodType(self.__class__.make_introduction, self)
+        self.make_introduction = MethodType(
+            self.__class__.make_introduction, self)
 
 
 print("----------------------------------")
