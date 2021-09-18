@@ -105,6 +105,11 @@ class Test:
     def self_intro(self):
         print("My name is %d" % self.name)
 ```
+
+### function
+
+函数中需要输入一系列可迭代参数时，前面加*，比如(*'MJPG')，相当于输入('M','J','P','G')
+
 ### GIL
 [python中的GIL详解](https://www.cnblogs.com/SuKiWX/p/8804974.html)
 问题1: 既然线程之间的切换是根据每个线程运行的微指令， 那么在众多线程在进行IO等待时， 直觉上没有微指令执行， 
