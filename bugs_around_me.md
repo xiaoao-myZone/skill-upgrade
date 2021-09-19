@@ -18,3 +18,4 @@
 4. 双系统中， 打开windowd的磁盘分区后， 用终端shell操作， 再按ctl+shift+t，新的终端开头会有“To run a command as administrator (user "root"), use "sudo \<command\>".
 See "man sudo_root" for details.”
 /media/xiaoao/Windows/Users/10061/Documents
+5. 对于默认链接的需要验证的网络， 合盖状态（休眠）下，唤醒系统，登录进去后， 会弹出登录界面， 保持这个界面大概40min后， 登录（第二次登陆成功）， 右上角的wifi标记还是有‘？’， 而此时可以正常上网
