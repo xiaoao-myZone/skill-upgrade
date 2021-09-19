@@ -13,7 +13,6 @@ DB_URL = "{dialect}://{username}:{password}@{host}:"\
         database="test"
     )
 # 不能用mysql+pymsql://...， 而要用mysql://..，并且pymysql.install_as_MySQLdb()
-# TODO 这是什么原因？
 engine = create_engine(DB_URL)
 Base = declarative_base(engine)
 
@@ -62,7 +61,11 @@ class database(object):
         record = self.table()
         for k, v in kwargs.items():
             setattr(record, k, v)
+        # print(f'{record._sa_instance_state.modified=}')
+        # print(f'{record._sa_instance_state.expired=}')
         self.session.add(record)
+        # print(f'{record._sa_instance_state.modified=}')
+        # print(f'{record._sa_instance_state.expired=}')
 
     @commit
     def update(self, From, To):
@@ -85,15 +88,15 @@ class database(object):
 
 if __name__ == "__main__":
     # import pprint
-    Base.metadata.drop_all()
+    # Base.metadata.drop_all()
     Base.metadata.create_all()
     db = database(engine, Person)
 
     # a = db.table()
     # a.age = 22
     # pprint.pprint(a._sa_instance_state.__dict__)
-    b = db.table(name="Paul")
-    db.session.add(b)
+    # b = db.table(name="Paul")
+    # db.session.add(b)
     # pprint.pprint(b._sa_instance_state.__dict__)
 
     # # {'_sa_instance_state': <sqlalchemy.orm.state.InstanceState>}
@@ -116,12 +119,15 @@ if __name__ == "__main__":
 """
 Conclusion:
     1. 不能用mysql+pymsql://...， 而要用mysql://..，并且pymysql.install_as_MySQLdb()
-    2. TODO 这是什么原因？
+    2. TODO 这是什么原因？（难道是pymysql的下载源不一样？）
+      https://cdn.mysql.com//Downloads/Connector-Python/mysql-connector-python-py3_8.0.26-1ubuntu21.04_amd64.deb
     3. 增: session.add(tb_ins)  但是注意， 当tb_ins指定了主键id后， 其实是update
     4. 改： 是一个隐式的过程， 只需要把通过session.query查到的tb_ins修改值， 就会被标记更改，
        通过session.add可以提交
-    5. 创建table对象时加入字段与创建后加入字段， 效果是一样的， 但是当不可为空字段不全的时候，
+    5. 创建table对象时加入字段与创建后加入字段， 再使用session.add， 效果是一样的， 但是当不可为空字段不全的时候，
        session.add会抛出错误， 估计delete也会抛错
     6. TODO 将db-sql中的试题尝试用sqlalchemy做出来
     7. 根据其官网上的特点， 就是它可以做到结尾开放式（open-ended）
+    8. session.commit()后， 之前创建的record._sa_instance_state.expired会变为True
+    9. 对于发现5， 为什么非要add后才会生效， 而查询出来的结果不需要add， commit就可以更新
 """
