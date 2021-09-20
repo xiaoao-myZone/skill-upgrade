@@ -14,6 +14,10 @@
 
 3. 使用tlp
 
+
+## 线索
+1. rfkill list
+2. [bluetooth](https://askubuntu.com/questions/1038716/ubuntu-18-04-cannot-turn-bluetooth-on)
 ## 总结
 1. 根据`/etc/systemd/logind.conf`中的默认配置， 在通电情况下`HandleLidSwitchExternalPower=suspend`是采用suspend模式， 在不通电情况下`HandleLidSwitch=hibernate`采用hibernate模式
 2. 在`/lib/systemd/system-sleep`添加一个执行写入hello world到txt的脚本， 发现无论是在通电情况下合盖/开盖，还是不通电， 都会有两个hello world， 应该根据case $1 in pre/post)来区分， 所以系统确实尝试恢复USB功能， 并且应该是通过这个下的脚本`hdparm`来实现的，执行的命令为`/usr/lib/pm-utils/power.d/95hdparm-apm resume`
