@@ -11,10 +11,16 @@
 - [ ] 了解linux系统的用户态与内核态差别
 - [ ] shell基础入门
 - [x] 了解了socket的滑动窗口与拥塞窗口
+- [ ] 系统了解hash
+
 #### python
 - [ ] 熟悉sqlahchemy的ORM操作
 - [ ] python数据与进制之间的转换
 - [ ] 搞清楚flask的request实现机制
+
+#### web
+- [x] 将《Flask Web开发》翻到第4章
+- [ ] 将《Flask Web开发》翻到第6章
 
 #### database
 - [ ] 学习完数据库教程p10
@@ -25,8 +31,13 @@
 - [ ] docker创建与运行入门
 - [ ] 了解容器化技术的底层实现
 
-#### c++
+#### C++
 - [ ] 入门
+
 #### others
+- [x] 将原来电脑中的regrex资料同步过来，并复习一遍
 - [ ] 将原来电脑中的xpath资料同步过来，并复习一遍
+
+#### AI
+- [ ] 跑通MNIST
 

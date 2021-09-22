@@ -6,34 +6,44 @@
 2. `git config --global http.postBuffer 524288000` 
     当仓库比较大的时候,可能会出现'fatal: The remote end hung up unexpectedly'
     执行这一行再clone
-## 删除
-1. 取消工作区所有修改
-`git reset --hard HEAD` # 后面可以跟文件
-`git checkout -- .`
-&#160;
-2. 删除工作区中的未跟踪文件
-`git clean -d -f`
-&#160;
-3. 取消工作区某个文件改动
-`git checkout -- filename`
-&#160;
-4. 删除暂存区某个文件 # 不会改动工作区， 但是会在暂存区删掉， commit后就会真的删掉
-`git reset HEAD filename`
-&#160;
-5. 删除暂存区所有文件
-`git reset HEAD`
 
-6. 删除分支
-`git branch -D branchname`
-`git push origin --delete branchname` push后面像是在发送一段指令
+## 添加与删除
+[图解Git工作原理](https://mp.weixin.qq.com/s/hLjMxQQsRI2N9nzhQ5LfRQ)
+### 工作区 --> 暂存区
+1. `git add filename`
+2. `git add .`  添加所有 
 
-7. 删除已经commit的文件，但是在工作区保留
-`git rm --cache fileName`
-## 添加
-1. 将所有修改的py文件加入暂存区
+### 暂存区 --> 工作区
+1. `git reset HEAD filename`
+2. `git reset HEAD` 清除所有 
+
+### 工作区 --> system
+1. `git checkout -- filename`
+2. `git clean -d -f`   清除工作区所有未跟踪项目
+3. `git checkout -- .` 取消工作区所有修改
+
+### 暂存区 --> 历史记录
+1. `git commit -m "messgae"`
+
+### 历史记录 --> 暂存区
+1. `git rm --cache filename` 会在工作区保留
+
+### 强制修改
+1. `git reset --hard commitId filename`
+2. `git reset --hard HEAD` 清除所有修改
+
+
+### 选择特定文件
+将所有修改的py文件加入暂存区
 `git status | grep -o "\S\+\.py$" | xargs git add`
 `git add "*.py"`
+## 管理commit
+1. 修改当前commit的信息 `git commit --amend`
+2. [用rebase合并多个commit](https://www.cnblogs.com/yxhblogs/p/10527271.html)
 
+## 管理分支
+`git branch -D branchname`
+`git push origin --delete branchname` push后面像是在发送一段指令
 
 ## 暂存
 1. 将工作区改动暂存，并将工作区恢复最近版本 
@@ -94,6 +104,6 @@
 1. 换源
 `git remote set-url origin git@github.com:xiaoming/my-repo.git`
 2. 查看源
-`git remote get-url origin` # tab 既然无法显示
+`git remote get-url origin` # tab 竟然无法显示
 3. ultimate set
 `vim .git/config`
