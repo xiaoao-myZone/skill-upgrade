@@ -16,14 +16,16 @@
 #### python
 - [ ] 熟悉sqlahchemy的ORM操作
 - [ ] python数据与进制之间的转换
-- [ ] 搞清楚flask的request实现机制
+- [ ] 搞清楚flask的request实现机制 [flask源码剖析](https://www.bilibili.com/video/BV19V411H7qH?p=17)
+- [ ] 搞清楚类的装饰器
+- [ ] 搞清楚Enum的实现机制
 
 #### web
 - [x] 将《Flask Web开发》翻到第4章
 - [ ] 将《Flask Web开发》翻到第6章
 
 #### database
-- [ ] 学习完数据库教程p10
+- [x] 学习完数据库教程p10 [百度面试MySQL夺命50问！](https://www.bilibili.com/video/BV1vg41157CA?p=11&spm_id_from=pageDriver)
 - [x] 看完这个帖子[把Redis当作队列来用，真的合适吗？ ](https://mp.weixin.qq.com/s/-rHlfVsmrKrouvJh2YnxbA)， 并写下总结
 - [ ] 了解如何快速在一个亿级数据库中搜索到一个号码
 

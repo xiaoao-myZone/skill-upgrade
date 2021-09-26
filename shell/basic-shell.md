@@ -30,6 +30,7 @@
 * `s`: socket文件, 比如/run/mysqld/mysqld.sock， UNIX Domain Socket简称UDS
 * `p`: 管理
 2. 后面九位分别是拥有者， 所有者所在的组， 和其他用户的权限
+3. 大小， 单位是bytes
 
 ### cat grep tr sort wc sed awk echo?
 这个集合里的命令均将输入(stdin)的字符以一定方式转换再输出(stdout)出来

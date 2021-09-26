@@ -5,10 +5,10 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
 
-pymysql.install_as_MySQLdb()
+# pymysql.install_as_MySQLdb()
 DB_URL = "{dialect}://{username}:{password}@{host}:"\
     "{port}/{database}?charset=utf8".format(
-        dialect="mysql", username="root",
+        dialect="mysql+pymysql", username="root",
         password="zxcasd", host="localhost", port=3306,
         database="test"
     )
@@ -118,8 +118,8 @@ if __name__ == "__main__":
 
 """
 Conclusion:
-    1. 不能用mysql+pymsql://...， 而要用mysql://..，并且pymysql.install_as_MySQLdb()
-    2. TODO 这是什么原因？（难道是pymysql的下载源不一样？）
+    1. 不能用mysql+pymysql://...， 而要用mysql://..，并且pymysql.install_as_MySQLdb()
+    2. 这是什么原因？（难道是pymysql的下载源不一样？） -_-||| 一般来说是拼错了
       https://cdn.mysql.com//Downloads/Connector-Python/mysql-connector-python-py3_8.0.26-1ubuntu21.04_amd64.deb
     3. 增: session.add(tb_ins)  但是注意， 当tb_ins指定了主键id后， 其实是update
     4. 改： 是一个隐式的过程， 只需要把通过session.query查到的tb_ins修改值， 就会被标记更改，

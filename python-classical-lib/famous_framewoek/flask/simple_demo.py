@@ -12,7 +12,8 @@ app = Flask("Demo")
 api = Api(app)
 # ws = SocketIO(app, cors_allowed_origins="*", async_mode="threading")
 ws = SocketIO(app)
-#print(dir(api))
+# print(dir(api))
+
 
 def GET_STD_RES(code=0, msg="success", data=True):
     if code == -1:
