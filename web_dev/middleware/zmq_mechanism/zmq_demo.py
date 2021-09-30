@@ -1,12 +1,17 @@
-#-*- coding: utf-8 -*-
-
-import random, threading, time, zmq
+# -*- coding: utf-8 -*-
+import zmq
+import time
+import random
+import threading
 B = 32
 
 # TOOD random.getrandbits lstrip
 # lstrip = leading strip
+
+
 def ones_and_zeros(digits):
     return bin(random.getrandbits(digits)).lstrip("0b").zfill(digits)
+
 
 def bitsource(zcontext, url):
     zsock = zcontext.socket(zmq.PUB)
@@ -14,6 +19,7 @@ def bitsource(zcontext, url):
     while True:
         zsock.send_string(ones_and_zeros(B * 2))
         time.sleep(0.01)
+
 
 def always_yes(zcontext, in_url, out_url):
     # 不是很懂为啥有个无选择性的发送'Y'
@@ -30,30 +36,33 @@ def always_yes(zcontext, in_url, out_url):
         isock.recv_string()
         osock.send_string('Y')
 
+
 def judge(zcontext, in_url, pythagoras_url, out_url):
     isock = zcontext.socket(zmq.SUB)
     isock.connect(in_url)
     for prefix in b'01', b'11', b'10':
         isock.setsockopt(zmq.SUBSCRIBE, prefix)
-    psock = zcontext.socket(zmq.REQ) 
+    psock = zcontext.socket(zmq.REQ)
     psock.connect(pythagoras_url)
     osock = zcontext.socket(zmq.PUSH)
     osock.connect(out_url)
-    unit = 2 ** (B * 2) # 圆的半径的平方
+    unit = 2 ** (B * 2)  # 圆的半径的平方
     while True:
         bits = isock.recv_string()
         # 这里是二进制, 少一位, 长度直接缩一半
         n, m = int(bits[::2], 2), int(bits[1::2], 2)
-        psock.send_json((n, m)) #这是元组吧, 能以json格式发吗?
+        psock.send_json((n, m))  # 这是元组吧, 能以json格式发吗?
         sumsquares = psock.recv_json()
         osock.send_string('Y' if sumsquares < unit else 'N')
+
 
 def pythagoras(zcontext, url):
     zsock = zcontext.socket(zmq.REP)
     zsock.bind(url)
     while True:
         numbers = zsock.recv_json()
-        zsock.send_json(sum(n * n for n in numbers)) # 点到原点距离的平方
+        zsock.send_json(sum(n * n for n in numbers))  # 点到原点距离的平方
+
 
 def tally(zcontext, url):
     zsock = zcontext.socket(zmq.PULL)
@@ -66,10 +75,12 @@ def tally(zcontext, url):
             p += 4
         print(decision, p / q)
 
+
 def start_thread(function, *args):
     thread = threading.Thread(target=function, args=args)
     thread.daemon = True
     thread.start()
+
 
 def main(zcontext):
     pubsub = 'tcp://127.0.0.1:6700'
@@ -81,6 +92,7 @@ def main(zcontext):
     start_thread(pythagoras, zcontext, reqrep)
     start_thread(tally, zcontext, pushpull)
     time.sleep(30)
+
 
 if __name__ == "__main__":
     main(zmq.Context())
@@ -116,7 +128,7 @@ pus-sub test
 1. RCVBUFF,RCVHWM, SNDBUFF, SNDHWM需要一起使用才有效果
 2. 接收方如果不及时, 会出现消息断层, 在以上四个参数都是1的情况下,初始收到消息147条左右, 之后每连续接受80条左右出现断层, 每条消息长度为28
 3. 在2的条件下把上面四个值都设置为2, 结果全设置为1差不多
-4. 对SUB的fileno用epoll处理, EPOLLOUT与EPOLLIN的含义与socket相反, 开始会收到5(EPOLLOUT + EPOLLIN)
+4. 对SUB的fileno用epoll处理, EPOLLOUT与EPOLLIN的含义与socket相反, 开始会收到5(EPOLLOUT+EPOLLIN)
 5. 试验证明, 消息的分发是在server端进行的, client端只会接收到自己想要的值(至少表面上是这样)
 6. 即便server没有打开, epoll的行为会与server打开了一样, 并且这个fileno是13, 这样说明潜存存在很多通讯机制
 7. 有6的存在5是待怀疑的

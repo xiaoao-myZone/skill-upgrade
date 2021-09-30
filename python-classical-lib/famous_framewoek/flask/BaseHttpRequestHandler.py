@@ -1,19 +1,20 @@
 """
-1. https://blog.csdn.net/xhw88398569/article/details/49179967 简单介绍HTTPServer和BaseHTTPResponseHandler的用法
-2. https://blog.csdn.net/qq_35038500/article/details/87943004 进一步介绍BaseHTTPResponseHandler
+1. https://blog.csdn.net/xhw88398569/article/details/49179967
+    简单介绍HTTPServer和BaseHTTPResponseHandler的用法
+2. https://blog.csdn.net/qq_35038500/article/details/87943004
+    进一步介绍BaseHTTPResponseHandler
 """
 
 from http.server import BaseHTTPRequestHandler, HTTPServer
-import urllib
+# import urllib
 import json
-
-import json
-import socket
-import select
-from http.server import HTTPServer, BaseHTTPRequestHandler
+# import socket
+# import select
+# from http.server import HTTPServer, BaseHTTPRequestHandler
 
 socekt_map = {}
 process_map = {}
+
 
 class SimpleHTTPHandler(BaseHTTPRequestHandler):
     """ attr                    type            annotation
@@ -24,6 +25,7 @@ class SimpleHTTPHandler(BaseHTTPRequestHandler):
     self.rfile        <class '_io.BufferedReader'>  read body
     self.wfile        <class '_io.BufferedReader'>  write response
     """
+
     def do_GET(self):
         attr = ["command", "path", "headers", "raw_requestline", "rfile"]
         for i in attr:
@@ -31,12 +33,12 @@ class SimpleHTTPHandler(BaseHTTPRequestHandler):
             print("%s|%s|%s" % (i, type(obj), str(obj)))
 
         self.send_response(200)
-        #self.send_header("Content-type","text/html")
-        self.send_header("Content-type","application/json")
-        self.send_header("test","This is test!")
+        # self.send_header("Content-type","text/html")
+        self.send_header("Content-type", "application/json")
+        self.send_header("test", "This is test!")
         self.end_headers()
         buf = json.dumps({"code": 0}).encode()
-        buf+=b'\n'
+        buf += b'\n'
         self.wfile.write(buf)
 
     def do_POST(self):
@@ -44,15 +46,17 @@ class SimpleHTTPHandler(BaseHTTPRequestHandler):
         data_len = int(self.headers.get("content-length"))
         if data_len:
             data = self.rfile.read(data_len)
-            print("receive data|%s|%s" % (type(data), data)) # TODO what if content-length is too small
+            # TODO what if content-length is too small
+            print("receive data|%s|%s" % (type(data), data))
         self.send_response(200)
-        #self.send_header("Content-type","text/html")
-        self.send_header("Content-type","application/json")
-        self.send_header("test","This is test!")
+        # self.send_header("Content-type","text/html")
+        self.send_header("Content-type", "application/json")
+        self.send_header("test", "This is test!")
         self.end_headers()
         buf = json.dumps({"code": 0}).encode()
-        buf+=b'\n'
+        buf += b'\n'
         self.wfile.write(buf)
+
 
 if __name__ == "__main__":
     http_server = HTTPServer(("", 7005), SimpleHTTPHandler)
