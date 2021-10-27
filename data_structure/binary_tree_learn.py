@@ -6,9 +6,9 @@ class Test(object):
         # super().__init__()
         self.name = "sss"
 
-    
     def __str__(self):
         return "ssss"
+
 
 t = Test()
 print(t)

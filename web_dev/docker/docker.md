@@ -4,6 +4,7 @@
 see https://docs.docker.com/engine/install/ubuntu/
 ### docker核心概念
 1. Image与Container的关系
+2. [Docker 核心技术与实现原理](http://dockone.io/article/2941)
 
 ### docker Image
 1. 查看镜像
@@ -38,6 +39,13 @@ see https://docs.docker.com/engine/install/ubuntu/
 5. 启动容器
 `docker start container_id/container_name`
 6. 创建容器
+
+
+
+## Docker Compose
+1. 在有docket-compose.yml文件的目录下执行`docket-compose ps` 可以看到该组的docker的运行情况
+   第一行为容器名
+2. 进入docker中 `docker-compose exec -it container_id /bin/bash`
 
 
 
