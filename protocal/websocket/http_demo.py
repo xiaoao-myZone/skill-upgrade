@@ -26,6 +26,7 @@ server_fd = server.fileno()
 socket_map = {server_fd: server}
 epoll.register(server_fd)
 
+
 def recv(conn, type="GET"):
     ret = []
     try:
@@ -39,6 +40,7 @@ def recv(conn, type="GET"):
     except BlockingIOError:
         pass
     return ''.join(ret)
+
 
 def unregister(epoll, socket_map, fd):
     socket_map[fd].close()
@@ -59,10 +61,10 @@ try:
                 conn, addr = server.accept()
                 print("#### %s:%s connected####" % addr)
                 _fd = conn.fileno()
-                #conn.setblocking(False)
+                # conn.setblocking(False)
                 socket_map[_fd] = conn
                 epoll.register(_fd)
-            
+
             elif event & select.EPOLLIN:
                 conn = socket_map[fd]
                 data = recv(conn)
@@ -82,24 +84,23 @@ try:
                         conn.send("".join(ret).encode("utf-8"))
                     except BrokenPipeError:
                         print("already closed")
-                    #conn.close()
-                
-            
+                    # conn.close()
+
             elif event & select.EPOLLHUP:
                 conn = socket_map[fd]
                 print("#### %s:%s disconnected####" % conn.getpeername())
                 epoll.unregister(fd)
                 del socket_map[fd]
-            
+
             elif event & select.EPOLLOUT:
                 conn = socket_map[fd]
                 epoll.modify(conn, select.EPOLLIN)
                 print("#### %s:%s modified####" % conn.getpeername())
-except :
+except Exception:
     traceback.print_exc()
 server.close()
-            
-        
+
+
 """
 1. REST Client发过来的报文:
 GET / HTTP/1.1

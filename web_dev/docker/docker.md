@@ -57,6 +57,11 @@ see https://docs.docker.com/engine/install/ubuntu/
 
 #### 深入
 1. docker run 做了什么?
+--name 为容器起一个名字
+--link  共享被link的容器的环境变量与端口映射
+-e 设置环境变量， 表达方式为Name=Value
+-v 将宿主机的文件/文件夹共享给容器
+-p 将宿主机的端口共享给容器
 * 检查本地是否存在指定的镜像，不存在则从公有仓库下载
 * 使用镜像创建并启动容器
 * 分配一个文件系统，并在只读的镜像层外面挂载一层可读可写层
@@ -68,6 +73,10 @@ see https://docs.docker.com/engine/install/ubuntu/
 * -i	以交互模式运行容器，通常与 -t 同时使用
 * -t	为容器重新分配一个伪输入终端，通常与 -i 同时使用
 * -d	后台运行容器，并返回容器ID
+
+
+## Question
+1. docker 每run一次就会产生一个container?
 
 ## Docker Compose
 1. 在有docket-compose.yml文件的目录下执行`docket-compose ps` 可以看到该组的docker的运行情况

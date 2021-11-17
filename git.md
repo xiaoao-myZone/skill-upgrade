@@ -15,7 +15,7 @@
 
 ### 暂存区 --> 工作区
 1. `git reset HEAD filename`
-2. `git reset HEAD` 清除所有 
+2. `git reset HEAD` 清除所有, 但是不包括新增并且被加入到暂存区的文件
 
 ### 工作区 --> system
 1. `git checkout -- filename`

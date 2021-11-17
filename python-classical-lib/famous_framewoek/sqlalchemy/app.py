@@ -89,7 +89,10 @@ class database(object):
 if __name__ == "__main__":
     # import pprint
     # Base.metadata.drop_all()
+    # 如果数据库中已存在相同的表名， 则不会触发创建， 并且没有警告
+    # 但是， 如果更改了表模型， 这种改动不会同步到数据库
     Base.metadata.create_all()
+
     db = database(engine, Person)
 
     # a = db.table()

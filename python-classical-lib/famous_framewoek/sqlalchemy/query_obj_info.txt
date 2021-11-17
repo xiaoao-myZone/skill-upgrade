@@ -1,0 +1,77 @@
+SELECT student.pid AS student_pid, student.name AS student_name, student.sex AS student_sex, student.score AS student_score 
+FROM student
+add_column --> |<bound method Query.add_column of <sqlalchemy.orm.query.Query object at 0x7f45a70e7ee0>>|  <class 'method'>
+add_columns --> |<bound method Query.add_columns of <sqlalchemy.orm.query.Query object at 0x7f45a70e7ee0>>|  <class 'method'>
+add_entity --> |<bound method Query.add_entity of <sqlalchemy.orm.query.Query object at 0x7f45a70e7ee0>>|  <class 'method'>
+all --> |<bound method Query.all of <sqlalchemy.orm.query.Query object at 0x7f45a70e7ee0>>|  <class 'method'>
+as_scalar --> |<bound method Query.as_scalar of <sqlalchemy.orm.query.Query object at 0x7f45a70e7ee0>>|  <class 'method'>
+autoflush --> |<bound method Query.autoflush of <sqlalchemy.orm.query.Query object at 0x7f45a70e7ee0>>|  <class 'method'>
+column_descriptions --> |[{'name': 'Student', 'type': <class '__main__.Student'>, 'aliased': False, 'expr': <class '__main__.Student'>, 'entity': <class '__main__.Student'>}]|  <class 'list'>
+correlate --> |<bound method Query.correlate of <sqlalchemy.orm.query.Query object at 0x7f45a70e7ee0>>|  <class 'method'>
+count --> |<bound method Query.count of <sqlalchemy.orm.query.Query object at 0x7f45a70e7ee0>>|  <class 'method'>
+cte --> |<bound method Query.cte of <sqlalchemy.orm.query.Query object at 0x7f45a70e7ee0>>|  <class 'method'>
+delete --> |<bound method Query.delete of <sqlalchemy.orm.query.Query object at 0x7f45a70e7ee0>>|  <class 'method'>
+dispatch --> |<sqlalchemy.event.base.QueryEventsDispatch object at 0x7f45a7098900>|  <class 'sqlalchemy.event.base.QueryEventsDispatch'>
+distinct --> |<bound method Query.distinct of <sqlalchemy.orm.query.Query object at 0x7f45a70e7ee0>>|  <class 'method'>
+enable_assertions --> |<bound method Query.enable_assertions of <sqlalchemy.orm.query.Query object at 0x7f45a70e7ee0>>|  <class 'method'>
+enable_eagerloads --> |<bound method Query.enable_eagerloads of <sqlalchemy.orm.query.Query object at 0x7f45a70e7ee0>>|  <class 'method'>
+except_ --> |<bound method Query.except_ of <sqlalchemy.orm.query.Query object at 0x7f45a70e7ee0>>|  <class 'method'>
+except_all --> |<bound method Query.except_all of <sqlalchemy.orm.query.Query object at 0x7f45a70e7ee0>>|  <class 'method'>
+execution_options --> |<bound method Query.execution_options of <sqlalchemy.orm.query.Query object at 0x7f45a70e7ee0>>|  <class 'method'>
+exists --> |<bound method Query.exists of <sqlalchemy.orm.query.Query object at 0x7f45a70e7ee0>>|  <class 'method'>
+filter --> |<bound method Query.filter of <sqlalchemy.orm.query.Query object at 0x7f45a70e7ee0>>|  <class 'method'>
+filter_by --> |<bound method Query.filter_by of <sqlalchemy.orm.query.Query object at 0x7f45a70e7ee0>>|  <class 'method'>
+first --> |<bound method Query.first of <sqlalchemy.orm.query.Query object at 0x7f45a70e7ee0>>|  <class 'method'>
+from_self --> |<bound method Query.from_self of <sqlalchemy.orm.query.Query object at 0x7f45a70e7ee0>>|  <class 'method'>
+from_statement --> |<bound method Query.from_statement of <sqlalchemy.orm.query.Query object at 0x7f45a70e7ee0>>|  <class 'method'>
+get --> |<bound method Query.get of <sqlalchemy.orm.query.Query object at 0x7f45a70e7ee0>>|  <class 'method'>
+group_by --> |<bound method Query.group_by of <sqlalchemy.orm.query.Query object at 0x7f45a70e7ee0>>|  <class 'method'>
+having --> |<bound method Query.having of <sqlalchemy.orm.query.Query object at 0x7f45a70e7ee0>>|  <class 'method'>
+instances --> |<bound method Query.instances of <sqlalchemy.orm.query.Query object at 0x7f45a70e7ee0>>|  <class 'method'>
+intersect --> |<bound method Query.intersect of <sqlalchemy.orm.query.Query object at 0x7f45a70e7ee0>>|  <class 'method'>
+intersect_all --> |<bound method Query.intersect_all of <sqlalchemy.orm.query.Query object at 0x7f45a70e7ee0>>|  <class 'method'>
+join --> |<bound method Query.join of <sqlalchemy.orm.query.Query object at 0x7f45a70e7ee0>>|  <class 'method'>
+label --> |<bound method Query.label of <sqlalchemy.orm.query.Query object at 0x7f45a70e7ee0>>|  <class 'method'>
+lazy_loaded_from --> |None|  <class 'NoneType'>
+limit --> |<bound method Query.limit of <sqlalchemy.orm.query.Query object at 0x7f45a70e7ee0>>|  <class 'method'>
+logger --> |<Logger sqlalchemy.orm.query.Query (WARNING)>|  <class 'logging.Logger'>
+merge_result --> |<bound method Query.merge_result of <sqlalchemy.orm.query.Query object at 0x7f45a70e7ee0>>|  <class 'method'>
+offset --> |<bound method Query.offset of <sqlalchemy.orm.query.Query object at 0x7f45a70e7ee0>>|  <class 'method'>
+one --> |<bound method Query.one of <sqlalchemy.orm.query.Query object at 0x7f45a70e7ee0>>|  <class 'method'>
+one_or_none --> |<bound method Query.one_or_none of <sqlalchemy.orm.query.Query object at 0x7f45a70e7ee0>>|  <class 'method'>
+only_return_tuples --> |<bound method Query.only_return_tuples of <sqlalchemy.orm.query.Query object at 0x7f45a70e7ee0>>|  <class 'method'>
+options --> |<bound method Query.options of <sqlalchemy.orm.query.Query object at 0x7f45a70e7ee0>>|  <class 'method'>
+order_by --> |<bound method Query.order_by of <sqlalchemy.orm.query.Query object at 0x7f45a70e7ee0>>|  <class 'method'>
+outerjoin --> |<bound method Query.outerjoin of <sqlalchemy.orm.query.Query object at 0x7f45a70e7ee0>>|  <class 'method'>
+params --> |<bound method Query.params of <sqlalchemy.orm.query.Query object at 0x7f45a70e7ee0>>|  <class 'method'>
+populate_existing --> |<bound method Query.populate_existing of <sqlalchemy.orm.query.Query object at 0x7f45a70e7ee0>>|  <class 'method'>
+prefix_with --> |<bound method Query.prefix_with of <sqlalchemy.orm.query.Query object at 0x7f45a70e7ee0>>|  <class 'method'>
+reset_joinpoint --> |<bound method Query.reset_joinpoint of <sqlalchemy.orm.query.Query object at 0x7f45a70e7ee0>>|  <class 'method'>
+scalar --> |<bound method Query.scalar of <sqlalchemy.orm.query.Query object at 0x7f45a70e7ee0>>|  <class 'method'>
+select_entity_from --> |<bound method Query.select_entity_from of <sqlalchemy.orm.query.Query object at 0x7f45a70e7ee0>>|  <class 'method'>
+select_from --> |<bound method Query.select_from of <sqlalchemy.orm.query.Query object at 0x7f45a70e7ee0>>|  <class 'method'>
+selectable --> |SELECT student.pid AS student_pid, student.name AS student_name, student.sex AS student_sex, student.score AS student_score 
+FROM student|  <class 'sqlalchemy.sql.annotation.AnnotatedSelect'>
+session --> |<sqlalchemy.orm.session.Session object at 0x7f45a70e7df0>|  <class 'sqlalchemy.orm.session.Session'>
+slice --> |<bound method Query.slice of <sqlalchemy.orm.query.Query object at 0x7f45a70e7ee0>>|  <class 'method'>
+statement --> |SELECT student.pid, student.name, student.sex, student.score 
+FROM student|  <class 'sqlalchemy.sql.annotation.AnnotatedSelect'>
+subquery --> |<bound method Query.subquery of <sqlalchemy.orm.query.Query object at 0x7f45a70e7ee0>>|  <class 'method'>
+suffix_with --> |<bound method Query.suffix_with of <sqlalchemy.orm.query.Query object at 0x7f45a70e7ee0>>|  <class 'method'>
+union --> |<bound method Query.union of <sqlalchemy.orm.query.Query object at 0x7f45a70e7ee0>>|  <class 'method'>
+union_all --> |<bound method Query.union_all of <sqlalchemy.orm.query.Query object at 0x7f45a70e7ee0>>|  <class 'method'>
+update --> |<bound method Query.update of <sqlalchemy.orm.query.Query object at 0x7f45a70e7ee0>>|  <class 'method'>
+value --> |<bound method Query.value of <sqlalchemy.orm.query.Query object at 0x7f45a70e7ee0>>|  <class 'method'>
+values --> |<bound method Query.values of <sqlalchemy.orm.query.Query object at 0x7f45a70e7ee0>>|  <class 'method'>
+whereclause --> |None|  <class 'NoneType'>
+with_entities --> |<bound method Query.with_entities of <sqlalchemy.orm.query.Query object at 0x7f45a70e7ee0>>|  <class 'method'>
+with_for_update --> |<bound method Query.with_for_update of <sqlalchemy.orm.query.Query object at 0x7f45a70e7ee0>>|  <class 'method'>
+with_hint --> |<bound method Query.with_hint of <sqlalchemy.orm.query.Query object at 0x7f45a70e7ee0>>|  <class 'method'>
+with_labels --> |<bound method Query.with_labels of <sqlalchemy.orm.query.Query object at 0x7f45a70e7ee0>>|  <class 'method'>
+with_lockmode --> |<bound method Query.with_lockmode of <sqlalchemy.orm.query.Query object at 0x7f45a70e7ee0>>|  <class 'method'>
+with_parent --> |<bound method Query.with_parent of <sqlalchemy.orm.query.Query object at 0x7f45a70e7ee0>>|  <class 'method'>
+with_polymorphic --> |<bound method Query.with_polymorphic of <sqlalchemy.orm.query.Query object at 0x7f45a70e7ee0>>|  <class 'method'>
+with_session --> |<bound method Query.with_session of <sqlalchemy.orm.query.Query object at 0x7f45a70e7ee0>>|  <class 'method'>
+with_statement_hint --> |<bound method Query.with_statement_hint of <sqlalchemy.orm.query.Query object at 0x7f45a70e7ee0>>|  <class 'method'>
+with_transformation --> |<bound method Query.with_transformation of <sqlalchemy.orm.query.Query object at 0x7f45a70e7ee0>>|  <class 'method'>
+yield_per --> |<bound method Query.yield_per of <sqlalchemy.orm.query.Query object at 0x7f45a70e7ee0>>|  <class 'method'>
