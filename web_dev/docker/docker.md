@@ -15,6 +15,7 @@ see https://docs.docker.com/engine/install/ubuntu/
 4. 创建镜像
 `$ docker build .` #在当前目录下找到Dockerfile,并生成image
 `$ docker build https://github.com/docker/rootfs.git#container:docker`
+`$ docker pull https:localhost:port/aa/bb:version`  这里的version会作为TagName
 >> 其中container是分支名,docker是目录名
 `$ docker build -t xiaoao/test:mysql .` #将生成镜像命名为xiaoao/test:mysql
 5. 推送到远端
@@ -57,6 +58,7 @@ see https://docs.docker.com/engine/install/ubuntu/
 
 #### 深入
 1. docker run 做了什么?
+[Docker run 命令](https://www.runoob.com/docker/docker-run-command.html)
 --name 为容器起一个名字
 --link  共享被link的容器的环境变量与端口映射
 -e 设置环境变量， 表达方式为Name=Value
@@ -73,15 +75,14 @@ see https://docs.docker.com/engine/install/ubuntu/
 * -i	以交互模式运行容器，通常与 -t 同时使用
 * -t	为容器重新分配一个伪输入终端，通常与 -i 同时使用
 * -d	后台运行容器，并返回容器ID
+* -v
+* -p
 
 
 ## Question
 1. docker 每run一次就会产生一个container?
 
-## Docker Compose
-1. 在有docket-compose.yml文件的目录下执行`docket-compose ps` 可以看到该组的docker的运行情况
-   第一行为容器名
-2. 进入docker中 `docker-compose exec -it container_id /bin/bash`
+
 
 
 
