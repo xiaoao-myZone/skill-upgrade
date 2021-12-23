@@ -137,3 +137,7 @@ class Test:
 `vim ~/.pip/pip.conf`
 7. install
 `pip install -r requirements.txt`
+8. resintall
+`pip install --force--reinstall pkg`
+9. temperary add time out
+`pip install pkg --timeout 60`

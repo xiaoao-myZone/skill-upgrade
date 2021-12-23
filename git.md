@@ -32,6 +32,10 @@
 1. `git reset --hard commitId filename`
 2. `git reset --hard HEAD` 清除所有修改
 
+### 比较
+1. `git diff commit_id_1 commit_id_2 filename` 第一个参数如果缺省则认为是HEAD(暂存), 第二个参数如果缺省则认为是工作区, 第三个参数缺省， 则认为是比较所有文件, 本质上是比较尚未暂存的文件
+2. `git diff --cached filename` 将暂存区与HEAD比较
+
 
 ### 选择特定文件
 将所有修改的py文件加入暂存区
