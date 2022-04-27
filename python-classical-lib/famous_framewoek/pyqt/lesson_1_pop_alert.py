@@ -25,7 +25,7 @@ while QTime.currentTime() < due:
 
 label = QLabel("<font color=red size=72><b>" + message + "</b></font>")
 # anchor the label?
-label.setWindowFlags(Qt.SplashScreen) # display the label with splash method
+label.setWindowFlags(Qt.SplashScreen)  # display the label with splash method
 # app has week association with widgets on the surface
 label.show()
 # 600000 unit is ms

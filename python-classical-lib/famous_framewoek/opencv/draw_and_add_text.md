@@ -1,23 +1,23 @@
-#»­Ïß¶Î
+#ç”»çº¿æ®µ
 cv.line(img,tuple_start,tuple_end,tuple_color,int_width)
 
-#»­¾ØĞÎ
+#ç”»çŸ©å½¢
 cv.rectangle(img,tuple_start,tuple_end,tuple_color,int_width)
 
-#»­Ô²
+#ç”»åœ†
 cv.circle(img,tuple_center,radius,tuple_color,int_width)
-		#width=-1Ê±£¬±íÊ¾ÊµĞÄ£¬¶ÔÓÚËùÓĞ·â±ÕĞÎ×´Ó¦¸Ã¶¼³ÉÁ¢
+		#width=-1æ—¶ï¼Œè¡¨ç¤ºå®å¿ƒï¼Œå¯¹äºæ‰€æœ‰å°é—­å½¢çŠ¶åº”è¯¥éƒ½æˆç«‹
 
-#»­ÍÖÔ²
+#ç”»æ¤­åœ†
 cv.ellipse(img,tuple_center,tuple_long&short-axis,tuple_color,int_width)
 
-#»­¶à±ßĞÎ		####Ã²ËÆÖ»ÄÜÃèµã
+#ç”»å¤šè¾¹å½¢		####è²Œä¼¼åªèƒ½æç‚¹
 cv.polylines(img,plts,bool_is-closed,color,int_width)
-		#¿ÉÒÔ±»ÓÃÀ´»­ºÜ¶àÌõÏß¡£Ö»ĞèÒª°ÑÏëÒª»­µÄÏß·ÅÔÚÒ»
-		¸öÁĞ±íÖĞ£¬½«Õâ¸öÁĞ±í´«¸øº¯Êı¾Í¿ÉÒÔÁË
-#¼ÓÎÄ×Ö
+		#å¯ä»¥è¢«ç”¨æ¥ç”»å¾ˆå¤šæ¡çº¿ã€‚åªéœ€è¦æŠŠæƒ³è¦ç”»çš„çº¿æ”¾åœ¨ä¸€
+		ä¸ªåˆ—è¡¨ä¸­ï¼Œå°†è¿™ä¸ªåˆ—è¡¨ä¼ ç»™å‡½æ•°å°±å¯ä»¥äº†
+#åŠ æ–‡å­—
 cv.putText(img,str_content,tuple_location,font,int_size,tuple_color,int_linetype)
 
-##ÁíÍâfont = cv.FONT_HERSHEY_SIMPLEX
+##å¦å¤–font = cv.FONT_HERSHEY_SIMPLEX
 
 

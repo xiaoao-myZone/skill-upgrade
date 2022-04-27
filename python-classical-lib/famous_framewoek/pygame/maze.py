@@ -1,6 +1,8 @@
 from queue import LifoQueue
 from random import shuffle
-#AROUND = [(1,0), (-1, 0), (0,-1), (0, 1)]
+
+
+# AROUND = [(1,0), (-1, 0), (0,-1), (0, 1)]
 AROUND = [(0, -1), (-1, 0), (0, 1), (1, 0)]
 shuffle(AROUND)
 print(AROUND)
@@ -17,22 +19,23 @@ MAZE = (
     (1, 1, 1, 1, 1, 1, 1, 1, 1, 1)
 )
 
+
 class MazePoint(object):
     def __init__(self, x, y, maze, ori):
         self._x = x
         self._y = y
-        self.ori = self.reverse_ori(ori)#latest point
+        self.ori = self.reverse_ori(ori)  # latest point
         self.maze = maze
-        self.branch=LifoQueue(4)
+        self.branch = LifoQueue(4)
         self.search()
-    
+
     def search(self):
         for index, ori in enumerate(AROUND):
             x = self._x + ori[0]
             y = self._y + ori[1]
-            if not self.maze[y][x] and self.ori!=ori:
+            if not self.maze[y][x] and self.ori != ori:
                 self.branch.put_nowait(index)
-    
+
     def reverse_ori(self, ori):
         ori = list(ori)
         for index, i in enumerate(ori):
@@ -43,7 +46,7 @@ class MazePoint(object):
 
     def is_dead(self):
         return self.branch.empty()
-    
+
     def next_point(self):
         index = self.branch.get_nowait()
         ori = AROUND[index]
@@ -52,26 +55,27 @@ class MazePoint(object):
         return MazePoint(x, y, self.maze, ori)
 
     def __eq__(self, other):
-        if self._x==other._x and self._y==other._y:
+        if self._x == other._x and self._y == other._y:
             return True
         else:
             return False
-    
+
     def print_point(self):
         ori = self.reverse_ori(self.ori)
         index = AROUND.index(ori)
-        if index==0:
-            print("up: (%d, %d)" %(self._x, self._y))
-        elif index==1:
-            print("right: (%d, %d)" %(self._x, self._y))
-        elif index==2:
-            print("down: (%d, %d)" %(self._x, self._y))
+        if index == 0:
+            print("up: (%d, %d)" % (self._x, self._y))
+        elif index == 1:
+            print("right: (%d, %d)" % (self._x, self._y))
+        elif index == 2:
+            print("down: (%d, %d)" % (self._x, self._y))
         else:
-            print("left: (%d, %d)" %(self._x, self._y))
+            print("left: (%d, %d)" % (self._x, self._y))
 
 
 start_point = MazePoint(1, 1, MAZE, (0, 1))
 end_point = MazePoint(8, 8, MAZE, (1, 0))
+
 
 def is_run_circle(path):
     tmp = LifoQueue(100)
@@ -88,15 +92,14 @@ def is_run_circle(path):
     while not tmp.empty():
         pop_point = tmp.get_nowait()
         path.put_nowait(pop_point)
-    
-    
+
     return ret
 
 
 def search_path(start_point, end_point):
     tmp = start_point
     path = LifoQueue(81)
-    while tmp!=end_point:
+    while tmp != end_point:
         path.put_nowait(tmp)
         print("in: (%d %d)" % (tmp._x, tmp._y))
         yield (1, tmp._x, tmp._y)
@@ -114,7 +117,7 @@ def search_path(start_point, end_point):
             if path.empty():
                 print("can't find termainal")
                 break
-                #return []
+                # return []
             else:
                 while not path.empty():
                     tmp = path.get_nowait()
@@ -124,7 +127,7 @@ def search_path(start_point, end_point):
                         break
                 else:
                     break
-                    #return []
+                    # return []
     else:
         path.put_nowait(tmp)
         print("in: (%d %d)" % (tmp._x, tmp._y))
@@ -137,6 +140,7 @@ def search_path(start_point, end_point):
     # ret.reverse()
     # return ret
 
+
 # ret = search_path(start_point, end_point)
 # for i in ret:
 #     i.print_point()
@@ -145,5 +149,5 @@ if __name__ == "__main__":
     try:
         while True:
             next(iter_obj)
-    except:
+    except Exception as e:
         pass

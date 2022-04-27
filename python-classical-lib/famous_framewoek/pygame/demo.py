@@ -1,19 +1,19 @@
-#-*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 import sys
 import time
 import pygame
 from maze import MAZE, search_path, start_point, end_point
 from pygame.locals import QUIT, K_q
 
-#color define
-BLACK = (5 ,5, 5)
+# color define
+BLACK = (5, 5, 5)
 WHITE = (255, 255, 255)
 GREEN = (0, 255, 0)
 RED = (200, 50, 20)
 
-#size
+# size
 SCREEN = (402, 402)
-REC  = (40, 40)
+REC = (40, 40)
 
 iter_point = search_path(start_point, end_point)
 
@@ -38,12 +38,12 @@ finish = False
 x, y = -1, -1
 while True:
     for event in pygame.event.get():
-        if event.type == QUIT: #点击控件上的“X”
+        if event.type == QUIT:  # 点击控件上的“X”
             print("exit")
             sys.exit()
         if event.type == K_q:
             print("q")
-    
+
     if not finish:
         # ans = input()
         # if ans:
@@ -55,13 +55,13 @@ while True:
             input_point, x, y = next(iter_point)
             if input_point:
                 pygame.draw.rect(screen, GREEN, rect_array[y][x])
-                
+
             else:
                 print("draw red")
                 pygame.draw.rect(screen, RED, rect_array[y][x])
-            
-        except:
+
+        except Exception as e:
             finish = True
     time.sleep(0.02)
-            
+
     pygame.display.update()

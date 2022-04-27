@@ -1,61 +1,61 @@
-¡¤½¨Á¢Ò»¸öword-appliction¶ÔÏó
+Â·å»ºç«‹ä¸€ä¸ªword-applictionå¯¹è±¡
 	wd = Dispatch("Word.Application")
 
-¡¤´ò¿ªÒ»¸öwordÎÄµµ»òÕßĞÂ½¨
-	doc = wd.Documents.Open("Â·¾¶",Withwindow=True or False)
-	doc = wd.Documents.Add("Â·¾¶")
+Â·æ‰“å¼€ä¸€ä¸ªwordæ–‡æ¡£æˆ–è€…æ–°å»º
+	doc = wd.Documents.Open("è·¯å¾„",Withwindow=True or False)
+	doc = wd.Documents.Add("è·¯å¾„")
 
-¡¤±à¼­ÎÄµµ
-	myRange = doc.Range(start,end)£¬ÓÃint±íÊ¾
+Â·ç¼–è¾‘æ–‡æ¡£
+	myRange = doc.Range(start,end)ï¼Œç”¨intè¡¨ç¤º
 	myRange.InsertBefore("word")
 
-¡¤Ìí¼ÓĞÂÒ³Ãæ
-	pre = doc.Sections(page_num)  ´Ó1¿ªÊ¼
-	pre.Range()·µ»ØÕâÒ»Ò³µÄÄÚÈİ£¬ÒÔ\r½áÎ²£¬Õâ¸ö¶ÔÏóÓĞEndÓëStartÁ½¸öÊôĞÔ£¬·µ»Øint
+Â·æ·»åŠ æ–°é¡µé¢
+	pre = doc.Sections(page_num)  ä»1å¼€å§‹
+	pre.Range()è¿”å›è¿™ä¸€é¡µçš„å†…å®¹ï¼Œä»¥\rç»“å°¾ï¼Œè¿™ä¸ªå¯¹è±¡æœ‰Endä¸Startä¸¤ä¸ªå±æ€§ï¼Œè¿”å›int
 	new_section = doc.Range(pre.Range.End-1,pre.Range.End-1).Sections.Add()
 	new_range = new_section.Range
-    Ìí¼Ó¶ÎÂä
+    æ·»åŠ æ®µè½
 	content_pg = new_range.Paragraphs.Add()
-    ÉèÖÃ×ÖÌå
+    è®¾ç½®å­—ä½“
 	content_pg.Range.Font.Name,content_pg.Range.Font.Size = 'Times New Roman',24
-    ÉèÖÃ¸ñÊ½
-	content_pg.Range.ParagraphFormat.Alignment = 0 # 0,1,2 ·Ö±ğ¶ÔÓ¦×ó¶ÔÆë¡¢¾ÓÖĞ¡¢ÓÒ¶ÔÆë
-    ²åÈëÎÄ×Ö
+    è®¾ç½®æ ¼å¼
+	content_pg.Range.ParagraphFormat.Alignment = 0 # 0,1,2 åˆ†åˆ«å¯¹åº”å·¦å¯¹é½ã€å±…ä¸­ã€å³å¯¹é½
+    æ’å…¥æ–‡å­—
 	content.Range.InsertBefore("Hello,Page.")
 	content.Range.Text = u''
 
-¡¤ËùÓĞÒ³Ãæ(ÁĞ±í)
+Â·æ‰€æœ‰é¡µé¢(åˆ—è¡¨)
 	doc.Sections
-¡¤ËùÓĞ¶ÎÂä(ÁĞ±í)
+Â·æ‰€æœ‰æ®µè½(åˆ—è¡¨)
 	doc.Paragraphs
 
-¡¤Ìæ»»ÎÄ×Ö
-	wd.Selection.Find.ClearFormatting()  Çå³ıÒÔÇ°µÄËÑË÷ÄÚÈİ
-	wd.Selection.Find.Replacement.ClearFormatting()  Çå³ıÒÔÇ°µÄÌæ»»ÄÚÈİ
-	wd.Selection.Find.Execute(Oldstr,False,False,False,False,False,True,1,True,Newstr,2)³É¹¦Ôò·µ»ØTrue
+Â·æ›¿æ¢æ–‡å­—
+	wd.Selection.Find.ClearFormatting()  æ¸…é™¤ä»¥å‰çš„æœç´¢å†…å®¹
+	wd.Selection.Find.Replacement.ClearFormatting()  æ¸…é™¤ä»¥å‰çš„æ›¿æ¢å†…å®¹
+	wd.Selection.Find.Execute(Oldstr,False,False,False,False,False,True,1,True,Newstr,2)æˆåŠŸåˆ™è¿”å›True
 
-¡¤Ò³Ã¼Ò³½Å
-	wd.ActiveWindow.ActivePane.View.SeekView = 9 #9 - Ò³Ã¼£» 10 - Ò³½Å
+Â·é¡µçœ‰é¡µè„š
+	wd.ActiveWindow.ActivePane.View.SeekView = 9 #9 - é¡µçœ‰ï¼› 10 - é¡µè„š
 	wd.Selection.ParagraphFormat.Alignment = 0
 	wd.Selection.Text = 'New Header'
-	wd.ActiveWindow.ActivePane.View.SeekView = 0 # ÊÍ·Å½¹µã£¬·µ»ØÖ÷ÎÄµµ
-¡¤Ò³Ã¼ÎÄ×ÖÌæ»»
+	wd.ActiveWindow.ActivePane.View.SeekView = 0 # é‡Šæ”¾ç„¦ç‚¹ï¼Œè¿”å›ä¸»æ–‡æ¡£
+Â·é¡µçœ‰æ–‡å­—æ›¿æ¢
 	wd.ActiveDocument.Sections[0].Headers[0].Range.Find.ClearFormatting()
 	wd.ActiveDocument.Sections[0].Headers[0].Range.Find.Replacement.ClearFormatting()
 	wd.ActiveDocument.Sections[0].Headers[0].Range.Find.Execute(OldStr, False, False, False, False, False, True, 1, False, NewStr, 2)
 
-¡¤Ìí¼Ó±í¸ñ
+Â·æ·»åŠ è¡¨æ ¼
 	new_range = new_seciton.Range
-	new_table = new_range.Tables.Add(doc.Range(new_range.End,new_range.End), 5, 5) #ÔÚÎÄµµÄ©Î²Ìí¼ÓÒ»¸ö5*5µÄ±í¸ñ
+	new_table = new_range.Tables.Add(doc.Range(new_range.End,new_range.End), 5, 5) #åœ¨æ–‡æ¡£æœ«å°¾æ·»åŠ ä¸€ä¸ª5*5çš„è¡¨æ ¼
 
-¡¤±í¸ñ²Ù×÷
+Â·è¡¨æ ¼æ“ä½œ
 	doc.Tables[0].Rows[0].Cells[0].Range.Text ='123123'
-	doc.Tables[0].Rows.Add() # Ôö¼ÓÒ»ĞĞ
+	doc.Tables[0].Rows.Add() # å¢åŠ ä¸€è¡Œ
 
-¡¤Áí´æÎª
+Â·å¦å­˜ä¸º
 	wd.ActiveDocument.SaveAs(r'C:\Users\Administrator\Desktop\python_text1.docx',
 				        FileFormat=constants.wdFormatDocumentDefault)
-¡¤¹Ø±Õ
+Â·å…³é—­
 	doc.close()
 	wd.close(constants.wdDoNotSaveChanges)
 	wd.Quit()

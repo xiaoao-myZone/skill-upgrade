@@ -1,6 +1,7 @@
 from PyQt5.QtWidgets import QDialog, QDial, QSpinBox, QHBoxLayout
 from PyQt5.QtWidgets import QApplication
 
+
 class Form(QDialog):
     def __init__(self, parent=None):
         super(Form, self).__init__(parent)

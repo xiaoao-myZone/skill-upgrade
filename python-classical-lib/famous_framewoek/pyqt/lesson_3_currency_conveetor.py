@@ -2,6 +2,7 @@ import sys
 from PyQt5.QtWidgets import QDialog, QLabel, QComboBox, QDoubleSpinBox
 from PyQt5.QtWidgets import QApplication, QGridLayout
 
+
 class Form(QDialog):
     def __init__(self, parent=None):
         super(Form, self).__init__(parent)
@@ -10,9 +11,9 @@ class Form(QDialog):
         rates = sorted(self.rates.keys())
 
         dateLabel = QLabel(date)
-        self.fromComboBox = QComboBox() # drop menu
+        self.fromComboBox = QComboBox()  # drop menu
         self.fromComboBox.addItems(rates)
-        self.fromSpinBox = QDoubleSpinBox() # num input
+        self.fromSpinBox = QDoubleSpinBox()  # num input
         self.fromSpinBox.setRange(0.01, 10000000.00)
         self.fromSpinBox.setValue(1.00)
         self.toComboBox = QComboBox()
@@ -35,7 +36,8 @@ class Form(QDialog):
     def updateUi(self):
         to = str(self.toComboBox.currentText())
         from_ = str(self.fromComboBox.currentText())
-        amount = (self.rates[from_]) / self.rates[to] * self.fromSpinBox.value()
+        amount = (self.rates[from_]) / self.rates[to] * \
+            self.fromSpinBox.value()
 
         self.toLabel.setText("%0.2f" % amount)
 
@@ -47,6 +49,7 @@ class Form(QDialog):
         }
         date = "Exchange Rates Date: " + "2021-02-08"
         return date
+
 
 app = QApplication(sys.argv)
 form = Form()

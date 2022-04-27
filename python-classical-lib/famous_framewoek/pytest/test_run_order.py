@@ -5,6 +5,7 @@ import pytest
 def test_single_func():
     print("\ntest_single_func, 测试用例")
 
+
 class TestClass(object):
 
     @pytest.mark.run(order=-1)

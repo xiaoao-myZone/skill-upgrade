@@ -8,10 +8,11 @@ from PyQt5.QtWidgets import QVBoxLayout
 class Form(QDialog):
     def __init__(self, parent=None):
         super(Form, self).__init__(parent)
-        self.broswer = QTextBrowser() # display
-        self.lineedit = QLineEdit("Type an expression and press Enter") # input
-        self.lineedit.selectAll() # ctr + a
-        layout = QVBoxLayout() # a frame with 'X' and '--' and '[]'
+        self.broswer = QTextBrowser()  # display
+        self.lineedit = QLineEdit(
+            "Type an expression and press Enter")  # input
+        self.lineedit.selectAll()  # ctr + a
+        layout = QVBoxLayout()  # a frame with 'X' and '--' and '[]'
         layout.addWidget(self.broswer)
         layout.addWidget(self.lineedit)
         self.setLayout(layout)
@@ -24,7 +25,8 @@ class Form(QDialog):
     def updateUi(self):
         try:
             text = str(self.lineedit.text())
-            self.broswer.append("%s = <b>%s</b>" % (text, eval(text))) # when fresh the list in broswer
+            # when fresh the list in broswer
+            self.broswer.append("%s = <b>%s</b>" % (text, eval(text)))
             # maybe append triggle updating ui
         except Exception:
             traceback.print_exc()

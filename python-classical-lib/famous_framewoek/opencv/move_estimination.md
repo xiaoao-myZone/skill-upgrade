@@ -1,30 +1,30 @@
-1.����������������:
+1.创建背景生成算子:
 	fgbg = cv.createBackgroundSubtractorMOG2()
 
-2.����ÿһ֡ͼ��:
-	fgmask = fgbg.apply(frame) #�õ�һ��ǰ���Ҷ�ͼ����һ�η����õ����ǿհ�ͼ
-	_,fgmask = cv.threshold(fgmask,30,0xff,cv.THRESH_BINARY) #��ǰ��ͼ��ֵ��
+2.分析每一帧图像:
+	fgmask = fgbg.apply(frame) #得到一个前景灰度图，第一次分析得到的是空白图
+	_,fgmask = cv.threshold(fgmask,30,0xff,cv.THRESH_BINARY) #将前景图二值化
 	
-	�����Զ�ͼ����и�ʴcv.erode()����������cv.dilate()
+	还可以对图像进行腐蚀cv.erode()和膨胀运算cv.dilate()
 	
 	
 	
-	bgImage = fgbg.getBackgroundImage()#��ȡ����ͼ
-	"ֵ��˵���ǣ�fgbgÿ����һ��ͼƬ�Ὣ��ͼƬ������Ϣ�������������Ա���ͼ������������"
+	bgImage = fgbg.getBackgroundImage()#获取背景图
+	"值的说的是，fgbg每分析一次图片会将该图片部分信息记忆下来，所以背景图会慢慢变清晰"
 
 	bin,cnts,_=cv.findContours(fgmask.copy(),cv.RETR_EXTERNAL,cv.CHAIN_APPROX_SIMPLE)
 	#
 
-	��cnts�е�ÿһ����������i
-		area  =cv.contourArea(i)#��ȡ���������
-			��һ��ֵ��ɾ������
+	对cnts中的每一个轮廓特征i
+		area  =cv.contourArea(i)#求取轮廓的面积
+			定一个值域，删除干扰
 
-		rect = cv.boundingRect(i)#��ȡ��С�ڽӾ��Σ�����ת������
+		rect = cv.boundingRect(i)#获取最小内接矩形（不旋转）参数
 
 			minAreaRect = cv.minAreaRect(i)
-			rect = cv.boxPoints(minAreaRect)#��ȡ���������ϵ���С�ڽӾ���
+			rect = cv.boxPoints(minAreaRect)#获取真正意义上的最小内接矩形
 		
-	i��һ��array��ά���󣬵����ö�ά�Ϳ��Ա�ʾ�ˣ��������Ԫ����һ��ƽ������
+	i是一个array三维矩阵，但是用二维就可以表示了，最基本的元素是一对平面坐标
 		
 
 	
