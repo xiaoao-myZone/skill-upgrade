@@ -5,6 +5,7 @@ see https://docs.docker.com/engine/install/ubuntu/
 ### docker核心概念
 1. Image与Container的关系
 2. [Docker 核心技术与实现原理](http://dockone.io/article/2941)
+3. docker软件是C/S构型，docker命令是C端
 
 ### docker Image
 
@@ -59,15 +60,16 @@ see https://docs.docker.com/engine/install/ubuntu/
 #### 深入
 1. docker run 做了什么?
 [Docker run 命令](https://www.runoob.com/docker/docker-run-command.html)
---name 为容器起一个名字
---link  共享被link的容器的环境变量与端口映射
--e 设置环境变量， 表达方式为Name=Value
--v 将宿主机的文件/文件夹共享给容器
--p 将宿主机的端口共享给容器
+  
+  
+  -e 设置环境变量， 表达方式为Name=Value
+  -v 将宿主机的文件/文件夹共享给容器
+  -p 将宿主机的端口共享给容器
+  
 * 检查本地是否存在指定的镜像，不存在则从公有仓库下载
 * 使用镜像创建并启动容器
 * 分配一个文件系统，并在只读的镜像层外面挂载一层可读可写层
-* 从宿主主机配置的网桥接口中桥接一个虚拟接口道容器中去
+* 从宿主主机配置的网桥接口中桥接一个虚拟接口到容器中去
 * 从地址池分配一个ip地址给容器
 * 执行用户指定的应用程序
 * 执行完毕之后容器被终止
@@ -75,12 +77,28 @@ see https://docs.docker.com/engine/install/ubuntu/
 * -i	以交互模式运行容器，通常与 -t 同时使用
 * -t	为容器重新分配一个伪输入终端，通常与 -i 同时使用
 * -d	后台运行容器，并返回容器ID
-* -v
-* -p
+* -v  前者为宿主机目录，后者为容器目录，不存在会被创建（如果已存在呢？）
+* -p  端口映射
+* --name 为容器起一个名字
+* --link  共享被link的容器的环境变量与端口映射
+* --env(-e): `docker run -e var1=value1`
+* --entrypoint: `docker run -it --rm --entrypoint /bin/bash {image}`可以调试启动失败的容器
 
+
+## Dockerfile
+### ADD
+1. 如果是源文件夹，那么表示把这个文件夹里面的东西掏出来放到后面的文件夹中， 如果前者与后者的路径最后加上/，这种操作不会成功
+2. `ADD ./code /root/` 这种情况极有可能会覆盖/root，所以ADD的参数条件是source_path expect_path，有别于shell的cp [ADD注意事项](https://blog.csdn.net/thedarkclouds/article/details/81990093)
+
+### WORKDIR
+1. 如果之后执行`RUN`命令，会以该目录默认目录
+
+### Notice
+1. 如果在Dockerfile中`COPY`, `ADD`等使用宿主机的相对路径，那么这个相对路径是相对于谁？是使用docker build时所在的路径，还是Dockerfile文件所在的目录的路径 docker build path -f dockerfile_path -t name 这种，就是前者，path可以放在build后面也可以放在最后面
+2. Dockerfile中想要指定容器内的路径，其默认初始路径是/
 
 ## Question
-1. docker 每run一次就会产生一个container?
+1. docker 每run一次就会产生一个container? （是）
 
 
 
